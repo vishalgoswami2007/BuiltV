@@ -9,33 +9,34 @@ import {
 } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/logo/builtv-logo.png";
 
 const footerLinks = {
   services: [
-    { label: "Web Experiences", to: "/services" },
-    { label: "Software & SaaS", to: "/services" },
-    { label: "Business Systems", to: "/services" },
-    { label: "AI & Automation", to: "/services" },
-    { label: "Product Engineering", to: "/services" },
+    { key: "web", to: "/services" },
+    { key: "software", to: "/services" },
+    { key: "systems", to: "/services" },
+    { key: "ai", to: "/services" },
+    { key: "engineering", to: "/services" },
   ],
 
   company: [
-    { label: "Work", to: "/work" },
-    { label: "Solutions", to: "/solutions" },
-    { label: "Pricing", to: "/pricing" },
-    { label: "About", to: "/about" },
-    { label: "Insights", to: "/insights" },
-    { label: "Contact", to: "/contact" },
+    { key: "work", to: "/work" },
+    { key: "solutions", to: "/solutions" },
+    { key: "pricing", to: "/pricing" },
+    { key: "about", to: "/about" },
+    { key: "insights", to: "/insights" },
+    { key: "contact", to: "/contact" },
   ],
 
   legal: [
-    { label: "Privacy Policy", to: "/privacy" },
-    { label: "Terms of Service", to: "/terms" },
-    { label: "Cookie Policy", to: "/cookies" },
-    { label: "Accessibility", to: "/accessibility" },
-    { label: "Security", to: "/security" },
+    { key: "privacy", to: "/privacy" },
+    { key: "terms", to: "/terms" },
+    { key: "cookies", to: "/cookies" },
+    { key: "accessibility", to: "/accessibility" },
+    { key: "security", to: "/security" },
   ],
 };
 
@@ -48,6 +49,8 @@ const socials = [
 ];
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050608]">
       <div
@@ -78,18 +81,19 @@ function Footer() {
             </Link>
 
             <h3 className="mt-6 max-w-sm text-2xl font-semibold leading-snug text-white sm:mt-7">
-              Digital systems built for
-              <span className="text-sky-400"> what&apos;s next.</span>
+              {t("footer.taglineStart")}{" "}
+              <span className="text-sky-400">
+                {t("footer.taglineHighlight")}
+              </span>
             </h3>
 
             <p className="mt-4 max-w-md text-sm leading-7 text-slate-400">
-              We design and engineer websites, software, AI systems and
-              automation for ambitious businesses around the world.
+              {t("footer.description")}
             </p>
 
             <div className="mt-7 sm:mt-8">
               <p className="mb-4 text-xs uppercase tracking-widest text-slate-600">
-                Follow BuiltV
+                {t("footer.follow")}
               </p>
 
               <div className="flex flex-wrap gap-2.5 sm:gap-3">
@@ -100,9 +104,13 @@ function Footer() {
                     <button
                       key={social.name}
                       type="button"
-                      aria-label={`${social.name} profile coming soon`}
-                      title={`${social.name} profile coming soon`}
-                      className="group flex h-11 w-11 cursor-default items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-500"
+                      aria-label={t("footer.socialComingSoon", {
+                        name: social.name,
+                      })}
+                      title={t("footer.socialComingSoon", {
+                        name: social.name,
+                      })}
+                      className="flex h-11 w-11 cursor-default items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-500"
                     >
                       <Icon size={18} />
                     </button>
@@ -114,17 +122,17 @@ function Footer() {
 
           <div className="lg:col-span-2">
             <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Services
+              {t("footer.servicesTitle")}
             </p>
 
             <div className="mt-5 space-y-3.5 sm:mt-6 sm:space-y-4">
               {footerLinks.services.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.key}
                   to={item.to}
                   className="block py-0.5 text-sm text-slate-400 transition hover:text-white"
                 >
-                  {item.label}
+                  {t(`footer.services.${item.key}`)}
                 </Link>
               ))}
             </div>
@@ -132,17 +140,17 @@ function Footer() {
 
           <div className="lg:col-span-2">
             <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Company
+              {t("footer.companyTitle")}
             </p>
 
             <div className="mt-5 space-y-3.5 sm:mt-6 sm:space-y-4">
               {footerLinks.company.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.key}
                   to={item.to}
                   className="block py-0.5 text-sm text-slate-400 transition hover:text-white"
                 >
-                  {item.label}
+                  {t(`footer.company.${item.key}`)}
                 </Link>
               ))}
             </div>
@@ -150,17 +158,17 @@ function Footer() {
 
           <div className="lg:col-span-2">
             <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Legal
+              {t("footer.legalTitle")}
             </p>
 
             <div className="mt-5 space-y-3.5 sm:mt-6 sm:space-y-4">
               {footerLinks.legal.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.key}
                   to={item.to}
                   className="block py-0.5 text-sm text-slate-400 transition hover:text-white"
                 >
-                  {item.label}
+                  {t(`footer.legal.${item.key}`)}
                 </Link>
               ))}
             </div>
@@ -168,19 +176,18 @@ function Footer() {
 
           <div className="lg:col-span-2">
             <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-              Built globally
+              {t("footer.globalTitle")}
             </p>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400 sm:mt-6">
-              Digital products and systems designed for businesses operating
-              across modern global markets.
+              {t("footer.globalDescription")}
             </p>
 
             <Link
               to="/contact"
               className="group mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white transition hover:text-sky-300 sm:mt-7"
             >
-              Start a project
+              {t("footer.startProject")}
 
               <ArrowUpRight
                 size={15}
@@ -197,7 +204,7 @@ function Footer() {
             </span>
 
             <span className="text-sm text-slate-500">
-              Have a project in mind?
+              {t("footer.projectQuestion")}
             </span>
 
             <a

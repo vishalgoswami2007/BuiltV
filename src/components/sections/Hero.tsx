@@ -1,9 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import heroVideo from "../../assets/videos/hero.mp4";
 
 function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-svh overflow-hidden bg-black">
       <video
@@ -30,17 +33,18 @@ function Hero() {
       <div className="relative z-10 mx-auto flex min-h-svh max-w-7xl items-center px-5 pb-10 pt-24 sm:px-8 sm:pb-12 sm:pt-28 lg:px-10 lg:py-24">
         <div className="max-w-5xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-widest text-sky-300 sm:mb-5 sm:text-sm">
-            Digital systems for a global tomorrow
+            {t("hero.eyebrow")}
           </p>
 
           <h1 className="max-w-5xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-            We build digital systems that businesses{" "}
-            <span className="text-sky-400">run on.</span>
+            {t("hero.titleStart")}{" "}
+            <span className="text-sky-400">
+              {t("hero.titleHighlight")}
+            </span>
           </h1>
 
           <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            Websites, software, AI and automation engineered for ambitious
-            businesses worldwide.
+            {t("hero.description")}
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -48,7 +52,7 @@ function Hero() {
               to="/contact"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
             >
-              Start a Project
+              {t("hero.startProject")}
               <ArrowRight size={17} />
             </Link>
 
@@ -56,15 +60,15 @@ function Hero() {
               to="/work"
               className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 bg-black/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
             >
-              Explore Our Work
+              {t("hero.exploreWork")}
             </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs uppercase tracking-widest text-slate-400 sm:mt-8 sm:gap-6">
-            <span>Web</span>
-            <span>Software</span>
-            <span>AI</span>
-            <span>Automation</span>
+            <span>{t("hero.web")}</span>
+            <span>{t("hero.software")}</span>
+            <span>{t("hero.ai")}</span>
+            <span>{t("hero.automation")}</span>
           </div>
         </div>
       </div>

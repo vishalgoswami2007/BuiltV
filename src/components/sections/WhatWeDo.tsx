@@ -5,68 +5,63 @@ import {
   MonitorSmartphone,
   Workflow,
 } from "lucide-react";
+
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const capabilities = [
   {
     icon: MonitorSmartphone,
-    title: "Web Experiences",
-    description:
-      "High-performance websites and digital experiences built to convert, communicate and grow.",
+    key: "web",
   },
   {
     icon: Code2,
-    title: "Software & SaaS",
-    description:
-      "Custom platforms, dashboards, portals and SaaS products designed around real business workflows.",
+    key: "software",
   },
   {
     icon: Workflow,
-    title: "Business Systems",
-    description:
-      "Booking, quoting, scheduling and operational systems that reduce repetitive work.",
+    key: "systems",
   },
   {
     icon: Bot,
-    title: "AI & Automation",
-    description:
-      "AI-powered workflows and automation that help businesses move faster with less manual effort.",
+    key: "ai",
   },
   {
     icon: Layers3,
-    title: "Product Engineering",
-    description:
-      "Modern frontend, backend, APIs and integrations engineered for reliable digital products.",
+    key: "engineering",
   },
 ];
 
 function WhatWeDo() {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-[#050608] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              What we build
+              {t("whatWeDo.eyebrow")}
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:mt-5 sm:text-5xl">
-              Digital products built around
-              <span className="text-sky-400"> real business needs.</span>
+              {t("whatWeDo.titleStart")}{" "}
+              <span className="text-sky-400">
+                {t("whatWeDo.titleHighlight")}
+              </span>
             </h2>
           </div>
 
           <div className="max-w-md">
             <p className="text-sm leading-7 text-slate-400 sm:text-base">
-              BuiltV combines design, software and automation to turn business
-              problems into systems that are easier to run and easier to scale.
+              {t("whatWeDo.description")}
             </p>
 
             <Link
               to="/services"
               className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-white transition hover:text-sky-300 sm:mt-5"
             >
-              Explore all services →
+              {t("whatWeDo.exploreServices")} →
             </Link>
           </div>
         </div>
@@ -77,7 +72,7 @@ function WhatWeDo() {
 
             return (
               <div
-                key={item.title}
+                key={item.key}
                 className="group rounded-2xl border border-white/10 bg-[#0A0D12] p-5 transition hover:border-sky-400/30 sm:p-7"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
@@ -85,11 +80,11 @@ function WhatWeDo() {
                 </div>
 
                 <h3 className="mt-5 text-lg font-semibold text-white sm:mt-6 sm:text-xl">
-                  {item.title}
+                  {t(`whatWeDo.capabilities.${item.key}.title`)}
                 </h3>
 
                 <p className="mt-3 text-sm leading-6 text-slate-400">
-                  {item.description}
+                  {t(`whatWeDo.capabilities.${item.key}.description`)}
                 </p>
               </div>
             );
@@ -101,22 +96,21 @@ function WhatWeDo() {
           >
             <div>
               <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-                Need something different?
+                {t("whatWeDo.differentEyebrow")}
               </p>
 
               <h3 className="mt-4 max-w-xs text-xl font-semibold leading-snug text-white sm:mt-5 sm:text-2xl">
-                Have a problem that doesn&apos;t fit in a box?
+                {t("whatWeDo.differentTitle")}
               </h3>
 
               <p className="mt-3 max-w-sm text-sm leading-6 text-slate-400">
-                Tell us what your business needs. We&apos;ll help turn the problem
-                into the right digital system.
+                {t("whatWeDo.differentDescription")}
               </p>
             </div>
 
             <div className="mt-7 flex items-center justify-between sm:mt-8">
               <span className="text-sm font-medium text-white">
-                Explore all services
+                {t("whatWeDo.exploreServices")}
               </span>
 
               <span className="flex h-11 w-11 items-center justify-center rounded-full border border-sky-400/30 text-sky-300 transition group-hover:bg-sky-400 group-hover:text-black">
