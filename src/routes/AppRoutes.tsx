@@ -9,6 +9,7 @@ import About from "../pages/About/About";
 import Insights from "../pages/Insights/Insights";
 import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
+import Privacy from "../pages/Privacy/Privacy";
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
       <Route path="/insights" element={<Insights />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/privacy" element={<Privacy />} />
     </Routes>
   );
 }
