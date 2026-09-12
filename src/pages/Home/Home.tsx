@@ -1,12 +1,12 @@
 import Hero from "../../components/sections/Hero";
-import MarketFocus from "../../components/sections/MarketFocus";
+import WhatWeDo from "../../components/sections/WhatWeDo";
 import PageLayout from "../../components/layout/PageLayout";
 
 function Home() {
   return (
     <PageLayout>
       <Hero />
-      <MarketFocus />
+      <WhatWeDo />
     </PageLayout>
   );
 }
