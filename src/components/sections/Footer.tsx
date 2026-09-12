@@ -64,12 +64,13 @@ function Footer() {
               className="inline-flex items-center gap-3"
               aria-label="BuiltV home"
             >
+            <Link to="/" aria-label="BuiltV home">    
               <img
                 src={logo}
                 alt="BuiltV logo"
                 className="h-10 w-10 object-contain"
               />
-
+            </Link>
               <span className="text-xl font-semibold tracking-tight text-white">
                 BuiltV
               </span>

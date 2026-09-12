@@ -18,12 +18,13 @@ function Navbar() {
             className="flex min-w-0 items-center gap-2.5 sm:gap-3"
             aria-label="BuiltV home"
           >
+          <Link to="/" aria-label="BuiltV home"> 
             <img
               src={logo}
               alt="BuiltV"
               className="h-8 w-8 shrink-0 object-contain sm:h-9 sm:w-9"
             />
-
+          </Link>
             <span className="truncate text-base font-semibold tracking-tight text-white sm:text-lg">
               BuiltV
             </span>
