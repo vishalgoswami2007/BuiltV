@@ -5,7 +5,7 @@ import heroVideo from "../../assets/videos/hero.mp4";
 
 function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative min-h-svh overflow-hidden bg-black">
       <video
         src={heroVideo}
         autoPlay
@@ -13,10 +13,11 @@ function Hero() {
         loop
         playsInline
         preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
 
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/65 sm:bg-black/60 lg:bg-black/55" />
 
       <div
         className="absolute inset-0"
@@ -26,9 +27,9 @@ function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 pt-20 sm:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto flex min-h-svh max-w-7xl items-center px-5 pb-10 pt-24 sm:px-8 sm:pb-12 sm:pt-28 lg:px-10 lg:py-24">
         <div className="max-w-5xl">
-          <p className="mb-5 text-xs font-medium uppercase tracking-widest text-sky-300 sm:text-sm">
+          <p className="mb-4 text-xs font-medium uppercase tracking-widest text-sky-300 sm:mb-5 sm:text-sm">
             Digital systems for a global tomorrow
           </p>
 
@@ -45,7 +46,7 @@ function Hero() {
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
             >
               Start a Project
               <ArrowRight size={17} />
@@ -53,13 +54,13 @@ function Hero() {
 
             <Link
               to="/work"
-              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-black/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 bg-black/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
             >
               Explore Our Work
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-6 text-xs uppercase tracking-widest text-slate-400">
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs uppercase tracking-widest text-slate-400 sm:mt-8 sm:gap-6">
             <span>Web</span>
             <span>Software</span>
             <span>AI</span>
