@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Compass,
@@ -43,9 +43,10 @@ const steps = [
 ];
 
 function Process() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative overflow-hidden bg-[#050608] py-28">
-      {/* Background grid */}
+    <section className="relative overflow-hidden bg-[#050608] py-20 sm:py-24 lg:py-28">
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -55,13 +56,16 @@ function Process() {
         }}
       />
 
-      {/* Background glow */}
       <motion.div
         className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl"
-        animate={{
-          x: [-250, 250, -250],
-          y: [-80, 80, -80],
-        }}
+        animate={
+          reduceMotion
+            ? undefined
+            : {
+                x: [-250, 250, -250],
+                y: [-80, 80, -80],
+              }
+        }
         transition={{
           duration: 14,
           repeat: Infinity,
@@ -70,42 +74,38 @@ function Process() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
             How we work
           </p>
 
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl">
             From problem to
             <span className="text-sky-400"> working product.</span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
             A focused process designed to move from an idea to a reliable
             digital system without unnecessary complexity.
           </p>
         </div>
 
-        {/* Desktop process */}
         <div className="relative mt-20 hidden lg:block">
-          {/* Base line */}
-          <div className="absolute left-12 right-12 top-9 h-px bg-white/10" />
+          <div className="absolute left-12 right-12 top-10 h-px bg-white/10" />
 
-          {/* Animated beam */}
-          <div className="absolute left-12 right-12 top-9 h-px overflow-hidden">
-            <motion.div
-              className="h-full w-40 bg-linear-to-r from-transparent via-sky-300 to-transparent"
-              animate={{
-                x: ["-160px", "1100px"],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          </div>
+          {!reduceMotion && (
+            <div className="absolute left-12 right-12 top-10 h-px overflow-hidden">
+              <motion.div
+                className="h-full w-40 bg-linear-to-r from-transparent via-sky-300 to-transparent"
+                animate={{ x: ["-160px", "1100px"] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </div>
+          )}
 
           <div className="relative grid grid-cols-5 gap-4">
             {steps.map((step, index) => {
@@ -114,45 +114,39 @@ function Process() {
               return (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                  }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
                 >
-                  {/* Node */}
                   <motion.div
-                    className="relative mx-auto flex h-18 w-18 items-center justify-center rounded-full border border-white/10 bg-[#0A0D12]"
-                    whileHover={{ scale: 1.08 }}
+                    className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-[#0A0D12]"
+                    whileHover={reduceMotion ? undefined : { scale: 1.08 }}
                   >
-                    <motion.div
-                      className="absolute inset-0 rounded-full border border-sky-400/0"
-                      animate={{
-                        borderColor: [
-                          "rgba(56,189,248,0)",
-                          "rgba(56,189,248,0.5)",
-                          "rgba(56,189,248,0)",
-                        ],
-                        scale: [1, 1.18, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        delay: index * 0.5,
-                        repeat: Infinity,
-                      }}
-                    />
+                    {!reduceMotion && (
+                      <motion.div
+                        className="absolute inset-0 rounded-full border border-sky-400/0"
+                        animate={{
+                          borderColor: [
+                            "rgba(56,189,248,0)",
+                            "rgba(56,189,248,0.5)",
+                            "rgba(56,189,248,0)",
+                          ],
+                          scale: [1, 1.18, 1],
+                        }}
+                        transition={{
+                          duration: 3,
+                          delay: index * 0.5,
+                          repeat: Infinity,
+                        }}
+                      />
+                    )}
 
-                    <Icon
-                      size={22}
-                      className="relative z-10 text-sky-300"
-                    />
+                    <Icon size={22} className="relative z-10 text-sky-300" />
                   </motion.div>
 
-                  {/* Card */}
-                  <div className="mt-8 min-h-60 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition duration-300 group-hover:-translate-y-1 group-hover:border-sky-400/30 group-hover:bg-white/[0.07]">
+                  <div className="mt-8 min-h-60 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition duration-300 group-hover:-translate-y-1 group-hover:border-sky-400/30 group-hover:bg-white/10">
                     <span className="text-xs font-medium text-sky-300">
                       {step.number}
                     </span>
@@ -171,9 +165,8 @@ function Process() {
           </div>
         </div>
 
-        {/* Mobile / tablet */}
-        <div className="relative mt-14 space-y-3 lg:hidden">
-          <div className="absolute bottom-8 left-6 top-8 w-px bg-white/10" />
+        <div className="relative mt-10 space-y-3 sm:mt-14 lg:hidden">
+          <div className="absolute bottom-8 left-5 top-8 w-px bg-white/10 sm:left-6" />
 
           {steps.map((step, index) => {
             const Icon = step.icon;
@@ -181,20 +174,18 @@ function Process() {
             return (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={reduceMotion ? false : { opacity: 0, x: -20 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: index * 0.08,
-                }}
-                className="relative flex gap-5"
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="relative flex gap-3 sm:gap-5"
               >
-                <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-sky-400/20 bg-[#0A0D12]">
-                  <Icon size={18} className="text-sky-300" />
+                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sky-400/20 bg-[#0A0D12] sm:h-12 sm:w-12">
+                  <Icon size={17} className="text-sky-300 sm:hidden" />
+                  <Icon size={18} className="hidden text-sky-300 sm:block" />
                 </div>
 
-                <div className="flex-1 rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
                   <span className="text-xs text-sky-300">{step.number}</span>
 
                   <h3 className="mt-2 text-lg font-semibold text-white">
@@ -210,11 +201,10 @@ function Process() {
           })}
         </div>
 
-        {/* Bottom */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-12 flex justify-center sm:mt-16">
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition hover:border-sky-400/30 hover:bg-sky-400/10"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition hover:border-sky-400/30 hover:bg-sky-400/10 sm:w-auto"
           >
             Start your project
 
