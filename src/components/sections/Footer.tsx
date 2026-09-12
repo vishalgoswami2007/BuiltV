@@ -1,8 +1,4 @@
-import {
-  ArrowUpRight,
-  Mail,
-} from "lucide-react";
-
+import { ArrowUpRight, Mail } from "lucide-react";
 import {
   FaGithub,
   FaInstagram,
@@ -10,7 +6,6 @@ import {
   FaTelegram,
   FaXTwitter,
 } from "react-icons/fa6";
-
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo/builtv-logo.png";
@@ -73,7 +68,7 @@ const socials = [
 function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050608]">
-      {/* Subtle glow */}
+      {/* Subtle background glow */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-40 w-96 -translate-x-1/2 opacity-30 blur-3xl"
         style={{
@@ -83,6 +78,7 @@ function Footer() {
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        {/* Main Footer */}
         <div className="grid gap-14 py-20 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
@@ -111,23 +107,6 @@ function Footer() {
               We design and engineer websites, software, AI systems and
               automation for ambitious businesses around the world.
             </p>
-
-            {/* Email */}
-            <a
-              href="mailto:AerqonBusiness@gmail.com"
-              className="group mt-7 inline-flex items-center gap-3 text-sm text-slate-300 transition hover:text-white"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-                <Mail size={16} className="text-sky-300" />
-              </span>
-
-              <span>AerqonBusiness@gmail.com</span>
-
-              <ArrowUpRight
-                size={14}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
 
             {/* Socials */}
             <div className="mt-8">
@@ -239,6 +218,31 @@ function Footer() {
                 className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </Link>
+          </div>
+        </div>
+
+        {/* Center Contact Strip */}
+        <div className="border-t border-white/10 py-7">
+          <div className="flex flex-col items-center justify-center gap-3 text-center sm:flex-row sm:gap-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+              <Mail size={16} className="text-sky-300" />
+            </span>
+
+            <span className="text-sm text-slate-500">
+              Have a project in mind?
+            </span>
+
+            <a
+              href="mailto:AerqonBusiness@gmail.com"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-sky-300"
+            >
+              AerqonBusiness@gmail.com
+
+              <ArrowUpRight
+                size={14}
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
           </div>
         </div>
       </div>
