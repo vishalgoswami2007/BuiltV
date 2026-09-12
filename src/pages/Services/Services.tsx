@@ -1,6 +1,6 @@
 
 
-function Insights() {
+function Services() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function Insights() {
   )
 }
 
-export default Insights
+export default Services

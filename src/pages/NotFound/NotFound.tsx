@@ -1,6 +1,5 @@
 
-
-function Insights() {
+function NotFound() {
   return (
     <div>
       
@@ -8,4 +7,4 @@ function Insights() {
   )
 }
 
-export default Insights
+export default NotFound
