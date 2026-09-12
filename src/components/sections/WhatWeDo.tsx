@@ -94,6 +94,36 @@ function WhatWeDo() {
               </div>
             );
           })}
+
+          <Link
+            to="/services"
+            className="group flex min-h-64 flex-col justify-between rounded-2xl border border-sky-400/20 bg-sky-400/5 p-7 transition hover:border-sky-400/40 hover:bg-sky-400/10"
+          >
+            <div>
+              <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
+                Need something different?
+              </p>
+
+              <h3 className="mt-5 max-w-xs text-2xl font-semibold leading-snug text-white">
+                Have a problem that doesn't fit in a box?
+              </h3>
+
+              <p className="mt-3 max-w-sm text-sm leading-6 text-slate-400">
+                Tell us what your business needs. We'll help turn the problem
+                into the right digital system.
+              </p>
+            </div>
+
+            <div className="mt-8 flex items-center justify-between">
+              <span className="text-sm font-medium text-white">
+                Explore all services
+              </span>
+
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/30 text-sky-300 transition group-hover:bg-sky-400 group-hover:text-black">
+                →
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
     </section>
