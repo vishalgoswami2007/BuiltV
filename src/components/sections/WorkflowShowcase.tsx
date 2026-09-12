@@ -14,7 +14,7 @@ const steps = [
 
 function WorkflowShowcase() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
+    <section className="relative min-h-svh overflow-hidden bg-black">
       <video
         src={workflowVideo}
         autoPlay
@@ -22,10 +22,11 @@ function WorkflowShowcase() {
         loop
         playsInline
         preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
 
-      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0 bg-black/75 sm:bg-black/70 lg:bg-black/65" />
 
       <div
         className="absolute inset-0"
@@ -35,7 +36,7 @@ function WorkflowShowcase() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 py-24 sm:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto flex min-h-svh max-w-7xl items-center px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="w-full">
           <div className="max-w-4xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
@@ -52,27 +53,27 @@ function WorkflowShowcase() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="mt-10 grid grid-cols-2 gap-2.5 sm:mt-12 sm:gap-3 lg:grid-cols-6">
             {steps.map((step, index) => (
               <div
                 key={step}
-                className="rounded-2xl border border-white/10 bg-black/35 p-5 backdrop-blur-md"
+                className="rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:rounded-2xl sm:p-5"
               >
                 <p className="text-xs font-medium text-sky-300">
                   0{index + 1}
                 </p>
 
-                <p className="mt-3 text-sm font-medium text-white">
+                <p className="mt-2 text-sm font-medium text-white sm:mt-3">
                   {step}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-8 sm:mt-10">
             <Link
               to="/solutions"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/15"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/15"
             >
               Explore business solutions
               <ArrowRight size={16} />
@@ -82,10 +83,9 @@ function WorkflowShowcase() {
       </div>
 
       <div
-        className="absolute bottom-0 left-0 right-0 h-32"
+        className="absolute bottom-0 left-0 right-0 h-24 sm:h-32"
         style={{
-          background:
-            "linear-gradient(to top, #050608, rgba(5,6,8,0))",
+          background: "linear-gradient(to top, #050608, rgba(5,6,8,0))",
         }}
       />
     </section>
