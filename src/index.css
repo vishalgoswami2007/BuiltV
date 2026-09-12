@@ -7,9 +7,15 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: #050608;
   color: #f8fafc;
   font-family: Inter, system-ui, sans-serif;
+}
+
+img,
+video {
+  max-width: 100%;
 }
 
 @keyframes market-scroll {
@@ -24,8 +30,26 @@ body {
 
 .market-marquee {
   animation: market-scroll 35s linear infinite;
+  will-change: transform;
 }
 
 .market-marquee:hover {
   animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .market-marquee {
+    animation-duration: 28s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .market-marquee {
+    animation: none;
+    transform: none;
+  }
 }
