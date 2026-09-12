@@ -1,3 +1,5 @@
+import { useState, type FormEvent } from "react";
+
 import {
   ArrowRight,
   Building2,
@@ -35,6 +37,50 @@ const reasons = [
 ];
 
 function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.currentTarget);
+
+    const name = String(formData.get("name") || "");
+    const email = String(formData.get("email") || "");
+    const company = String(formData.get("company") || "Not provided");
+    const projectType = String(
+      formData.get("projectType") || "Not selected",
+    );
+    const budget = String(formData.get("budget") || "Not selected");
+    const details = String(formData.get("details") || "");
+
+    const subject = `BuiltV Project Enquiry - ${name}`;
+
+    const body = `
+New BuiltV Project Enquiry
+
+Name: ${name}
+Email: ${email}
+Company: ${company}
+Project Type: ${projectType}
+Budget: ${budget}
+
+Project Details:
+${details}
+    `.trim();
+
+    const mailtoLink = `mailto:AerqonBusiness@gmail.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
   return (
     <PageLayout>
       <section className="relative overflow-hidden bg-[#050608] pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
@@ -154,7 +200,7 @@ function Contact() {
               <Sparkles size={21} className="text-sky-300" />
             </div>
 
-            <form className="mt-8 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-8 space-y-6">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label
@@ -166,7 +212,10 @@ function Contact() {
 
                   <input
                     id="name"
+                    name="name"
                     type="text"
+                    required
+                    autoComplete="name"
                     placeholder="Your name"
                     className="min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                   />
@@ -182,7 +231,10 @@ function Contact() {
 
                   <input
                     id="email"
+                    name="email"
                     type="email"
+                    required
+                    autoComplete="email"
                     placeholder="you@company.com"
                     className="min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                   />
@@ -199,7 +251,9 @@ function Contact() {
 
                 <input
                   id="company"
+                  name="company"
                   type="text"
+                  autoComplete="organization"
                   placeholder="Company or startup name"
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                 />
@@ -215,6 +269,8 @@ function Contact() {
 
                 <select
                   id="projectType"
+                  name="projectType"
+                  required
                   defaultValue=""
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-[#0F141C] px-4 text-sm text-slate-300 outline-none transition focus:border-sky-400/40"
                 >
@@ -240,6 +296,8 @@ function Contact() {
 
                 <select
                   id="budget"
+                  name="budget"
+                  required
                   defaultValue=""
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-[#0F141C] px-4 text-sm text-slate-300 outline-none transition focus:border-sky-400/40"
                 >
@@ -265,6 +323,9 @@ function Contact() {
 
                 <textarea
                   id="details"
+                  name="details"
+                  required
+                  minLength={20}
                   rows={7}
                   placeholder="What are you trying to build or improve?"
                   className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
@@ -273,10 +334,14 @@ function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100 sm:w-auto"
+                disabled={isSubmitting}
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
-                Send project enquiry
-                <Send size={16} />
+                {isSubmitting
+                  ? "Opening email..."
+                  : "Send project enquiry"}
+
+                {!isSubmitting && <Send size={16} />}
               </button>
 
               <p className="text-xs leading-5 text-slate-600">
@@ -296,7 +361,10 @@ function Contact() {
 
           <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
             That&apos;s completely fine.
-            <span className="text-sky-400"> Start with the business problem.</span>
+            <span className="text-sky-400">
+              {" "}
+              Start with the business problem.
+            </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400">
