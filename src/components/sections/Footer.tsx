@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail } from "lucide-react";
+
 import {
   FaGithub,
   FaInstagram,
@@ -6,6 +7,7 @@ import {
   FaTelegram,
   FaXTwitter,
 } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo/builtv-logo.png";
@@ -38,11 +40,11 @@ const footerLinks = {
 };
 
 const socials = [
-  { name: "Instagram", href: "#", icon: FaInstagram },
-  { name: "LinkedIn", href: "#", icon: FaLinkedinIn },
-  { name: "GitHub", href: "#", icon: FaGithub },
-  { name: "Telegram", href: "#", icon: FaTelegram },
-  { name: "X", href: "#", icon: FaXTwitter },
+  { name: "Instagram", icon: FaInstagram },
+  { name: "LinkedIn", icon: FaLinkedinIn },
+  { name: "GitHub", icon: FaGithub },
+  { name: "Telegram", icon: FaTelegram },
+  { name: "X", icon: FaXTwitter },
 ];
 
 function Footer() {
@@ -64,13 +66,12 @@ function Footer() {
               className="inline-flex items-center gap-3"
               aria-label="BuiltV home"
             >
-            <Link to="/" aria-label="BuiltV home">    
               <img
                 src={logo}
                 alt="BuiltV logo"
                 className="h-10 w-10 object-contain"
               />
-            </Link>
+
               <span className="text-xl font-semibold tracking-tight text-white">
                 BuiltV
               </span>
@@ -96,20 +97,15 @@ function Footer() {
                   const Icon = social.icon;
 
                   return (
-                    <a
+                    <button
                       key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={social.name}
-                      title={social.name}
-                      className="group flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 transition active:scale-95 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300"
+                      type="button"
+                      aria-label={`${social.name} profile coming soon`}
+                      title={`${social.name} profile coming soon`}
+                      className="group flex h-11 w-11 cursor-default items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-500"
                     >
-                      <Icon
-                        size={18}
-                        className="transition-transform group-hover:scale-110"
-                      />
-                    </a>
+                      <Icon size={18} />
+                    </button>
                   );
                 })}
               </div>
