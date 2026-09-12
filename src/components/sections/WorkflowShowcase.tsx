@@ -1,18 +1,21 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import workflowVideo from "../../assets/videos/workflow.mp4";
 
 const steps = [
-  "Enquiry",
-  "Quote",
-  "Booking",
-  "Job",
-  "Payment",
-  "Follow-up",
+  "enquiry",
+  "quote",
+  "booking",
+  "job",
+  "payment",
+  "followUp",
 ];
 
 function WorkflowShowcase() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-svh overflow-hidden bg-black">
       <video
@@ -40,16 +43,15 @@ function WorkflowShowcase() {
         <div className="w-full">
           <div className="max-w-4xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Connected business systems
+              {t("workflow.eyebrow")}
             </p>
 
             <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Your business doesn&apos;t need more disconnected tools.
+              {t("workflow.title")}
             </h2>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-              BuiltV connects the steps between a new enquiry and a completed
-              job into one smoother workflow.
+              {t("workflow.description")}
             </p>
           </div>
 
@@ -60,11 +62,11 @@ function WorkflowShowcase() {
                 className="rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:rounded-2xl sm:p-5"
               >
                 <p className="text-xs font-medium text-sky-300">
-                  0{index + 1}
+                  {String(index + 1).padStart(2, "0")}
                 </p>
 
                 <p className="mt-2 text-sm font-medium text-white sm:mt-3">
-                  {step}
+                  {t(`workflow.steps.${step}`)}
                 </p>
               </div>
             ))}
@@ -75,7 +77,7 @@ function WorkflowShowcase() {
               to="/solutions"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/15"
             >
-              Explore business solutions
+              {t("workflow.explore")}
               <ArrowRight size={16} />
             </Link>
           </div>

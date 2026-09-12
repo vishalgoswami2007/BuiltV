@@ -98,7 +98,7 @@ function Industries() {
                 </p>
 
                 <div className="mt-5 border-t border-white/10 pt-4 sm:mt-7 sm:pt-5">
-                  <p className="break-words text-xs leading-6 text-slate-500">
+                  <p className="overflow-wrap: break-word text-xs leading-6 text-slate-500">
                     {industry.system}
                   </p>
                 </div>
