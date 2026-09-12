@@ -11,3 +11,21 @@ body {
   color: #f8fafc;
   font-family: Inter, system-ui, sans-serif;
 }
+
+@keyframes market-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.market-marquee {
+  animation: market-scroll 35s linear infinite;
+}
+
+.market-marquee:hover {
+  animation-play-state: paused;
+}
