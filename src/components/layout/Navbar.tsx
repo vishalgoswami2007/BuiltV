@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ArrowUpRight, Globe2, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
 import logo from "../../assets/logo/builtv-logo.png";
 import { navigationItems } from "../../data/navigation";
+import LanguageSelector from "../localization/LanguageSelector";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,6 @@ function Navbar() {
           className="flex h-14 items-center justify-between rounded-2xl border border-white/10 bg-[#050608]/85 px-3 shadow-lg shadow-black/20 backdrop-blur-xl sm:h-16 sm:px-5"
           aria-label="Main navigation"
         >
-          {/* Logo */}
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
@@ -33,7 +33,6 @@ function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden items-center gap-7 lg:flex">
             {navigationItems.map((item) => (
               <NavLink
@@ -53,16 +52,8 @@ function Navbar() {
             ))}
           </div>
 
-          {/* Desktop Actions */}
           <div className="hidden items-center gap-3 lg:flex">
-            <button
-              type="button"
-              className="flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-white/20 hover:text-white"
-              aria-label="Change language"
-            >
-              <Globe2 size={16} />
-              EN
-            </button>
+            <LanguageSelector />
 
             <Link
               to="/contact"
@@ -73,7 +64,6 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setIsOpen((current) => !current)}
@@ -86,7 +76,6 @@ function Navbar() {
           </button>
         </nav>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div
             id="mobile-navigation"
@@ -113,14 +102,12 @@ function Navbar() {
             </div>
 
             <div className="mt-3 border-t border-white/10 pt-3 sm:mt-4 sm:pt-4">
-              <button
-                type="button"
-                className="mb-3 flex min-h-12 w-full items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-300 transition hover:border-white/20 hover:text-white"
-                aria-label="Change language"
-              >
-                <Globe2 size={16} />
-                English
-              </button>
+              <div className="mb-3">
+                <LanguageSelector
+                  mobile
+                  onLanguageChange={() => setIsOpen(false)}
+                />
+              </div>
 
               <Link
                 to="/contact"
