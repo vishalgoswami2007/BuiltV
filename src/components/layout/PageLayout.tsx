@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+
 import Navbar from "./Navbar";
+import Footer from "../sections/Footer";
 
 type PageLayoutProps = {
   children: ReactNode;
@@ -7,9 +9,12 @@ type PageLayoutProps = {
 
 function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#050608] text-[#F8FAFC]">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
-      <main className="pt-24">{children}</main>
+
+      <main>{children}</main>
+
+      <Footer />
     </div>
   );
 }
