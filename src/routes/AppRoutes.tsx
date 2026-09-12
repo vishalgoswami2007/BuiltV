@@ -12,6 +12,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Privacy from "../pages/Privacy/Privacy";
 import Terms from "../pages/Terms/Terms";
 import Cookies from "../pages/Cookies/Cookies";
+import Accessibility from "../pages/Accessibility/Accessibility";
 
 function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ function AppRoutes() {
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/cookies" element={<Cookies />} />
+      <Route path="/accessibility" element={<Accessibility />} />
     </Routes>
   );
 }
