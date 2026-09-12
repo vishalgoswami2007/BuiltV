@@ -159,12 +159,23 @@ function Services() {
               <a
                 key={service.title}
                 href={`#service-${service.number}`}
+<<<<<<< HEAD
                 className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-4 transition hover:border-sky-400/30 hover:bg-white/5"
+=======
+                className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-4 transition hover:border-sky-400/30"
+>>>>>>> d93abbe (feat: build responsive services page)
               >
                 <span className="text-sm text-slate-300 group-hover:text-white">
                   {service.title}
                 </span>
+<<<<<<< HEAD
                 <span className="text-xs text-slate-600">{service.number}</span>
+=======
+
+                <span className="text-xs text-slate-600">
+                  {service.number}
+                </span>
+>>>>>>> d93abbe (feat: build responsive services page)
               </a>
             ))}
           </div>
@@ -177,6 +188,10 @@ function Services() {
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
               Core capabilities
             </p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d93abbe (feat: build responsive services page)
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
               One studio for the systems your business needs.
             </h2>
@@ -198,6 +213,10 @@ function Services() {
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                           <Icon size={22} className="text-sky-300" />
                         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d93abbe (feat: build responsive services page)
                         <span className="text-xs font-medium text-slate-600">
                           {service.number}
                         </span>
@@ -216,12 +235,23 @@ function Services() {
                       {service.deliverables.map((item) => (
                         <div
                           key={item}
+<<<<<<< HEAD
                           className="flex min-h-14 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3"
+=======
+                          className="flex min-h-14 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+>>>>>>> d93abbe (feat: build responsive services page)
                         >
                           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400/10">
                             <Check size={14} className="text-sky-300" />
                           </span>
+<<<<<<< HEAD
                           <span className="text-sm text-slate-300">{item}</span>
+=======
+
+                          <span className="text-sm text-slate-300">
+                            {item}
+                          </span>
+>>>>>>> d93abbe (feat: build responsive services page)
                         </div>
                       ))}
                     </div>
@@ -265,9 +295,17 @@ function Services() {
                   <span className="text-xs font-medium text-sky-300">
                     0{index + 1}
                   </span>
+<<<<<<< HEAD
                   <h3 className="mt-5 text-lg font-semibold text-white">
                     {model.title}
                   </h3>
+=======
+
+                  <h3 className="mt-5 text-lg font-semibold text-white">
+                    {model.title}
+                  </h3>
+
+>>>>>>> d93abbe (feat: build responsive services page)
                   <p className="mt-3 text-sm leading-6 text-slate-400">
                     {model.text}
                   </p>
@@ -288,7 +326,14 @@ function Services() {
 
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Tell us the problem.
+<<<<<<< HEAD
             <span className="text-sky-400"> We&apos;ll help shape the system.</span>
+=======
+            <span className="text-sky-400">
+              {" "}
+              We&apos;ll help shape the system.
+            </span>
+>>>>>>> d93abbe (feat: build responsive services page)
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
@@ -310,4 +355,8 @@ function Services() {
   );
 }
 
+<<<<<<< HEAD
 export default Services;
+=======
+export default Services;
+>>>>>>> d93abbe (feat: build responsive services page)
