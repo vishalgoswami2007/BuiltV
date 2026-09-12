@@ -1,11 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function FinalCTA() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative overflow-hidden bg-[#050608] py-36 sm:py-44">
-      {/* Background grid */}
+    <section className="relative overflow-hidden bg-[#050608] py-24 sm:py-32 lg:py-40">
       <div
         className="pointer-events-none absolute inset-0 opacity-25"
         style={{
@@ -15,13 +16,16 @@ function FinalCTA() {
         }}
       />
 
-      {/* Main glow */}
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/10 blur-3xl"
-        animate={{
-          scale: [1, 1.35, 1],
-          opacity: [0.35, 0.7, 0.35],
-        }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/10 blur-3xl sm:h-96 sm:w-96"
+        animate={
+          reduceMotion
+            ? undefined
+            : {
+                scale: [1, 1.35, 1],
+                opacity: [0.35, 0.7, 0.35],
+              }
+        }
         transition={{
           duration: 7,
           repeat: Infinity,
@@ -29,32 +33,29 @@ function FinalCTA() {
         }}
       />
 
-      {/* Moving light */}
-      <motion.div
-        className="pointer-events-none absolute top-1/2 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl"
-        animate={{
-          x: ["-15vw", "100vw"],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+      {!reduceMotion && (
+        <motion.div
+          className="pointer-events-none absolute top-1/2 hidden h-48 w-48 rounded-full bg-blue-500/10 blur-3xl sm:block"
+          animate={{ x: ["-15vw", "100vw"] }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      )}
 
-      {/* Top fade */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-32"
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 sm:h-32"
         style={{
-          background:
-            "linear-gradient(to bottom, #050608, rgba(5,6,8,0))",
+          background: "linear-gradient(to bottom, #050608, rgba(5,6,8,0))",
         }}
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
           className="mx-auto max-w-5xl text-center"
@@ -63,21 +64,21 @@ function FinalCTA() {
             Let&apos;s build something useful
           </p>
 
-          <h2 className="mt-7 text-5xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:mt-7 sm:text-6xl lg:text-7xl">
             The next system your business runs on
             <span className="text-sky-400"> starts here.</span>
           </h2>
 
-          <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:mt-7 sm:text-lg">
             Whether you&apos;re replacing manual work, launching a product or
             building a better customer experience, BuiltV can help turn it
             into a working digital system.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center">
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-3 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-black transition hover:bg-sky-300"
+              className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-black transition hover:bg-sky-300"
             >
               Start a project
 
@@ -89,16 +90,15 @@ function FinalCTA() {
 
             <Link
               to="/work"
-              className="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/10"
             >
               Explore our work
             </Link>
           </div>
         </motion.div>
 
-        {/* Bottom line */}
-        <div className="mx-auto mt-24 max-w-5xl border-t border-white/10 pt-8">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs uppercase tracking-widest text-slate-600">
+        <div className="mx-auto mt-16 max-w-5xl border-t border-white/10 pt-6 sm:mt-24 sm:pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs uppercase tracking-widest text-slate-600 sm:gap-x-8">
             <span>Web</span>
             <span>Software</span>
             <span>Systems</span>
@@ -108,12 +108,10 @@ function FinalCTA() {
         </div>
       </div>
 
-      {/* Footer merge */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28"
         style={{
-          background:
-            "linear-gradient(to top, #050608, rgba(5,6,8,0))",
+          background: "linear-gradient(to top, #050608, rgba(5,6,8,0))",
         }}
       />
     </section>
