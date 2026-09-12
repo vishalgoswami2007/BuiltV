@@ -1,96 +1,93 @@
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import workflowVideo from "../../assets/videos/workflow.mp4";
 
-const workflowSteps = [
-  "Customer enquiry",
-  "Smart quote",
+const steps = [
+  "Enquiry",
+  "Quote",
   "Booking",
-  "Job delivery",
+  "Job",
   "Payment",
   "Follow-up",
 ];
 
 function WorkflowShowcase() {
   return (
-    <section className="bg-[#0A0D12] py-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div>
+    <section className="relative min-h-screen overflow-hidden bg-black">
+      <video
+        src={workflowVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-black/65" />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 45%, rgba(56,189,248,0.12), transparent 40%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 py-24 sm:px-8 lg:px-10">
+        <div className="w-full">
+          <div className="max-w-4xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Connected systems
+              Connected business systems
             </p>
 
-            <h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Your business doesn't need more disconnected tools.
+            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Your business doesn&apos;t need more disconnected tools.
             </h2>
 
-            <p className="mt-5 max-w-lg text-lg leading-8 text-slate-400">
-              It needs one better system. BuiltV connects the steps between a
-              new enquiry and a completed job so less work gets lost in
-              between.
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+              BuiltV connects the steps between a new enquiry and a completed
+              job into one smoother workflow.
             </p>
+          </div>
 
-            <div className="mt-9 max-w-md">
-              {workflowSteps.map((step, index) => (
-                <div key={step}>
-                  <div className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-5 py-3">
-                    <span className="text-xs font-medium text-sky-300">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+            {steps.map((step, index) => (
+              <div
+                key={step}
+                className="rounded-2xl border border-white/10 bg-black/35 p-5 backdrop-blur-md"
+              >
+                <p className="text-xs font-medium text-sky-300">
+                  0{index + 1}
+                </p>
 
-                    <span className="text-sm font-medium text-white">
-                      {step}
-                    </span>
-                  </div>
+                <p className="mt-3 text-sm font-medium text-white">
+                  {step}
+                </p>
+              </div>
+            ))}
+          </div>
 
-                  {index < workflowSteps.length - 1 && (
-                    <div className="flex h-7 items-center pl-5">
-                      <ArrowDown size={14} className="text-slate-600" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
+          <div className="mt-10">
             <Link
               to="/solutions"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-sky-300"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/15"
             >
               Explore business solutions
               <ArrowRight size={16} />
             </Link>
           </div>
-
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black">
-            <video
-              src={workflowVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="h-full min-h-96 w-full object-cover"
-            />
-
-            <div className="absolute inset-0 bg-black/20" />
-
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="rounded-2xl border border-white/10 bg-black/60 p-5 backdrop-blur-md">
-                <p className="text-xs uppercase tracking-widest text-sky-300">
-                  BuiltV Systems
-                </p>
-
-                <p className="mt-2 max-w-sm text-sm leading-6 text-slate-300">
-                  From scattered manual steps to one connected digital
-                  workflow.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
+
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32"
+        style={{
+          background:
+            "linear-gradient(to top, #050608, rgba(5,6,8,0))",
+        }}
+      />
     </section>
   );
 }
