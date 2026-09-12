@@ -8,42 +8,19 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const steps = [
-  {
-    number: "01",
-    title: "Discover",
-    text: "We understand the business, users, workflow and the problem worth solving.",
-    icon: Compass,
-  },
-  {
-    number: "02",
-    title: "Design",
-    text: "We shape the experience, system architecture and product direction.",
-    icon: PenTool,
-  },
-  {
-    number: "03",
-    title: "Build",
-    text: "We engineer the product with modern, reliable and scalable technology.",
-    icon: Code2,
-  },
-  {
-    number: "04",
-    title: "Launch",
-    text: "We test, refine and move the system into the real world.",
-    icon: Rocket,
-  },
-  {
-    number: "05",
-    title: "Improve",
-    text: "We learn from real usage and continue improving what matters.",
-    icon: TrendingUp,
-  },
+  { number: "01", key: "discover", icon: Compass },
+  { number: "02", key: "design", icon: PenTool },
+  { number: "03", key: "build", icon: Code2 },
+  { number: "04", key: "launch", icon: Rocket },
+  { number: "05", key: "improve", icon: TrendingUp },
 ];
 
 function Process() {
   const reduceMotion = useReducedMotion();
+  const { t } = useTranslation();
 
   return (
     <section className="relative overflow-hidden bg-[#050608] py-20 sm:py-24 lg:py-28">
@@ -61,32 +38,26 @@ function Process() {
         animate={
           reduceMotion
             ? undefined
-            : {
-                x: [-250, 250, -250],
-                y: [-80, 80, -80],
-              }
+            : { x: [-250, 250, -250], y: [-80, 80, -80] }
         }
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-            How we work
+            {t("process.eyebrow")}
           </p>
 
           <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl">
-            From problem to
-            <span className="text-sky-400"> working product.</span>
+            {t("process.titleStart")}{" "}
+            <span className="text-sky-400">
+              {t("process.titleHighlight")}
+            </span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-            A focused process designed to move from an idea to a reliable
-            digital system without unnecessary complexity.
+            {t("process.description")}
           </p>
         </div>
 
@@ -98,11 +69,7 @@ function Process() {
               <motion.div
                 className="h-full w-40 bg-linear-to-r from-transparent via-sky-300 to-transparent"
                 animate={{ x: ["-160px", "1100px"] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
               />
             </div>
           )}
@@ -113,9 +80,11 @@ function Process() {
 
               return (
                 <motion.div
-                  key={step.title}
+                  key={step.key}
                   initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  whileInView={
+                    reduceMotion ? undefined : { opacity: 1, y: 0 }
+                  }
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
@@ -152,11 +121,11 @@ function Process() {
                     </span>
 
                     <h3 className="mt-5 text-xl font-semibold text-white">
-                      {step.title}
+                      {t(`process.steps.${step.key}.title`)}
                     </h3>
 
                     <p className="mt-3 text-sm leading-6 text-slate-400">
-                      {step.text}
+                      {t(`process.steps.${step.key}.text`)}
                     </p>
                   </div>
                 </motion.div>
@@ -173,9 +142,11 @@ function Process() {
 
             return (
               <motion.div
-                key={step.title}
+                key={step.key}
                 initial={reduceMotion ? false : { opacity: 0, x: -20 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                whileInView={
+                  reduceMotion ? undefined : { opacity: 1, x: 0 }
+                }
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 className="relative flex gap-3 sm:gap-5"
@@ -186,14 +157,16 @@ function Process() {
                 </div>
 
                 <div className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
-                  <span className="text-xs text-sky-300">{step.number}</span>
+                  <span className="text-xs text-sky-300">
+                    {step.number}
+                  </span>
 
                   <h3 className="mt-2 text-lg font-semibold text-white">
-                    {step.title}
+                    {t(`process.steps.${step.key}.title`)}
                   </h3>
 
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    {step.text}
+                    {t(`process.steps.${step.key}.text`)}
                   </p>
                 </div>
               </motion.div>
@@ -206,7 +179,7 @@ function Process() {
             to="/contact"
             className="group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition hover:border-sky-400/30 hover:bg-sky-400/10 sm:w-auto"
           >
-            Start your project
+            {t("process.startProject")}
 
             <ArrowRight
               size={16}

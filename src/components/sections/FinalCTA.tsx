@@ -1,9 +1,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function FinalCTA() {
   const reduceMotion = useReducedMotion();
+  const { t } = useTranslation();
 
   return (
     <section className="relative overflow-hidden bg-[#050608] py-24 sm:py-32 lg:py-40">
@@ -55,24 +57,26 @@ function FinalCTA() {
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          whileInView={
+            reduceMotion ? undefined : { opacity: 1, y: 0 }
+          }
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
           className="mx-auto max-w-5xl text-center"
         >
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-            Let&apos;s build something useful
+            {t("finalCTA.eyebrow")}
           </p>
 
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:mt-7 sm:text-6xl lg:text-7xl">
-            The next system your business runs on
-            <span className="text-sky-400"> starts here.</span>
+            {t("finalCTA.titleStart")}{" "}
+            <span className="text-sky-400">
+              {t("finalCTA.titleHighlight")}
+            </span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:mt-7 sm:text-lg">
-            Whether you&apos;re replacing manual work, launching a product or
-            building a better customer experience, BuiltV can help turn it
-            into a working digital system.
+            {t("finalCTA.description")}
           </p>
 
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center">
@@ -80,7 +84,7 @@ function FinalCTA() {
               to="/contact"
               className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-black transition hover:bg-sky-300"
             >
-              Start a project
+              {t("finalCTA.startProject")}
 
               <ArrowRight
                 size={16}
@@ -92,18 +96,18 @@ function FinalCTA() {
               to="/work"
               className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/10"
             >
-              Explore our work
+              {t("finalCTA.exploreWork")}
             </Link>
           </div>
         </motion.div>
 
         <div className="mx-auto mt-16 max-w-5xl border-t border-white/10 pt-6 sm:mt-24 sm:pt-8">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs uppercase tracking-widest text-slate-600 sm:gap-x-8">
-            <span>Web</span>
-            <span>Software</span>
-            <span>Systems</span>
-            <span>AI</span>
-            <span>Automation</span>
+            <span>{t("finalCTA.web")}</span>
+            <span>{t("finalCTA.software")}</span>
+            <span>{t("finalCTA.systems")}</span>
+            <span>{t("finalCTA.ai")}</span>
+            <span>{t("finalCTA.automation")}</span>
           </div>
         </div>
       </div>

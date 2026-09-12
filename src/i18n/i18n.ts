@@ -119,6 +119,157 @@ const resources = {
 
         socialComingSoon: "{{name}} profile coming soon",
       },
+
+      workflow: {
+        eyebrow: "Connected business systems",
+        title: "Your business doesn't need more disconnected tools.",
+        description:
+          "BuiltV connects the steps between a new enquiry and a completed job into one smoother workflow.",
+        explore: "Explore business solutions",
+        steps: {
+          enquiry: "Enquiry",
+          quote: "Quote",
+          booking: "Booking",
+          job: "Job",
+          payment: "Payment",
+          followUp: "Follow-up",
+        },
+      },
+
+      markets: {
+        title: "Markets we build for",
+        countries: {
+          ireland: "Ireland",
+          unitedKingdom: "United Kingdom",
+          germany: "Germany",
+          netherlands: "Netherlands",
+          austria: "Austria",
+          belgium: "Belgium",
+          france: "France",
+          spain: "Spain",
+          portugal: "Portugal",
+          italy: "Italy",
+          denmark: "Denmark",
+          norway: "Norway",
+          sweden: "Sweden",
+          finland: "Finland",
+          switzerland: "Switzerland",
+          poland: "Poland",
+          czechia: "Czechia",
+          estonia: "Estonia",
+          lithuania: "Lithuania",
+          latvia: "Latvia",
+          greece: "Greece",
+          croatia: "Croatia",
+          romania: "Romania",
+        },
+      },
+
+      industries: {
+        eyebrow: "Who we build for",
+        titleStart: "Different businesses.",
+        titleHighlight: "Similar operational problems.",
+        description:
+          "We design systems around how a business actually works — from the first customer enquiry to the work happening behind the scenes.",
+        explore: "Explore all solutions",
+        homeServices: {
+          title: "Home Services",
+          description:
+            "Digital systems for plumbing, HVAC, electrical and other service businesses.",
+          system: "Lead → Quote → Booking → Job → Payment",
+        },
+        fieldServices: {
+          title: "Field Services",
+          description:
+            "Operational tools for cleaning, maintenance and mobile service teams.",
+          system: "Job → Worker → Proof → Client → Invoice",
+        },
+        construction: {
+          title: "Construction",
+          description:
+            "Connected workflows for projects, teams, reporting and client communication.",
+          system: "Project → Team → Site → Report → Client",
+        },
+        professionalServices: {
+          title: "Professional Services",
+          description:
+            "Better systems for leads, proposals, clients, billing and recurring work.",
+          system: "Lead → Proposal → Client → Delivery → Billing",
+        },
+        startups: {
+          title: "Startups",
+          description:
+            "From early product ideas to working MVPs and scalable digital platforms.",
+          system: "Idea → MVP → Launch → Learn → Scale",
+        },
+      },
+
+      selectedWork: {
+        eyebrow: "Selected work",
+        titleStart: "Products designed to solve",
+        titleHighlight: "real problems.",
+        viewAll: "View all work",
+        viewProject: "View project",
+        mineQueue: {
+          category: "Healthcare Software",
+          description:
+            "A real-time doctor appointment platform designed around booking reliability, scheduling and smoother patient workflows.",
+          panelLabel: "Doctor appointment system",
+        },
+        triage: {
+          category: "AI Developer Platform",
+          description:
+            "An AI-powered debugging platform built to help developers understand errors, inspect context and move from issue to solution faster.",
+          panelLabel: "AI debugging workspace",
+        },
+      },
+
+      process: {
+        eyebrow: "How we work",
+        titleStart: "From problem to",
+        titleHighlight: "working product.",
+        description:
+          "A focused process designed to move from an idea to a reliable digital system without unnecessary complexity.",
+        startProject: "Start your project",
+        steps: {
+          discover: {
+            title: "Discover",
+            text: "We understand the business, users, workflow and the problem worth solving.",
+          },
+          design: {
+            title: "Design",
+            text: "We shape the experience, system architecture and product direction.",
+          },
+          build: {
+            title: "Build",
+            text: "We engineer the product with modern, reliable and scalable technology.",
+          },
+          launch: {
+            title: "Launch",
+            text: "We test, refine and move the system into the real world.",
+          },
+          improve: {
+            title: "Improve",
+            text: "We learn from real usage and continue improving what matters.",
+          },
+        },
+      },
+
+      finalCTA: {
+        eyebrow: "Let's build something useful",
+        titleStart: "The next system your business runs on",
+        titleHighlight: "starts here.",
+        description:
+          "Whether you're replacing manual work, launching a product or building a better customer experience, BuiltV can help turn it into a working digital system.",
+        startProject: "Start a project",
+        exploreWork: "Explore our work",
+        web: "Web",
+        software: "Software",
+        systems: "Systems",
+        ai: "AI",
+        automation: "Automation",
+      },
+
     },
   },
 
@@ -237,6 +388,157 @@ const resources = {
 
         socialComingSoon: "{{name}}-Profil folgt bald",
       },
+
+      workflow: {
+        eyebrow: "Vernetzte Geschäftssysteme",
+        title: "Ihr Unternehmen braucht nicht noch mehr getrennte Tools.",
+        description:
+          "BuiltV verbindet die Schritte von einer neuen Anfrage bis zum abgeschlossenen Auftrag in einem reibungsloseren Workflow.",
+        explore: "Geschäftslösungen entdecken",
+        steps: {
+          enquiry: "Anfrage",
+          quote: "Angebot",
+          booking: "Buchung",
+          job: "Auftrag",
+          payment: "Zahlung",
+          followUp: "Nachverfolgung",
+        },
+      },
+
+      markets: {
+        title: "Märkte, für die wir entwickeln",
+        countries: {
+          ireland: "Irland",
+          unitedKingdom: "Vereinigtes Königreich",
+          germany: "Deutschland",
+          netherlands: "Niederlande",
+          austria: "Österreich",
+          belgium: "Belgien",
+          france: "Frankreich",
+          spain: "Spanien",
+          portugal: "Portugal",
+          italy: "Italien",
+          denmark: "Dänemark",
+          norway: "Norwegen",
+          sweden: "Schweden",
+          finland: "Finnland",
+          switzerland: "Schweiz",
+          poland: "Polen",
+          czechia: "Tschechien",
+          estonia: "Estland",
+          lithuania: "Litauen",
+          latvia: "Lettland",
+          greece: "Griechenland",
+          croatia: "Kroatien",
+          romania: "Rumänien",
+        },
+      },
+
+      industries: {
+        eyebrow: "Für wen wir entwickeln",
+        titleStart: "Unterschiedliche Unternehmen.",
+        titleHighlight: "Ähnliche operative Probleme.",
+        description:
+          "Wir entwickeln Systeme rund um die tatsächlichen Abläufe eines Unternehmens — von der ersten Kundenanfrage bis zur Arbeit im Hintergrund.",
+        explore: "Alle Lösungen entdecken",
+        homeServices: {
+          title: "Haushaltsnahe Dienstleistungen",
+          description:
+            "Digitale Systeme für Sanitär-, Heizungs-, Elektro- und andere Serviceunternehmen.",
+          system: "Lead → Angebot → Buchung → Auftrag → Zahlung",
+        },
+        fieldServices: {
+          title: "Außendienst",
+          description:
+            "Operative Tools für Reinigung, Wartung und mobile Serviceteams.",
+          system: "Auftrag → Mitarbeiter → Nachweis → Kunde → Rechnung",
+        },
+        construction: {
+          title: "Bau",
+          description:
+            "Vernetzte Workflows für Projekte, Teams, Berichte und Kundenkommunikation.",
+          system: "Projekt → Team → Baustelle → Bericht → Kunde",
+        },
+        professionalServices: {
+          title: "Professionelle Dienstleistungen",
+          description:
+            "Bessere Systeme für Leads, Angebote, Kunden, Abrechnung und wiederkehrende Arbeit.",
+          system: "Lead → Angebot → Kunde → Lieferung → Abrechnung",
+        },
+        startups: {
+          title: "Startups",
+          description:
+            "Von frühen Produktideen bis zu funktionierenden MVPs und skalierbaren digitalen Plattformen.",
+          system: "Idee → MVP → Start → Lernen → Skalieren",
+        },
+      },
+
+      selectedWork: {
+        eyebrow: "Ausgewählte Projekte",
+        titleStart: "Produkte entwickelt für",
+        titleHighlight: "echte Probleme.",
+        viewAll: "Alle Projekte ansehen",
+        viewProject: "Projekt ansehen",
+        mineQueue: {
+          category: "Gesundheitssoftware",
+          description:
+            "Eine Echtzeit-Plattform für Arzttermine, entwickelt für zuverlässige Buchungen, Planung und reibungslosere Abläufe für Patienten.",
+          panelLabel: "Arztterminsystem",
+        },
+        triage: {
+          category: "KI-Entwicklerplattform",
+          description:
+            "Eine KI-gestützte Debugging-Plattform, die Entwicklern hilft, Fehler zu verstehen, Kontext zu prüfen und schneller von einem Problem zur Lösung zu gelangen.",
+          panelLabel: "KI-Debugging-Arbeitsbereich",
+        },
+      },
+
+      process: {
+        eyebrow: "So arbeiten wir",
+        titleStart: "Vom Problem zum",
+        titleHighlight: "funktionierenden Produkt.",
+        description:
+          "Ein fokussierter Prozess, der eine Idee ohne unnötige Komplexität in ein zuverlässiges digitales System überführt.",
+        startProject: "Projekt starten",
+        steps: {
+          discover: {
+            title: "Verstehen",
+            text: "Wir verstehen das Unternehmen, die Nutzer, den Workflow und das Problem, das gelöst werden soll.",
+          },
+          design: {
+            title: "Entwerfen",
+            text: "Wir gestalten Nutzererlebnis, Systemarchitektur und Produktrichtung.",
+          },
+          build: {
+            title: "Entwickeln",
+            text: "Wir entwickeln das Produkt mit moderner, zuverlässiger und skalierbarer Technologie.",
+          },
+          launch: {
+            title: "Starten",
+            text: "Wir testen, optimieren und bringen das System in die reale Nutzung.",
+          },
+          improve: {
+            title: "Verbessern",
+            text: "Wir lernen aus der realen Nutzung und verbessern kontinuierlich, was wichtig ist.",
+          },
+        },
+      },
+
+      finalCTA: {
+        eyebrow: "Lassen Sie uns etwas Nützliches bauen",
+        titleStart: "Das nächste System, auf dem Ihr Unternehmen läuft,",
+        titleHighlight: "beginnt hier.",
+        description:
+          "Ob Sie manuelle Arbeit ersetzen, ein Produkt starten oder ein besseres Kundenerlebnis schaffen möchten — BuiltV hilft, daraus ein funktionierendes digitales System zu machen.",
+        startProject: "Projekt starten",
+        exploreWork: "Unsere Projekte ansehen",
+        web: "Web",
+        software: "Software",
+        systems: "Systeme",
+        ai: "KI",
+        automation: "Automatisierung",
+      },
+
     },
   },
 
@@ -355,6 +657,157 @@ const resources = {
 
         socialComingSoon: "{{name}}-profiel binnenkort beschikbaar",
       },
+
+      workflow: {
+        eyebrow: "Verbonden bedrijfssystemen",
+        title: "Je bedrijf heeft niet nog meer losse tools nodig.",
+        description:
+          "BuiltV verbindt de stappen tussen een nieuwe aanvraag en een afgeronde opdracht in één soepelere workflow.",
+        explore: "Bekijk bedrijfsoplossingen",
+        steps: {
+          enquiry: "Aanvraag",
+          quote: "Offerte",
+          booking: "Boeking",
+          job: "Opdracht",
+          payment: "Betaling",
+          followUp: "Opvolging",
+        },
+      },
+
+      markets: {
+        title: "Markten waarvoor we bouwen",
+        countries: {
+          ireland: "Ierland",
+          unitedKingdom: "Verenigd Koninkrijk",
+          germany: "Duitsland",
+          netherlands: "Nederland",
+          austria: "Oostenrijk",
+          belgium: "België",
+          france: "Frankrijk",
+          spain: "Spanje",
+          portugal: "Portugal",
+          italy: "Italië",
+          denmark: "Denemarken",
+          norway: "Noorwegen",
+          sweden: "Zweden",
+          finland: "Finland",
+          switzerland: "Zwitserland",
+          poland: "Polen",
+          czechia: "Tsjechië",
+          estonia: "Estland",
+          lithuania: "Litouwen",
+          latvia: "Letland",
+          greece: "Griekenland",
+          croatia: "Kroatië",
+          romania: "Roemenië",
+        },
+      },
+
+      industries: {
+        eyebrow: "Voor wie we bouwen",
+        titleStart: "Verschillende bedrijven.",
+        titleHighlight: "Vergelijkbare operationele problemen.",
+        description:
+          "We ontwerpen systemen rond hoe een bedrijf echt werkt — van de eerste klantaanvraag tot het werk achter de schermen.",
+        explore: "Bekijk alle oplossingen",
+        homeServices: {
+          title: "Thuisdiensten",
+          description:
+            "Digitale systemen voor loodgieters, HVAC, elektriciens en andere servicebedrijven.",
+          system: "Lead → Offerte → Boeking → Opdracht → Betaling",
+        },
+        fieldServices: {
+          title: "Buitendienst",
+          description:
+            "Operationele tools voor schoonmaak, onderhoud en mobiele serviceteams.",
+          system: "Opdracht → Medewerker → Bewijs → Klant → Factuur",
+        },
+        construction: {
+          title: "Bouw",
+          description:
+            "Verbonden workflows voor projecten, teams, rapportage en klantcommunicatie.",
+          system: "Project → Team → Locatie → Rapport → Klant",
+        },
+        professionalServices: {
+          title: "Professionele diensten",
+          description:
+            "Betere systemen voor leads, voorstellen, klanten, facturering en terugkerend werk.",
+          system: "Lead → Voorstel → Klant → Levering → Facturering",
+        },
+        startups: {
+          title: "Startups",
+          description:
+            "Van vroege productideeën tot werkende MVP's en schaalbare digitale platforms.",
+          system: "Idee → MVP → Lancering → Leren → Schalen",
+        },
+      },
+
+      selectedWork: {
+        eyebrow: "Geselecteerd werk",
+        titleStart: "Producten ontworpen om",
+        titleHighlight: "echte problemen op te lossen.",
+        viewAll: "Bekijk al ons werk",
+        viewProject: "Bekijk project",
+        mineQueue: {
+          category: "Zorgsoftware",
+          description:
+            "Een realtime platform voor doktersafspraken, ontworpen rond betrouwbare boekingen, planning en soepelere patiëntprocessen.",
+          panelLabel: "Doktersafsprakensysteem",
+        },
+        triage: {
+          category: "AI-ontwikkelaarsplatform",
+          description:
+            "Een AI-gestuurd debuggingplatform dat ontwikkelaars helpt fouten te begrijpen, context te onderzoeken en sneller van probleem naar oplossing te gaan.",
+          panelLabel: "AI-debuggingworkspace",
+        },
+      },
+
+      process: {
+        eyebrow: "Hoe we werken",
+        titleStart: "Van probleem naar",
+        titleHighlight: "werkend product.",
+        description:
+          "Een gericht proces dat een idee zonder onnodige complexiteit omzet in een betrouwbaar digitaal systeem.",
+        startProject: "Start je project",
+        steps: {
+          discover: {
+            title: "Ontdekken",
+            text: "We begrijpen het bedrijf, de gebruikers, de workflow en het probleem dat het waard is om op te lossen.",
+          },
+          design: {
+            title: "Ontwerpen",
+            text: "We bepalen de ervaring, systeemarchitectuur en productrichting.",
+          },
+          build: {
+            title: "Bouwen",
+            text: "We ontwikkelen het product met moderne, betrouwbare en schaalbare technologie.",
+          },
+          launch: {
+            title: "Lanceren",
+            text: "We testen, verfijnen en brengen het systeem naar de echte wereld.",
+          },
+          improve: {
+            title: "Verbeteren",
+            text: "We leren van echt gebruik en blijven verbeteren wat belangrijk is.",
+          },
+        },
+      },
+
+      finalCTA: {
+        eyebrow: "Laten we iets nuttigs bouwen",
+        titleStart: "Het volgende systeem waarop je bedrijf draait",
+        titleHighlight: "begint hier.",
+        description:
+          "Of je nu handmatig werk vervangt, een product lanceert of een betere klantervaring bouwt, BuiltV helpt het om te zetten in een werkend digitaal systeem.",
+        startProject: "Start een project",
+        exploreWork: "Bekijk ons werk",
+        web: "Web",
+        software: "Software",
+        systems: "Systemen",
+        ai: "AI",
+        automation: "Automatisering",
+      },
+
     },
   },
 
@@ -474,6 +927,157 @@ const resources = {
 
         socialComingSoon: "Profil {{name}} bientôt disponible",
       },
+
+      workflow: {
+        eyebrow: "Systèmes d'entreprise connectés",
+        title: "Votre entreprise n'a pas besoin de davantage d'outils déconnectés.",
+        description:
+          "BuiltV relie les étapes entre une nouvelle demande et un travail terminé dans un workflow plus fluide.",
+        explore: "Découvrir les solutions métier",
+        steps: {
+          enquiry: "Demande",
+          quote: "Devis",
+          booking: "Réservation",
+          job: "Mission",
+          payment: "Paiement",
+          followUp: "Suivi",
+        },
+      },
+
+      markets: {
+        title: "Les marchés pour lesquels nous créons",
+        countries: {
+          ireland: "Irlande",
+          unitedKingdom: "Royaume-Uni",
+          germany: "Allemagne",
+          netherlands: "Pays-Bas",
+          austria: "Autriche",
+          belgium: "Belgique",
+          france: "France",
+          spain: "Espagne",
+          portugal: "Portugal",
+          italy: "Italie",
+          denmark: "Danemark",
+          norway: "Norvège",
+          sweden: "Suède",
+          finland: "Finlande",
+          switzerland: "Suisse",
+          poland: "Pologne",
+          czechia: "Tchéquie",
+          estonia: "Estonie",
+          lithuania: "Lituanie",
+          latvia: "Lettonie",
+          greece: "Grèce",
+          croatia: "Croatie",
+          romania: "Roumanie",
+        },
+      },
+
+      industries: {
+        eyebrow: "Pour qui nous créons",
+        titleStart: "Des entreprises différentes.",
+        titleHighlight: "Des problèmes opérationnels similaires.",
+        description:
+          "Nous concevons des systèmes autour du fonctionnement réel d'une entreprise — de la première demande client au travail effectué en coulisses.",
+        explore: "Découvrir toutes les solutions",
+        homeServices: {
+          title: "Services à domicile",
+          description:
+            "Systèmes numériques pour la plomberie, le HVAC, l'électricité et d'autres entreprises de services.",
+          system: "Lead → Devis → Réservation → Mission → Paiement",
+        },
+        fieldServices: {
+          title: "Services terrain",
+          description:
+            "Outils opérationnels pour les équipes de nettoyage, maintenance et services mobiles.",
+          system: "Mission → Employé → Preuve → Client → Facture",
+        },
+        construction: {
+          title: "Construction",
+          description:
+            "Workflows connectés pour les projets, équipes, rapports et communication client.",
+          system: "Projet → Équipe → Site → Rapport → Client",
+        },
+        professionalServices: {
+          title: "Services professionnels",
+          description:
+            "De meilleurs systèmes pour les prospects, propositions, clients, facturation et travail récurrent.",
+          system: "Lead → Proposition → Client → Livraison → Facturation",
+        },
+        startups: {
+          title: "Startups",
+          description:
+            "Des premières idées produit aux MVP fonctionnels et aux plateformes numériques évolutives.",
+          system: "Idée → MVP → Lancement → Apprentissage → Croissance",
+        },
+      },
+
+      selectedWork: {
+        eyebrow: "Projets sélectionnés",
+        titleStart: "Des produits conçus pour résoudre",
+        titleHighlight: "de vrais problèmes.",
+        viewAll: "Voir tous les projets",
+        viewProject: "Voir le projet",
+        mineQueue: {
+          category: "Logiciel de santé",
+          description:
+            "Une plateforme de rendez-vous médicaux en temps réel conçue autour de la fiabilité des réservations, de la planification et de parcours patients plus fluides.",
+          panelLabel: "Système de rendez-vous médicaux",
+        },
+        triage: {
+          category: "Plateforme IA pour développeurs",
+          description:
+            "Une plateforme de débogage alimentée par l'IA pour aider les développeurs à comprendre les erreurs, analyser le contexte et passer plus vite du problème à la solution.",
+          panelLabel: "Espace de débogage IA",
+        },
+      },
+
+      process: {
+        eyebrow: "Notre méthode",
+        titleStart: "Du problème au",
+        titleHighlight: "produit fonctionnel.",
+        description:
+          "Un processus ciblé conçu pour transformer une idée en système numérique fiable sans complexité inutile.",
+        startProject: "Démarrer votre projet",
+        steps: {
+          discover: {
+            title: "Découvrir",
+            text: "Nous comprenons l'entreprise, les utilisateurs, le workflow et le problème qui mérite d'être résolu.",
+          },
+          design: {
+            title: "Concevoir",
+            text: "Nous définissons l'expérience, l'architecture du système et la direction du produit.",
+          },
+          build: {
+            title: "Développer",
+            text: "Nous construisons le produit avec une technologie moderne, fiable et évolutive.",
+          },
+          launch: {
+            title: "Lancer",
+            text: "Nous testons, affinons et mettons le système en production.",
+          },
+          improve: {
+            title: "Améliorer",
+            text: "Nous apprenons de l'utilisation réelle et améliorons continuellement ce qui compte.",
+          },
+        },
+      },
+
+      finalCTA: {
+        eyebrow: "Construisons quelque chose d'utile",
+        titleStart: "Le prochain système sur lequel votre entreprise fonctionnera",
+        titleHighlight: "commence ici.",
+        description:
+          "Que vous remplaciez du travail manuel, lanciez un produit ou amélioriez l'expérience client, BuiltV peut vous aider à en faire un système numérique fonctionnel.",
+        startProject: "Démarrer un projet",
+        exploreWork: "Découvrir nos projets",
+        web: "Web",
+        software: "Logiciels",
+        systems: "Systèmes",
+        ai: "IA",
+        automation: "Automatisation",
+      },
+
     },
   },
 
@@ -593,6 +1197,157 @@ const resources = {
 
         socialComingSoon: "Perfil de {{name}} próximamente",
       },
+
+      workflow: {
+        eyebrow: "Sistemas empresariales conectados",
+        title: "Tu empresa no necesita más herramientas desconectadas.",
+        description:
+          "BuiltV conecta los pasos entre una nueva consulta y un trabajo completado en un flujo más fluido.",
+        explore: "Explorar soluciones empresariales",
+        steps: {
+          enquiry: "Consulta",
+          quote: "Presupuesto",
+          booking: "Reserva",
+          job: "Trabajo",
+          payment: "Pago",
+          followUp: "Seguimiento",
+        },
+      },
+
+      markets: {
+        title: "Mercados para los que construimos",
+        countries: {
+          ireland: "Irlanda",
+          unitedKingdom: "Reino Unido",
+          germany: "Alemania",
+          netherlands: "Países Bajos",
+          austria: "Austria",
+          belgium: "Bélgica",
+          france: "Francia",
+          spain: "España",
+          portugal: "Portugal",
+          italy: "Italia",
+          denmark: "Dinamarca",
+          norway: "Noruega",
+          sweden: "Suecia",
+          finland: "Finlandia",
+          switzerland: "Suiza",
+          poland: "Polonia",
+          czechia: "Chequia",
+          estonia: "Estonia",
+          lithuania: "Lituania",
+          latvia: "Letonia",
+          greece: "Grecia",
+          croatia: "Croacia",
+          romania: "Rumanía",
+        },
+      },
+
+      industries: {
+        eyebrow: "Para quién construimos",
+        titleStart: "Negocios diferentes.",
+        titleHighlight: "Problemas operativos similares.",
+        description:
+          "Diseñamos sistemas alrededor de cómo funciona realmente una empresa — desde la primera consulta del cliente hasta el trabajo que ocurre detrás de escena.",
+        explore: "Explorar todas las soluciones",
+        homeServices: {
+          title: "Servicios para el hogar",
+          description:
+            "Sistemas digitales para fontanería, HVAC, electricidad y otros negocios de servicios.",
+          system: "Lead → Presupuesto → Reserva → Trabajo → Pago",
+        },
+        fieldServices: {
+          title: "Servicios de campo",
+          description:
+            "Herramientas operativas para limpieza, mantenimiento y equipos de servicio móvil.",
+          system: "Trabajo → Trabajador → Prueba → Cliente → Factura",
+        },
+        construction: {
+          title: "Construcción",
+          description:
+            "Flujos conectados para proyectos, equipos, informes y comunicación con clientes.",
+          system: "Proyecto → Equipo → Sitio → Informe → Cliente",
+        },
+        professionalServices: {
+          title: "Servicios profesionales",
+          description:
+            "Mejores sistemas para leads, propuestas, clientes, facturación y trabajo recurrente.",
+          system: "Lead → Propuesta → Cliente → Entrega → Facturación",
+        },
+        startups: {
+          title: "Startups",
+          description:
+            "Desde ideas iniciales de producto hasta MVP funcionales y plataformas digitales escalables.",
+          system: "Idea → MVP → Lanzamiento → Aprender → Escalar",
+        },
+      },
+
+      selectedWork: {
+        eyebrow: "Trabajo seleccionado",
+        titleStart: "Productos diseñados para resolver",
+        titleHighlight: "problemas reales.",
+        viewAll: "Ver todos los proyectos",
+        viewProject: "Ver proyecto",
+        mineQueue: {
+          category: "Software de salud",
+          description:
+            "Una plataforma de citas médicas en tiempo real diseñada para ofrecer reservas fiables, mejor planificación y flujos de pacientes más fluidos.",
+          panelLabel: "Sistema de citas médicas",
+        },
+        triage: {
+          category: "Plataforma de IA para desarrolladores",
+          description:
+            "Una plataforma de depuración con IA creada para ayudar a los desarrolladores a entender errores, revisar contexto y pasar más rápido del problema a la solución.",
+          panelLabel: "Espacio de depuración con IA",
+        },
+      },
+
+      process: {
+        eyebrow: "Cómo trabajamos",
+        titleStart: "Del problema al",
+        titleHighlight: "producto funcional.",
+        description:
+          "Un proceso enfocado para convertir una idea en un sistema digital fiable sin complejidad innecesaria.",
+        startProject: "Inicia tu proyecto",
+        steps: {
+          discover: {
+            title: "Descubrir",
+            text: "Entendemos el negocio, los usuarios, el flujo de trabajo y el problema que vale la pena resolver.",
+          },
+          design: {
+            title: "Diseñar",
+            text: "Definimos la experiencia, la arquitectura del sistema y la dirección del producto.",
+          },
+          build: {
+            title: "Construir",
+            text: "Desarrollamos el producto con tecnología moderna, fiable y escalable.",
+          },
+          launch: {
+            title: "Lanzar",
+            text: "Probamos, refinamos y llevamos el sistema al mundo real.",
+          },
+          improve: {
+            title: "Mejorar",
+            text: "Aprendemos del uso real y seguimos mejorando lo que importa.",
+          },
+        },
+      },
+
+      finalCTA: {
+        eyebrow: "Construyamos algo útil",
+        titleStart: "El próximo sistema sobre el que funcionará tu empresa",
+        titleHighlight: "empieza aquí.",
+        description:
+          "Ya sea que reemplaces trabajo manual, lances un producto o construyas una mejor experiencia para tus clientes, BuiltV puede ayudarte a convertirlo en un sistema digital funcional.",
+        startProject: "Iniciar un proyecto",
+        exploreWork: "Explorar nuestro trabajo",
+        web: "Web",
+        software: "Software",
+        systems: "Sistemas",
+        ai: "IA",
+        automation: "Automatización",
+      },
+
     },
   },
 };
