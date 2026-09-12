@@ -1,13 +1,46 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/logo/builtv-logo.png";
-import { navigationItems } from "../../data/navigation";
 import LanguageSelector from "../localization/LanguageSelector";
+
+const navigationItems = [
+  {
+    key: "services",
+    path: "/services",
+  },
+  {
+    key: "work",
+    path: "/work",
+  },
+  {
+    key: "solutions",
+    path: "/solutions",
+  },
+  {
+    key: "pricing",
+    path: "/pricing",
+  },
+  {
+    key: "about",
+    path: "/about",
+  },
+  {
+    key: "insights",
+    path: "/insights",
+  },
+  {
+    key: "contact",
+    path: "/contact",
+  },
+];
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { t } = useTranslation();
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -38,7 +71,6 @@ function Navbar() {
               <NavLink
                 key={item.path}
                 to={item.path}
-                end={item.path === "/"}
                 className={({ isActive }) =>
                   `text-sm transition-colors duration-200 ${
                     isActive
@@ -47,7 +79,7 @@ function Navbar() {
                   }`
                 }
               >
-                {item.label}
+                {t(`nav.${item.key}`)}
               </NavLink>
             ))}
           </div>
@@ -59,7 +91,7 @@ function Navbar() {
               to="/contact"
               className="flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black transition-transform duration-200 hover:scale-[1.02]"
             >
-              Start a Project
+              {t("nav.startProject")}
               <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -86,7 +118,6 @@ function Navbar() {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  end={item.path === "/"}
                   onClick={() => setIsOpen(false)}
                   className={({ isActive }) =>
                     `rounded-xl px-4 py-3.5 text-sm transition-colors ${
@@ -96,7 +127,7 @@ function Navbar() {
                     }`
                   }
                 >
-                  {item.label}
+                  {t(`nav.${item.key}`)}
                 </NavLink>
               ))}
             </div>
@@ -114,7 +145,7 @@ function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-medium text-black transition hover:bg-sky-100"
               >
-                Start a Project
+                {t("nav.startProject")}
                 <ArrowUpRight size={16} />
               </Link>
             </div>
