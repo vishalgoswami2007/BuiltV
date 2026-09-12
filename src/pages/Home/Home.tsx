@@ -5,6 +5,7 @@ import GlobalMarkets from "../../components/sections/GlobalMarkets";
 import Industries from "../../components/sections/Industries";
 import SelectedWork from "../../components/sections/SelectedWork";
 import Process from "../../components/sections/Process";
+import FinalCTA from "../../components/sections/FinalCTA";
 import PageLayout from "../../components/layout/PageLayout";
 
 
@@ -18,6 +19,7 @@ function Home() {
       <Industries />
       <SelectedWork />
       <Process />
+      <FinalCTA/>
     </PageLayout>
   );
 }
