@@ -1,79 +1,23 @@
-import {
-  Cookie,
-  Mail,
-  Settings2,
-  ShieldCheck,
-} from "lucide-react";
+import { Cookie, Mail, Settings2, ShieldCheck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import PageLayout from "../../components/layout/PageLayout";
 
-const sections = [
-  {
-    title: "1. What cookies are",
-    content: [
-      "Cookies are small text files or similar technologies that websites may store on your device to remember information about your visit.",
-      "They can be used for essential website functions, preferences, analytics and certain third-party services.",
-    ],
-  },
-  {
-    title: "2. Essential cookies",
-    content: [
-      "Essential cookies are required for core website functionality and security.",
-      "These may include technologies used for session handling, form protection, consent preferences or other features necessary for the website to operate correctly.",
-    ],
-  },
-  {
-    title: "3. Preference cookies",
-    content: [
-      "Preference cookies may remember choices such as language, display preferences or other settings that improve your experience when you return to the website.",
-      "For example, BuiltV may store your selected website language so the same preference can be used on future visits.",
-    ],
-  },
-  {
-    title: "4. Analytics cookies",
-    content: [
-      "Analytics technologies may be used to understand how visitors use the website, which pages are visited and how the website performs.",
-      "Where required by applicable law, analytics cookies should only be activated after the user has provided the relevant consent.",
-    ],
-  },
-  {
-    title: "5. Third-party technologies",
-    content: [
-      "Some website features may depend on external providers such as hosting, analytics, embedded content, communication platforms or other infrastructure services.",
-      "These providers may use their own technologies according to their respective privacy and cookie policies.",
-    ],
-  },
-  {
-    title: "6. Cookie consent",
-    content: [
-      "Where non-essential cookies are used and consent is legally required, BuiltV aims to provide users with a way to accept or reject those optional technologies.",
-      "Essential technologies that are necessary for core website functionality may operate without optional consent where permitted by law.",
-    ],
-  },
-  {
-    title: "7. Changing your preferences",
-    content: [
-      "You may be able to change your cookie preferences through the BuiltV cookie controls where available.",
-      "You can also manage or delete cookies using your browser settings. Blocking certain cookies may affect some website functionality.",
-    ],
-  },
-  {
-    title: "8. Browser controls",
-    content: [
-      "Most modern browsers allow users to view, delete, block or limit cookies.",
-      "The exact controls depend on the browser and device you use, so you should refer to your browser settings for specific instructions.",
-    ],
-  },
-  {
-    title: "9. Changes to this policy",
-    content: [
-      "This Cookie Policy may be updated when BuiltV introduces new technologies, analytics tools, website functionality or legal requirements.",
-      "The latest version published on this page will apply from the stated effective date.",
-    ],
-  },
-];
+const sectionKeys = [
+  "whatCookiesAre",
+  "essentialCookies",
+  "preferenceCookies",
+  "analyticsCookies",
+  "thirdParty",
+  "consent",
+  "preferences",
+  "browserControls",
+  "changes",
+] as const;
 
 function Cookies() {
+  const { t } = useTranslation();
+
   return (
     <PageLayout>
       <section className="relative overflow-hidden bg-[#050608] pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pt-40">
@@ -95,21 +39,20 @@ function Cookies() {
             </div>
 
             <p className="mt-6 text-xs font-medium uppercase tracking-widest text-sky-300">
-              Legal
+              {t("cookiesPage.hero.eyebrow")}
             </p>
 
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Cookie Policy
+              {t("cookiesPage.hero.title")}
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              This policy explains how BuiltV may use cookies and similar
-              technologies on builtv.online.
+              {t("cookiesPage.hero.description")}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500">
-              <span>Effective: 12 September 2026</span>
-              <span>Website: builtv.online</span>
+              <span>{t("cookiesPage.hero.effective")}</span>
+              <span>{t("cookiesPage.hero.website")}</span>
             </div>
           </div>
         </div>
@@ -124,27 +67,23 @@ function Cookies() {
               </div>
 
               <p className="mt-5 text-xs font-medium uppercase tracking-widest text-sky-300">
-                Cookie summary
+                {t("cookiesPage.summary.eyebrow")}
               </p>
 
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                BuiltV may use essential technologies for website operation and
-                optional technologies for preferences or analytics where they
-                are implemented.
+                {t("cookiesPage.summary.text")}
               </p>
 
               <div className="mt-5 border-t border-white/10 pt-5">
                 <div className="flex items-center gap-2">
                   <ShieldCheck size={16} className="text-sky-300" />
-
                   <span className="text-sm font-medium text-white">
-                    Consent controls
+                    {t("cookiesPage.summary.controlsTitle")}
                   </span>
                 </div>
 
                 <p className="mt-3 text-xs leading-5 text-slate-500">
-                  We&apos;ll connect this page to the BuiltV cookie preference
-                  banner in the next setup phase.
+                  {t("cookiesPage.summary.controlsText")}
                 </p>
               </div>
 
@@ -160,33 +99,30 @@ function Cookies() {
           <div className="space-y-4">
             <div className="rounded-2xl border border-white/10 bg-[#0A0D12] p-5 sm:p-7">
               <h2 className="text-xl font-semibold text-white">
-                How this policy applies
+                {t("cookiesPage.applies.title")}
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                This Cookie Policy applies to cookies and similar technologies
-                that may be used through the BuiltV website. The exact
-                technologies in use can change as website functionality is
-                added or updated.
+                {t("cookiesPage.applies.text")}
               </p>
             </div>
 
-            {sections.map((section) => (
+            {sectionKeys.map((key) => (
               <article
-                key={section.title}
+                key={key}
                 className="rounded-2xl border border-white/10 bg-[#0A0D12] p-5 sm:p-7"
               >
                 <h2 className="text-lg font-semibold text-white sm:text-xl">
-                  {section.title}
+                  {t(`cookiesPage.sections.${key}.title`)}
                 </h2>
 
                 <div className="mt-4 space-y-3">
-                  {section.content.map((paragraph) => (
+                  {[0, 1].map((index) => (
                     <p
-                      key={paragraph}
+                      key={index}
                       className="text-sm leading-7 text-slate-400"
                     >
-                      {paragraph}
+                      {t(`cookiesPage.sections.${key}.content.${index}`)}
                     </p>
                   ))}
                 </div>
@@ -199,12 +135,11 @@ function Cookies() {
               </div>
 
               <h2 className="mt-5 text-xl font-semibold text-white">
-                Questions about cookies?
+                {t("cookiesPage.contact.title")}
               </h2>
 
               <p className="mt-3 text-sm leading-7 text-slate-400">
-                Contact BuiltV if you have questions about cookies, website
-                tracking technologies or privacy preferences.
+                {t("cookiesPage.contact.text")}
               </p>
 
               <a
