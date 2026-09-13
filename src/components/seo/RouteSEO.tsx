@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const BASE_URL = "https://builtv.vercel.app";
+const BASE_URL = "https://builtv.online";
 const OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 type SeoData = {
