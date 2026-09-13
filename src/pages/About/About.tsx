@@ -10,42 +10,31 @@ import {
   Target,
   Workflow,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import PageLayout from "../../components/layout/PageLayout";
 
 const principles = [
-  {
-    icon: Target,
-    title: "Problem first",
-    text: "We start with the business problem, workflow and user need before deciding what technology should be built.",
-  },
-  {
-    icon: Workflow,
-    title: "Systems over fragments",
-    text: "We prefer connected workflows and reliable systems instead of adding another disconnected tool.",
-  },
-  {
-    icon: Code2,
-    title: "Engineering matters",
-    text: "Good product design needs dependable frontend, backend, APIs, databases and infrastructure underneath.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Built to be trusted",
-    text: "We think about reliability, maintainability and how the product should behave when real users depend on it.",
-  },
-];
+  { icon: Target, key: "problem" },
+  { icon: Workflow, key: "systems" },
+  { icon: Code2, key: "engineering" },
+  { icon: ShieldCheck, key: "trust" },
+] as const;
 
 const capabilities = [
-  "Web experiences",
-  "Software & SaaS",
-  "Business systems",
-  "AI & automation",
-  "Product engineering",
-];
+  { icon: Globe2, key: "web" },
+  { icon: Code2, key: "software" },
+  { icon: Workflow, key: "systems" },
+  { icon: Bot, key: "ai" },
+  { icon: Sparkles, key: "engineering" },
+] as const;
+
+const markets = ["ireland", "uk", "netherlands", "germany", "europe", "global"] as const;
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <PageLayout>
       <section className="relative overflow-hidden bg-[#050608] pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
@@ -63,18 +52,19 @@ function About() {
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="max-w-5xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              About BuiltV
+              {t("aboutPage.hero.eyebrow")}
             </p>
 
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
-              We build digital systems for
-              <span className="text-sky-400"> what&apos;s next.</span>
+              {t("aboutPage.hero.titleStart")}
+              <span className="text-sky-400">
+                {" "}
+                {t("aboutPage.hero.titleHighlight")}
+              </span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
-              BuiltV is a digital product studio focused on websites, software,
-              business systems, AI and automation for ambitious companies that
-              want better technology around the way they actually operate.
+              {t("aboutPage.hero.description")}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -82,7 +72,7 @@ function About() {
                 to="/contact"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
               >
-                Start a project
+                {t("aboutPage.hero.start")}
                 <ArrowRight size={17} />
               </Link>
 
@@ -90,7 +80,7 @@ function About() {
                 to="/work"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
               >
-                See our work
+                {t("aboutPage.hero.work")}
                 <ArrowUpRight size={16} />
               </Link>
             </div>
@@ -103,35 +93,24 @@ function About() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="max-w-xl">
               <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-                Why BuiltV exists
+                {t("aboutPage.why.eyebrow")}
               </p>
 
               <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-                Better systems make
-                <span className="text-slate-400"> better businesses.</span>
+                {t("aboutPage.why.titleStart")}
+                <span className="text-slate-400">
+                  {" "}
+                  {t("aboutPage.why.titleHighlight")}
+                </span>
               </h2>
             </div>
 
             <div className="space-y-5">
-              <p className="text-base leading-8 text-slate-400">
-                Many businesses grow by adding more tools, more spreadsheets and
-                more manual steps. Eventually the technology starts creating
-                friction instead of removing it.
-              </p>
-
-              <p className="text-base leading-8 text-slate-400">
-                BuiltV exists to design clearer digital systems around real
-                workflows — systems that help customers move through the
-                business smoothly and help teams operate with less unnecessary
-                complexity.
-              </p>
-
-              <p className="text-base leading-8 text-slate-400">
-                Sometimes that means a website. Sometimes it means a complete
-                software product, internal platform or AI-powered workflow. The
-                goal is not to build more technology. The goal is to build the
-                right system.
-              </p>
+              {[0, 1, 2].map((index) => (
+                <p key={index} className="text-base leading-8 text-slate-400">
+                  {t(`aboutPage.why.paragraphs.${index}`)}
+                </p>
+              ))}
             </div>
           </div>
         </div>
@@ -141,22 +120,26 @@ function About() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              How we think
+              {t("aboutPage.principles.eyebrow")}
             </p>
 
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              Principles behind
-              <span className="text-slate-400"> the products we build.</span>
+              {t("aboutPage.principles.titleStart")}
+              <span className="text-slate-400">
+                {" "}
+                {t("aboutPage.principles.titleHighlight")}
+              </span>
             </h2>
           </div>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-2">
             {principles.map((principle) => {
               const Icon = principle.icon;
+              const base = `aboutPage.principles.items.${principle.key}`;
 
               return (
                 <article
-                  key={principle.title}
+                  key={principle.key}
                   className="rounded-2xl border border-white/10 bg-[#0A0D12] p-5 sm:p-7"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
@@ -164,11 +147,11 @@ function About() {
                   </div>
 
                   <h3 className="mt-5 text-xl font-semibold text-white">
-                    {principle.title}
+                    {t(`${base}.title`)}
                   </h3>
 
                   <p className="mt-3 text-sm leading-7 text-slate-400">
-                    {principle.text}
+                    {t(`${base}.text`)}
                   </p>
                 </article>
               );
@@ -186,40 +169,32 @@ function About() {
               </div>
 
               <p className="mt-6 text-xs font-medium uppercase tracking-widest text-sky-300">
-                One studio
+                {t("aboutPage.studio.eyebrow")}
               </p>
 
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-                Design, software and automation
-                <span className="text-sky-400"> under one roof.</span>
+                {t("aboutPage.studio.titleStart")}
+                <span className="text-sky-400">
+                  {" "}
+                  {t("aboutPage.studio.titleHighlight")}
+                </span>
               </h2>
 
               <p className="mt-5 text-base leading-7 text-slate-400">
-                Products work better when strategy, interface, backend systems
-                and automation are designed as one connected experience.
+                {t("aboutPage.studio.description")}
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-[#0A0D12] p-5 sm:p-7">
               <div className="grid gap-3 sm:grid-cols-2">
                 {capabilities.map((item, index) => {
-                  const icons = [
-                    Globe2,
-                    Code2,
-                    Workflow,
-                    Bot,
-                    Sparkles,
-                  ];
-
-                  const Icon = icons[index];
+                  const Icon = item.icon;
 
                   return (
                     <div
-                      key={item}
+                      key={item.key}
                       className={`flex min-h-20 items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4 ${
-                        index === capabilities.length - 1
-                          ? "sm:col-span-2"
-                          : ""
+                        index === capabilities.length - 1 ? "sm:col-span-2" : ""
                       }`}
                     >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-400/10">
@@ -227,12 +202,9 @@ function About() {
                       </div>
 
                       <div>
-                        <p className="text-xs text-slate-600">
-                          0{index + 1}
-                        </p>
-
+                        <p className="text-xs text-slate-600">0{index + 1}</p>
                         <p className="mt-1 text-sm font-medium text-white">
-                          {item}
+                          {t(`aboutPage.capabilities.${item.key}`)}
                         </p>
                       </div>
                     </div>
@@ -248,35 +220,29 @@ function About() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Built globally
+              {t("aboutPage.global.eyebrow")}
             </p>
 
             <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-              Digital products are global.
-              <span className="text-sky-400"> So is our mindset.</span>
+              {t("aboutPage.global.titleStart")}
+              <span className="text-sky-400">
+                {" "}
+                {t("aboutPage.global.titleHighlight")}
+              </span>
             </h2>
 
             <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400">
-              BuiltV is designed to work with modern businesses across different
-              markets, time zones and digital environments while keeping the
-              product experience clear and consistent.
+              {t("aboutPage.global.description")}
             </p>
           </div>
 
           <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2">
-            {[
-              "Ireland",
-              "United Kingdom",
-              "Netherlands",
-              "Germany",
-              "Europe",
-              "Global",
-            ].map((market) => (
+            {markets.map((market) => (
               <span
                 key={market}
                 className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-400 sm:text-sm"
               >
-                {market}
+                {t(`aboutPage.global.markets.${market}`)}
               </span>
             ))}
           </div>
@@ -288,24 +254,26 @@ function About() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-8">
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-            Build with BuiltV
+            {t("aboutPage.cta.eyebrow")}
           </p>
 
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Have a problem worth
-            <span className="text-sky-400"> solving properly?</span>
+            {t("aboutPage.cta.titleStart")}
+            <span className="text-sky-400">
+              {" "}
+              {t("aboutPage.cta.titleHighlight")}
+            </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-            Tell us what your business is trying to improve, replace or build
-            next. The conversation can start there.
+            {t("aboutPage.cta.description")}
           </p>
 
           <Link
             to="/contact"
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
           >
-            Start a project
+            {t("aboutPage.cta.button")}
             <ArrowRight size={17} />
           </Link>
         </div>

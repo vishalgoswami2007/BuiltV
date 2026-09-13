@@ -3137,8 +3137,1714 @@ const resources = {
   },
 };
 
+const additionalPageResources = {
+  "en": {
+    "pricingPage": {
+      "hero": {
+        "eyebrow": "Pricing",
+        "titleStart": "Clear scope before",
+        "titleHighlight": "serious build work begins.",
+        "description": "Every BuiltV project is shaped around the actual product, workflow and technical complexity instead of forcing every business into the same package.",
+        "estimate": "Request a project estimate",
+        "viewTypes": "View engagement types"
+      },
+      "engagements": {
+        "eyebrow": "Engagement types",
+        "titleStart": "Different projects need",
+        "titleHighlight": "different scopes."
+      },
+      "mostFlexible": "Most flexible",
+      "pricingLabel": "Pricing",
+      "idealFor": "Ideal for",
+      "discuss": "Discuss this project",
+      "plans": {
+        "web": {
+          "label": "Focused build",
+          "title": "Web Experience",
+          "description": "For businesses that need a premium marketing website, landing experience or focused digital presence.",
+          "price": "Scoped per project",
+          "idealFor": "Websites, landing pages, redesigns",
+          "features": [
+            "Responsive product design",
+            "Frontend development",
+            "Performance optimisation",
+            "Contact & conversion flows",
+            "Basic integrations",
+            "Deployment support"
+          ]
+        },
+        "software": {
+          "label": "Product build",
+          "title": "Software & SaaS",
+          "description": "For startups and businesses building dashboards, portals, internal software or complete SaaS products.",
+          "price": "Custom project scope",
+          "idealFor": "SaaS, dashboards, portals, MVPs",
+          "features": [
+            "Product architecture",
+            "Frontend & backend",
+            "Database design",
+            "Authentication",
+            "API integrations",
+            "Deployment setup"
+          ]
+        },
+        "automation": {
+          "label": "Operations build",
+          "title": "Automation & Systems",
+          "description": "For businesses replacing repetitive workflows, disconnected tools and manual operational work.",
+          "price": "Scoped by workflow",
+          "idealFor": "Automation, operations, AI workflows",
+          "features": [
+            "Workflow discovery",
+            "Automation design",
+            "Business integrations",
+            "AI integrations",
+            "Internal dashboards",
+            "Process documentation"
+          ]
+        }
+      },
+      "factors": {
+        "eyebrow": "What affects pricing",
+        "titleStart": "We price the work,",
+        "titleHighlight": "not a generic package.",
+        "description": "Two projects can look similar on the surface while requiring completely different levels of engineering underneath.",
+        "items": {
+          "scope": {
+            "title": "Scope",
+            "text": "The number of screens, workflows, roles and product features involved."
+          },
+          "complexity": {
+            "title": "Technical complexity",
+            "text": "Custom backend logic, APIs, integrations, data architecture and infrastructure."
+          },
+          "automation": {
+            "title": "Automation depth",
+            "text": "How many systems, business rules and automated actions need to work together."
+          },
+          "timeline": {
+            "title": "Timeline",
+            "text": "Delivery speed, launch requirements and whether the work needs to be phased."
+          }
+        }
+      },
+      "process": {
+        "eyebrow": "How estimates work",
+        "titleStart": "From business problem to",
+        "titleHighlight": "clear project scope.",
+        "steps": {
+          "problem": {
+            "title": "Tell us the problem",
+            "text": "Share what you want to build or what is currently slowing the business down."
+          },
+          "scope": {
+            "title": "We define the scope",
+            "text": "We clarify the core workflows, required features and technical direction."
+          },
+          "proposal": {
+            "title": "You receive a proposal",
+            "text": "You get a clear project scope, delivery approach and commercial estimate."
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Need an estimate?",
+        "titleStart": "Tell us what needs to be built.",
+        "titleHighlight": "We'll help define the scope.",
+        "description": "You can start with a product idea, workflow problem or existing system. A complete technical specification is not required.",
+        "button": "Request an estimate"
+      }
+    },
+    "aboutPage": {
+      "hero": {
+        "eyebrow": "About BuiltV",
+        "titleStart": "We build digital systems for",
+        "titleHighlight": "what's next.",
+        "description": "BuiltV is a digital product studio focused on websites, software, business systems, AI and automation for ambitious companies that want better technology around the way they actually operate.",
+        "start": "Start a project",
+        "work": "See our work"
+      },
+      "why": {
+        "eyebrow": "Why BuiltV exists",
+        "titleStart": "Better systems make",
+        "titleHighlight": "better businesses.",
+        "paragraphs": [
+          "Many businesses grow by adding more tools, more spreadsheets and more manual steps. Eventually the technology starts creating friction instead of removing it.",
+          "BuiltV exists to design clearer digital systems around real workflows — systems that help customers move through the business smoothly and help teams operate with less unnecessary complexity.",
+          "Sometimes that means a website. Sometimes it means a complete software product, internal platform or AI-powered workflow. The goal is not to build more technology. The goal is to build the right system."
+        ]
+      },
+      "principles": {
+        "eyebrow": "How we think",
+        "titleStart": "Principles behind",
+        "titleHighlight": "the products we build.",
+        "items": {
+          "problem": {
+            "title": "Problem first",
+            "text": "We start with the business problem, workflow and user need before deciding what technology should be built."
+          },
+          "systems": {
+            "title": "Systems over fragments",
+            "text": "We prefer connected workflows and reliable systems instead of adding another disconnected tool."
+          },
+          "engineering": {
+            "title": "Engineering matters",
+            "text": "Good product design needs dependable frontend, backend, APIs, databases and infrastructure underneath."
+          },
+          "trust": {
+            "title": "Built to be trusted",
+            "text": "We think about reliability, maintainability and how the product should behave when real users depend on it."
+          }
+        }
+      },
+      "studio": {
+        "eyebrow": "One studio",
+        "titleStart": "Design, software and automation",
+        "titleHighlight": "under one roof.",
+        "description": "Products work better when strategy, interface, backend systems and automation are designed as one connected experience."
+      },
+      "capabilities": {
+        "web": "Web experiences",
+        "software": "Software & SaaS",
+        "systems": "Business systems",
+        "ai": "AI & automation",
+        "engineering": "Product engineering"
+      },
+      "global": {
+        "eyebrow": "Built globally",
+        "titleStart": "Digital products are global.",
+        "titleHighlight": "So is our mindset.",
+        "description": "BuiltV is designed to work with modern businesses across different markets, time zones and digital environments while keeping the product experience clear and consistent.",
+        "markets": {
+          "ireland": "Ireland",
+          "uk": "United Kingdom",
+          "netherlands": "Netherlands",
+          "germany": "Germany",
+          "europe": "Europe",
+          "global": "Global"
+        }
+      },
+      "cta": {
+        "eyebrow": "Build with BuiltV",
+        "titleStart": "Have a problem worth",
+        "titleHighlight": "solving properly?",
+        "description": "Tell us what your business is trying to improve, replace or build next. The conversation can start there.",
+        "button": "Start a project"
+      }
+    },
+    "insightsPage": {
+      "hero": {
+        "eyebrow": "Insights",
+        "titleStart": "Thinking about software,",
+        "titleHighlight": "systems and what comes next.",
+        "description": "Ideas and practical thinking around digital products, business workflows, software engineering, AI and automation.",
+        "explore": "Explore insights"
+      },
+      "featured": {
+        "eyebrow": "Featured thinking",
+        "titleStart": "Useful ideas for",
+        "titleHighlight": "modern digital businesses.",
+        "items": {
+          "workflow": {
+            "category": "Business Systems",
+            "title": "When a business has too many tools, the real problem is usually the workflow.",
+            "description": "Why disconnected software creates operational friction and how better systems can simplify the way work moves through a business."
+          },
+          "ai": {
+            "category": "AI & Automation",
+            "title": "AI creates value when it is connected to an actual business process.",
+            "description": "Practical AI should reduce work, improve decisions or speed up a workflow — not exist as another isolated tool."
+          },
+          "engineering": {
+            "category": "Product Engineering",
+            "title": "Good software starts before the first line of code.",
+            "description": "The strongest digital products begin with the workflow, users and system behaviour before technical implementation starts."
+          }
+        }
+      },
+      "articleLabel": "Insight article",
+      "topics": {
+        "eyebrow": "What we write about",
+        "titleStart": "Less noise.",
+        "titleHighlight": "More useful thinking.",
+        "description": "BuiltV Insights focuses on the practical side of building and operating digital products — what works, what breaks and how better systems can improve the business around them.",
+        "items": {
+          "systems": "Business systems",
+          "ai": "AI & automation",
+          "engineering": "Software engineering",
+          "strategy": "Product strategy",
+          "saas": "SaaS",
+          "operations": "Operations",
+          "experiences": "Digital experiences"
+        }
+      },
+      "cards": {
+        "systems": {
+          "eyebrow": "Systems",
+          "title": "Build around the workflow, not around the software.",
+          "text": "Good systems should follow the way work actually moves through a company instead of forcing teams into unnecessary complexity."
+        },
+        "product": {
+          "eyebrow": "Product",
+          "title": "Technology is useful when it improves something measurable.",
+          "text": "Better customer experience, less manual work, faster operations or a stronger product are more useful goals than simply adding more technology."
+        }
+      },
+      "cta": {
+        "eyebrow": "From insight to execution",
+        "titleStart": "Have a system that needs",
+        "titleHighlight": "better thinking?",
+        "description": "If your business has a workflow, product or operational problem worth improving, BuiltV can help turn the idea into a working digital system.",
+        "button": "Start a project"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "eyebrow": "Contact",
+        "titleStart": "Tell us what you're",
+        "titleHighlight": "trying to build.",
+        "description": "Start with the idea, workflow or business problem. You do not need a complete technical specification before getting in touch."
+      },
+      "intro": {
+        "title": "Start with the problem.",
+        "description": "Share what is not working today, what you want to improve or what new product you want to create."
+      },
+      "reasons": {
+        "scoping": "Clear project scoping",
+        "direction": "Technical direction before development",
+        "businessFirst": "Business-first product thinking",
+        "global": "Global remote collaboration"
+      },
+      "preferEmail": {
+        "eyebrow": "Prefer email?",
+        "description": "Send a short summary of your project, current problem and what you want to achieve."
+      },
+      "collaboration": {
+        "title": "Global collaboration",
+        "text": "Remote-first project communication"
+      },
+      "form": {
+        "eyebrow": "Project enquiry",
+        "title": "Tell us about the project.",
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "company": "Company",
+        "companyPlaceholder": "Company or startup name",
+        "projectType": "What are you looking to build?",
+        "projectTypePlaceholder": "Select project type",
+        "budget": "Approximate budget",
+        "budgetPlaceholder": "Select budget range",
+        "details": "Project details",
+        "detailsPlaceholder": "What are you trying to build or improve?",
+        "openingEmail": "Opening email...",
+        "submit": "Send project enquiry",
+        "consent": "By submitting this form, you agree that BuiltV may use the information provided to respond to your enquiry."
+      },
+      "projectTypes": {
+        "website": "Website",
+        "software": "Software / SaaS",
+        "businessSystem": "Business System",
+        "ai": "AI & Automation",
+        "engineering": "Product Engineering",
+        "notSure": "Not sure yet"
+      },
+      "budgets": {
+        "under2500": "Under €2,500",
+        "2500to5000": "€2,500 – €5,000",
+        "5000to10000": "€5,000 – €10,000",
+        "10000plus": "€10,000+",
+        "notSure": "Not sure yet"
+      },
+      "email": {
+        "notProvided": "Not provided",
+        "notSelected": "Not selected",
+        "subject": "BuiltV Project Enquiry",
+        "heading": "New BuiltV Project Enquiry",
+        "projectType": "Project Type"
+      },
+      "cta": {
+        "eyebrow": "Not sure what you need?",
+        "titleStart": "That's completely fine.",
+        "titleHighlight": "Start with the business problem.",
+        "description": "We can help turn a rough idea, inefficient workflow or product requirement into a clearer technical direction.",
+        "button": "Email BuiltV"
+      }
+    }
+  },
+  "de": {
+    "pricingPage": {
+      "hero": {
+        "eyebrow": "Preise",
+        "titleStart": "Klarer Umfang, bevor",
+        "titleHighlight": "die eigentliche Entwicklungsarbeit beginnt.",
+        "description": "Jedes BuiltV-Projekt wird nach Produkt, Workflow und technischer Komplexität gestaltet, statt jedes Unternehmen in dasselbe Paket zu zwingen.",
+        "estimate": "Projektangebot anfragen",
+        "viewTypes": "Zusammenarbeitsmodelle ansehen"
+      },
+      "engagements": {
+        "eyebrow": "Zusammenarbeitsmodelle",
+        "titleStart": "Unterschiedliche Projekte brauchen",
+        "titleHighlight": "unterschiedliche Umfänge."
+      },
+      "mostFlexible": "Am flexibelsten",
+      "pricingLabel": "Preisgestaltung",
+      "idealFor": "Ideal für",
+      "discuss": "Dieses Projekt besprechen",
+      "plans": {
+        "web": {
+          "label": "Fokussierter Aufbau",
+          "title": "Web-Erlebnis",
+          "description": "Für Unternehmen, die eine hochwertige Marketing-Website, Landingpage oder fokussierte digitale Präsenz benötigen.",
+          "price": "Pro Projekt definiert",
+          "idealFor": "Websites, Landingpages, Redesigns",
+          "features": [
+            "Responsives Produktdesign",
+            "Frontend-Entwicklung",
+            "Performance-Optimierung",
+            "Kontakt- & Conversion-Flows",
+            "Basis-Integrationen",
+            "Deployment-Unterstützung"
+          ]
+        },
+        "software": {
+          "label": "Produktentwicklung",
+          "title": "Software & SaaS",
+          "description": "Für Startups und Unternehmen, die Dashboards, Portale, interne Software oder vollständige SaaS-Produkte entwickeln.",
+          "price": "Individueller Projektumfang",
+          "idealFor": "SaaS, Dashboards, Portale, MVPs",
+          "features": [
+            "Produktarchitektur",
+            "Frontend & Backend",
+            "Datenbankdesign",
+            "Authentifizierung",
+            "API-Integrationen",
+            "Deployment-Setup"
+          ]
+        },
+        "automation": {
+          "label": "Betriebssysteme",
+          "title": "Automatisierung & Systeme",
+          "description": "Für Unternehmen, die repetitive Workflows, getrennte Tools und manuelle Abläufe ersetzen möchten.",
+          "price": "Nach Workflow definiert",
+          "idealFor": "Automatisierung, Betrieb, KI-Workflows",
+          "features": [
+            "Workflow-Analyse",
+            "Automatisierungsdesign",
+            "Geschäftsintegrationen",
+            "KI-Integrationen",
+            "Interne Dashboards",
+            "Prozessdokumentation"
+          ]
+        }
+      },
+      "factors": {
+        "eyebrow": "Was den Preis beeinflusst",
+        "titleStart": "Wir bepreisen die Arbeit,",
+        "titleHighlight": "nicht ein Standardpaket.",
+        "description": "Zwei Projekte können ähnlich aussehen und technisch dennoch völlig unterschiedliche Anforderungen haben.",
+        "items": {
+          "scope": {
+            "title": "Umfang",
+            "text": "Anzahl der Screens, Workflows, Rollen und Produktfunktionen."
+          },
+          "complexity": {
+            "title": "Technische Komplexität",
+            "text": "Individuelle Backend-Logik, APIs, Integrationen, Datenarchitektur und Infrastruktur."
+          },
+          "automation": {
+            "title": "Automatisierungstiefe",
+            "text": "Wie viele Systeme, Geschäftsregeln und automatisierte Aktionen zusammenspielen müssen."
+          },
+          "timeline": {
+            "title": "Zeitplan",
+            "text": "Liefergeschwindigkeit, Launch-Anforderungen und ob die Arbeit in Phasen erfolgen soll."
+          }
+        }
+      },
+      "process": {
+        "eyebrow": "So funktionieren Schätzungen",
+        "titleStart": "Vom Geschäftsproblem zum",
+        "titleHighlight": "klaren Projektumfang.",
+        "steps": {
+          "problem": {
+            "title": "Problem schildern",
+            "text": "Teilen Sie uns mit, was Sie bauen möchten oder was Ihr Unternehmen aktuell ausbremst."
+          },
+          "scope": {
+            "title": "Wir definieren den Umfang",
+            "text": "Wir klären zentrale Workflows, notwendige Funktionen und die technische Richtung."
+          },
+          "proposal": {
+            "title": "Sie erhalten ein Angebot",
+            "text": "Sie erhalten einen klaren Projektumfang, Lieferansatz und eine kaufmännische Schätzung."
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Brauchen Sie eine Schätzung?",
+        "titleStart": "Sagen Sie uns, was gebaut werden soll.",
+        "titleHighlight": "Wir helfen, den Umfang zu definieren.",
+        "description": "Sie können mit einer Produktidee, einem Workflow-Problem oder einem bestehenden System starten. Eine vollständige technische Spezifikation ist nicht erforderlich.",
+        "button": "Schätzung anfragen"
+      }
+    },
+    "aboutPage": {
+      "hero": {
+        "eyebrow": "Über BuiltV",
+        "titleStart": "Wir entwickeln digitale Systeme für",
+        "titleHighlight": "das, was als Nächstes kommt.",
+        "description": "BuiltV ist ein digitales Produktstudio für Websites, Software, Geschäftssysteme, KI und Automatisierung für ambitionierte Unternehmen.",
+        "start": "Projekt starten",
+        "work": "Unsere Projekte ansehen"
+      },
+      "why": {
+        "eyebrow": "Warum BuiltV existiert",
+        "titleStart": "Bessere Systeme schaffen",
+        "titleHighlight": "bessere Unternehmen.",
+        "paragraphs": [
+          "Viele Unternehmen wachsen, indem sie mehr Tools, Tabellen und manuelle Schritte hinzufügen. Irgendwann erzeugt die Technologie Reibung statt sie zu beseitigen.",
+          "BuiltV entwickelt klarere digitale Systeme rund um reale Workflows — für reibungslosere Kundenerlebnisse und weniger unnötige Komplexität im Team.",
+          "Manchmal bedeutet das eine Website, manchmal ein vollständiges Softwareprodukt, eine interne Plattform oder einen KI-Workflow. Ziel ist nicht mehr Technologie, sondern das richtige System."
+        ]
+      },
+      "principles": {
+        "eyebrow": "Wie wir denken",
+        "titleStart": "Prinzipien hinter",
+        "titleHighlight": "den Produkten, die wir bauen.",
+        "items": {
+          "problem": {
+            "title": "Problem zuerst",
+            "text": "Wir beginnen mit Geschäftsproblem, Workflow und Nutzerbedarf, bevor wir die Technologie festlegen."
+          },
+          "systems": {
+            "title": "Systeme statt Fragmente",
+            "text": "Wir bevorzugen verbundene Workflows und zuverlässige Systeme statt eines weiteren isolierten Tools."
+          },
+          "engineering": {
+            "title": "Engineering zählt",
+            "text": "Gutes Produktdesign braucht zuverlässige Frontends, Backends, APIs, Datenbanken und Infrastruktur."
+          },
+          "trust": {
+            "title": "Für Vertrauen gebaut",
+            "text": "Wir denken an Zuverlässigkeit, Wartbarkeit und daran, wie sich das Produkt verhalten soll, wenn echte Nutzer darauf angewiesen sind."
+          }
+        }
+      },
+      "studio": {
+        "eyebrow": "Ein Studio",
+        "titleStart": "Design, Software und Automatisierung",
+        "titleHighlight": "unter einem Dach.",
+        "description": "Produkte funktionieren besser, wenn Strategie, Interface, Backend-Systeme und Automatisierung als ein verbundenes Erlebnis gestaltet werden."
+      },
+      "capabilities": {
+        "web": "Web-Erlebnisse",
+        "software": "Software & SaaS",
+        "systems": "Geschäftssysteme",
+        "ai": "KI & Automatisierung",
+        "engineering": "Produktentwicklung"
+      },
+      "global": {
+        "eyebrow": "Global entwickelt",
+        "titleStart": "Digitale Produkte sind global.",
+        "titleHighlight": "Unsere Denkweise auch.",
+        "description": "BuiltV arbeitet mit modernen Unternehmen über Märkte, Zeitzonen und digitale Umgebungen hinweg und hält das Produkterlebnis klar und konsistent.",
+        "markets": {
+          "ireland": "Irland",
+          "uk": "Vereinigtes Königreich",
+          "netherlands": "Niederlande",
+          "germany": "Deutschland",
+          "europe": "Europa",
+          "global": "Global"
+        }
+      },
+      "cta": {
+        "eyebrow": "Mit BuiltV bauen",
+        "titleStart": "Haben Sie ein Problem, das",
+        "titleHighlight": "richtig gelöst werden sollte?",
+        "description": "Sagen Sie uns, was Ihr Unternehmen verbessern, ersetzen oder als Nächstes bauen möchte. Dort kann das Gespräch beginnen.",
+        "button": "Projekt starten"
+      }
+    },
+    "insightsPage": {
+      "hero": {
+        "eyebrow": "Einblicke",
+        "titleStart": "Gedanken über Software,",
+        "titleHighlight": "Systeme und das, was als Nächstes kommt.",
+        "description": "Ideen und praktische Gedanken zu digitalen Produkten, Geschäftsabläufen, Softwareentwicklung, KI und Automatisierung.",
+        "explore": "Einblicke entdecken"
+      },
+      "featured": {
+        "eyebrow": "Ausgewählte Gedanken",
+        "titleStart": "Nützliche Ideen für",
+        "titleHighlight": "moderne digitale Unternehmen.",
+        "items": {
+          "workflow": {
+            "category": "Geschäftssysteme",
+            "title": "Wenn ein Unternehmen zu viele Tools hat, liegt das eigentliche Problem meist im Workflow.",
+            "description": "Warum getrennte Software operative Reibung erzeugt und bessere Systeme Arbeitsabläufe vereinfachen können."
+          },
+          "ai": {
+            "category": "KI & Automatisierung",
+            "title": "KI schafft Wert, wenn sie mit einem echten Geschäftsprozess verbunden ist.",
+            "description": "Praktische KI sollte Arbeit reduzieren, Entscheidungen verbessern oder Workflows beschleunigen — nicht nur ein weiteres isoliertes Tool sein."
+          },
+          "engineering": {
+            "category": "Produktentwicklung",
+            "title": "Gute Software beginnt vor der ersten Codezeile.",
+            "description": "Starke digitale Produkte beginnen mit Workflow, Nutzern und Systemverhalten, bevor die technische Umsetzung startet."
+          }
+        }
+      },
+      "articleLabel": "Insight-Artikel",
+      "topics": {
+        "eyebrow": "Worüber wir schreiben",
+        "titleStart": "Weniger Lärm.",
+        "titleHighlight": "Mehr nützliche Gedanken.",
+        "description": "BuiltV Insights konzentriert sich auf die praktische Seite digitaler Produkte — was funktioniert, was scheitert und wie bessere Systeme Unternehmen verbessern.",
+        "items": {
+          "systems": "Geschäftssysteme",
+          "ai": "KI & Automatisierung",
+          "engineering": "Softwareentwicklung",
+          "strategy": "Produktstrategie",
+          "saas": "SaaS",
+          "operations": "Betrieb",
+          "experiences": "Digitale Erlebnisse"
+        }
+      },
+      "cards": {
+        "systems": {
+          "eyebrow": "Systeme",
+          "title": "Am Workflow bauen, nicht an der Software.",
+          "text": "Gute Systeme sollten dem tatsächlichen Arbeitsfluss folgen, statt Teams in unnötige Komplexität zu zwingen."
+        },
+        "product": {
+          "eyebrow": "Produkt",
+          "title": "Technologie ist nützlich, wenn sie messbar etwas verbessert.",
+          "text": "Bessere Kundenerlebnisse, weniger manuelle Arbeit, schnellere Abläufe oder ein stärkeres Produkt sind sinnvollere Ziele als einfach mehr Technologie."
+        }
+      },
+      "cta": {
+        "eyebrow": "Von der Idee zur Umsetzung",
+        "titleStart": "Haben Sie ein System, das",
+        "titleHighlight": "besseres Denken braucht?",
+        "description": "Wenn Ihr Unternehmen einen Workflow, ein Produkt oder ein operatives Problem verbessern möchte, kann BuiltV daraus ein funktionierendes digitales System machen.",
+        "button": "Projekt starten"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "eyebrow": "Kontakt",
+        "titleStart": "Sagen Sie uns, was Sie",
+        "titleHighlight": "bauen möchten.",
+        "description": "Starten Sie mit der Idee, dem Workflow oder dem Geschäftsproblem. Eine vollständige technische Spezifikation ist vor dem Kontakt nicht nötig."
+      },
+      "intro": {
+        "title": "Beginnen Sie mit dem Problem.",
+        "description": "Teilen Sie mit, was heute nicht funktioniert, was Sie verbessern oder welches neue Produkt Sie entwickeln möchten."
+      },
+      "reasons": {
+        "scoping": "Klare Projektabgrenzung",
+        "direction": "Technische Richtung vor der Entwicklung",
+        "businessFirst": "Geschäftsorientiertes Produktdenken",
+        "global": "Globale Remote-Zusammenarbeit"
+      },
+      "preferEmail": {
+        "eyebrow": "Lieber per E-Mail?",
+        "description": "Senden Sie eine kurze Zusammenfassung Ihres Projekts, des aktuellen Problems und Ihres Ziels."
+      },
+      "collaboration": {
+        "title": "Globale Zusammenarbeit",
+        "text": "Remote-first Projektkommunikation"
+      },
+      "form": {
+        "eyebrow": "Projektanfrage",
+        "title": "Erzählen Sie uns vom Projekt.",
+        "name": "Name",
+        "namePlaceholder": "Ihr Name",
+        "email": "E-Mail",
+        "company": "Unternehmen",
+        "companyPlaceholder": "Unternehmen oder Startup",
+        "projectType": "Was möchten Sie bauen?",
+        "projectTypePlaceholder": "Projekttyp wählen",
+        "budget": "Ungefähres Budget",
+        "budgetPlaceholder": "Budgetbereich wählen",
+        "details": "Projektdetails",
+        "detailsPlaceholder": "Was möchten Sie bauen oder verbessern?",
+        "openingEmail": "E-Mail wird geöffnet...",
+        "submit": "Projektanfrage senden",
+        "consent": "Mit dem Absenden stimmen Sie zu, dass BuiltV die angegebenen Informationen zur Beantwortung Ihrer Anfrage verwendet."
+      },
+      "projectTypes": {
+        "website": "Website",
+        "software": "Software / SaaS",
+        "businessSystem": "Geschäftssystem",
+        "ai": "KI & Automatisierung",
+        "engineering": "Produktentwicklung",
+        "notSure": "Noch unsicher"
+      },
+      "budgets": {
+        "under2500": "Unter €2.500",
+        "2500to5000": "€2.500 – €5.000",
+        "5000to10000": "€5.000 – €10.000",
+        "10000plus": "€10.000+",
+        "notSure": "Noch unsicher"
+      },
+      "email": {
+        "notProvided": "Nicht angegeben",
+        "notSelected": "Nicht ausgewählt",
+        "subject": "BuiltV Projektanfrage",
+        "heading": "Neue BuiltV Projektanfrage",
+        "projectType": "Projekttyp"
+      },
+      "cta": {
+        "eyebrow": "Noch unsicher, was Sie brauchen?",
+        "titleStart": "Das ist völlig in Ordnung.",
+        "titleHighlight": "Starten Sie mit dem Geschäftsproblem.",
+        "description": "Wir helfen, eine grobe Idee, einen ineffizienten Workflow oder eine Produktanforderung in eine klarere technische Richtung zu verwandeln.",
+        "button": "BuiltV mailen"
+      }
+    }
+  },
+  "nl": {
+    "pricingPage": {
+      "hero": {
+        "eyebrow": "Prijzen",
+        "titleStart": "Duidelijke scope voordat",
+        "titleHighlight": "het echte bouwwerk begint.",
+        "description": "Elk BuiltV-project wordt afgestemd op het product, de workflow en technische complexiteit, in plaats van elk bedrijf in hetzelfde pakket te dwingen.",
+        "estimate": "Projectinschatting aanvragen",
+        "viewTypes": "Samenwerkingsvormen bekijken"
+      },
+      "engagements": {
+        "eyebrow": "Samenwerkingsvormen",
+        "titleStart": "Verschillende projecten vragen",
+        "titleHighlight": "verschillende scopes."
+      },
+      "mostFlexible": "Meest flexibel",
+      "pricingLabel": "Prijs",
+      "idealFor": "Ideaal voor",
+      "discuss": "Dit project bespreken",
+      "plans": {
+        "web": {
+          "label": "Gerichte build",
+          "title": "Web Experience",
+          "description": "Voor bedrijven die een premium marketingwebsite, landingspagina of gerichte digitale aanwezigheid nodig hebben.",
+          "price": "Per project bepaald",
+          "idealFor": "Websites, landingspagina's, redesigns",
+          "features": [
+            "Responsief productdesign",
+            "Frontendontwikkeling",
+            "Prestatie-optimalisatie",
+            "Contact- en conversieflows",
+            "Basisintegraties",
+            "Deploymentondersteuning"
+          ]
+        },
+        "software": {
+          "label": "Product build",
+          "title": "Software & SaaS",
+          "description": "Voor startups en bedrijven die dashboards, portals, interne software of complete SaaS-producten bouwen.",
+          "price": "Maatwerk projectscope",
+          "idealFor": "SaaS, dashboards, portals, MVP's",
+          "features": [
+            "Productarchitectuur",
+            "Frontend & backend",
+            "Databaseontwerp",
+            "Authenticatie",
+            "API-integraties",
+            "Deploymentsetup"
+          ]
+        },
+        "automation": {
+          "label": "Operations build",
+          "title": "Automatisering & Systemen",
+          "description": "Voor bedrijven die repetitieve workflows, losse tools en handmatig operationeel werk willen vervangen.",
+          "price": "Per workflow bepaald",
+          "idealFor": "Automatisering, operations, AI-workflows",
+          "features": [
+            "Workflowanalyse",
+            "Automatiseringsontwerp",
+            "Bedrijfsintegraties",
+            "AI-integraties",
+            "Interne dashboards",
+            "Procesdocumentatie"
+          ]
+        }
+      },
+      "factors": {
+        "eyebrow": "Wat de prijs beïnvloedt",
+        "titleStart": "We prijzen het werk,",
+        "titleHighlight": "niet een standaardpakket.",
+        "description": "Twee projecten kunnen er vergelijkbaar uitzien maar onder de motorkap totaal verschillende engineering vereisen.",
+        "items": {
+          "scope": {
+            "title": "Scope",
+            "text": "Het aantal schermen, workflows, rollen en productfuncties."
+          },
+          "complexity": {
+            "title": "Technische complexiteit",
+            "text": "Maatwerk backendlogica, API's, integraties, data-architectuur en infrastructuur."
+          },
+          "automation": {
+            "title": "Automatiseringsdiepte",
+            "text": "Hoeveel systemen, bedrijfsregels en geautomatiseerde acties moeten samenwerken."
+          },
+          "timeline": {
+            "title": "Tijdlijn",
+            "text": "Leversnelheid, launchvereisten en of het werk gefaseerd moet worden."
+          }
+        }
+      },
+      "process": {
+        "eyebrow": "Hoe inschattingen werken",
+        "titleStart": "Van bedrijfsprobleem naar",
+        "titleHighlight": "duidelijke projectscope.",
+        "steps": {
+          "problem": {
+            "title": "Vertel ons het probleem",
+            "text": "Deel wat je wilt bouwen of wat je bedrijf momenteel vertraagt."
+          },
+          "scope": {
+            "title": "Wij bepalen de scope",
+            "text": "We verduidelijken de kernworkflows, benodigde functies en technische richting."
+          },
+          "proposal": {
+            "title": "Je ontvangt een voorstel",
+            "text": "Je krijgt een duidelijke projectscope, leveringsaanpak en commerciële inschatting."
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Een inschatting nodig?",
+        "titleStart": "Vertel ons wat er gebouwd moet worden.",
+        "titleHighlight": "Wij helpen de scope bepalen.",
+        "description": "Je kunt beginnen met een productidee, workflowprobleem of bestaand systeem. Een volledige technische specificatie is niet nodig.",
+        "button": "Inschatting aanvragen"
+      }
+    },
+    "aboutPage": {
+      "hero": {
+        "eyebrow": "Over BuiltV",
+        "titleStart": "Wij bouwen digitale systemen voor",
+        "titleHighlight": "wat hierna komt.",
+        "description": "BuiltV is een digitale productstudio voor websites, software, bedrijfssystemen, AI en automatisering voor ambitieuze bedrijven.",
+        "start": "Start een project",
+        "work": "Bekijk ons werk"
+      },
+      "why": {
+        "eyebrow": "Waarom BuiltV bestaat",
+        "titleStart": "Betere systemen maken",
+        "titleHighlight": "betere bedrijven.",
+        "paragraphs": [
+          "Veel bedrijven groeien door meer tools, spreadsheets en handmatige stappen toe te voegen. Uiteindelijk veroorzaakt technologie juist frictie.",
+          "BuiltV ontwerpt duidelijke digitale systemen rond echte workflows, zodat klanten soepel door het bedrijf bewegen en teams met minder complexiteit werken.",
+          "Soms is dat een website, soms een volledig softwareproduct, intern platform of AI-workflow. Het doel is niet meer technologie, maar het juiste systeem."
+        ]
+      },
+      "principles": {
+        "eyebrow": "Hoe we denken",
+        "titleStart": "Principes achter",
+        "titleHighlight": "de producten die we bouwen.",
+        "items": {
+          "problem": {
+            "title": "Probleem eerst",
+            "text": "We beginnen bij het bedrijfsprobleem, de workflow en de gebruiker voordat we technologie kiezen."
+          },
+          "systems": {
+            "title": "Systemen boven fragmenten",
+            "text": "We kiezen voor verbonden workflows en betrouwbare systemen, niet voor nog een losse tool."
+          },
+          "engineering": {
+            "title": "Engineering telt",
+            "text": "Goed productdesign heeft betrouwbare frontend, backend, API's, databases en infrastructuur nodig."
+          },
+          "trust": {
+            "title": "Gebouwd voor vertrouwen",
+            "text": "We denken aan betrouwbaarheid, onderhoudbaarheid en hoe het product zich gedraagt wanneer echte gebruikers erop vertrouwen."
+          }
+        }
+      },
+      "studio": {
+        "eyebrow": "Eén studio",
+        "titleStart": "Design, software en automatisering",
+        "titleHighlight": "onder één dak.",
+        "description": "Producten werken beter wanneer strategie, interface, backend en automatisering als één verbonden ervaring worden ontworpen."
+      },
+      "capabilities": {
+        "web": "Web experiences",
+        "software": "Software & SaaS",
+        "systems": "Bedrijfssystemen",
+        "ai": "AI & automatisering",
+        "engineering": "Product engineering"
+      },
+      "global": {
+        "eyebrow": "Wereldwijd gebouwd",
+        "titleStart": "Digitale producten zijn wereldwijd.",
+        "titleHighlight": "Onze mindset ook.",
+        "description": "BuiltV werkt met moderne bedrijven in verschillende markten, tijdzones en digitale omgevingen met een heldere en consistente productervaring.",
+        "markets": {
+          "ireland": "Ierland",
+          "uk": "Verenigd Koninkrijk",
+          "netherlands": "Nederland",
+          "germany": "Duitsland",
+          "europe": "Europa",
+          "global": "Wereldwijd"
+        }
+      },
+      "cta": {
+        "eyebrow": "Bouw met BuiltV",
+        "titleStart": "Heb je een probleem dat",
+        "titleHighlight": "goed opgelost moet worden?",
+        "description": "Vertel wat je bedrijf wil verbeteren, vervangen of als volgende wil bouwen. Daar kan het gesprek beginnen.",
+        "button": "Start een project"
+      }
+    },
+    "insightsPage": {
+      "hero": {
+        "eyebrow": "Inzichten",
+        "titleStart": "Denken over software,",
+        "titleHighlight": "systemen en wat hierna komt.",
+        "description": "Ideeën en praktische inzichten over digitale producten, bedrijfsworkflows, software engineering, AI en automatisering.",
+        "explore": "Bekijk inzichten"
+      },
+      "featured": {
+        "eyebrow": "Uitgelichte ideeën",
+        "titleStart": "Nuttige ideeën voor",
+        "titleHighlight": "moderne digitale bedrijven.",
+        "items": {
+          "workflow": {
+            "category": "Bedrijfssystemen",
+            "title": "Als een bedrijf te veel tools heeft, ligt het echte probleem meestal in de workflow.",
+            "description": "Waarom losse software operationele frictie veroorzaakt en hoe betere systemen werkstromen eenvoudiger maken."
+          },
+          "ai": {
+            "category": "AI & automatisering",
+            "title": "AI creëert waarde wanneer het gekoppeld is aan een echt bedrijfsproces.",
+            "description": "Praktische AI moet werk verminderen, beslissingen verbeteren of workflows versnellen — niet gewoon nog een los hulpmiddel zijn."
+          },
+          "engineering": {
+            "category": "Product engineering",
+            "title": "Goede software begint vóór de eerste regel code.",
+            "description": "Sterke digitale producten beginnen bij workflow, gebruikers en systeemgedrag voordat de technische implementatie start."
+          }
+        }
+      },
+      "articleLabel": "Insight-artikel",
+      "topics": {
+        "eyebrow": "Waar we over schrijven",
+        "titleStart": "Minder ruis.",
+        "titleHighlight": "Meer nuttige ideeën.",
+        "description": "BuiltV Insights richt zich op de praktische kant van digitale producten: wat werkt, wat stukloopt en hoe betere systemen het bedrijf verbeteren.",
+        "items": {
+          "systems": "Bedrijfssystemen",
+          "ai": "AI & automatisering",
+          "engineering": "Software engineering",
+          "strategy": "Productstrategie",
+          "saas": "SaaS",
+          "operations": "Operations",
+          "experiences": "Digitale ervaringen"
+        }
+      },
+      "cards": {
+        "systems": {
+          "eyebrow": "Systemen",
+          "title": "Bouw rond de workflow, niet rond de software.",
+          "text": "Goede systemen volgen hoe werk echt door een bedrijf beweegt in plaats van teams in onnodige complexiteit te dwingen."
+        },
+        "product": {
+          "eyebrow": "Product",
+          "title": "Technologie is nuttig wanneer het iets meetbaars verbetert.",
+          "text": "Een betere klantervaring, minder handmatig werk, snellere operations of een sterker product zijn nuttiger doelen dan simpelweg meer technologie."
+        }
+      },
+      "cta": {
+        "eyebrow": "Van inzicht naar uitvoering",
+        "titleStart": "Heb je een systeem dat",
+        "titleHighlight": "beter denkwerk nodig heeft?",
+        "description": "Als je bedrijf een workflow, product of operationeel probleem wil verbeteren, kan BuiltV het omzetten in een werkend digitaal systeem.",
+        "button": "Start een project"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "eyebrow": "Contact",
+        "titleStart": "Vertel ons wat je",
+        "titleHighlight": "probeert te bouwen.",
+        "description": "Begin met het idee, de workflow of het bedrijfsprobleem. Je hebt geen volledige technische specificatie nodig voordat je contact opneemt."
+      },
+      "intro": {
+        "title": "Begin met het probleem.",
+        "description": "Vertel wat vandaag niet werkt, wat je wilt verbeteren of welk nieuw product je wilt maken."
+      },
+      "reasons": {
+        "scoping": "Duidelijke projectscope",
+        "direction": "Technische richting vóór ontwikkeling",
+        "businessFirst": "Business-first productdenken",
+        "global": "Wereldwijde remote samenwerking"
+      },
+      "preferEmail": {
+        "eyebrow": "Liever e-mail?",
+        "description": "Stuur een korte samenvatting van je project, het huidige probleem en wat je wilt bereiken."
+      },
+      "collaboration": {
+        "title": "Wereldwijde samenwerking",
+        "text": "Remote-first projectcommunicatie"
+      },
+      "form": {
+        "eyebrow": "Projectaanvraag",
+        "title": "Vertel ons over het project.",
+        "name": "Naam",
+        "namePlaceholder": "Je naam",
+        "email": "E-mail",
+        "company": "Bedrijf",
+        "companyPlaceholder": "Bedrijf of startup",
+        "projectType": "Wat wil je bouwen?",
+        "projectTypePlaceholder": "Kies projecttype",
+        "budget": "Geschat budget",
+        "budgetPlaceholder": "Kies budgetrange",
+        "details": "Projectdetails",
+        "detailsPlaceholder": "Wat wil je bouwen of verbeteren?",
+        "openingEmail": "E-mail wordt geopend...",
+        "submit": "Projectaanvraag versturen",
+        "consent": "Door dit formulier te versturen ga je ermee akkoord dat BuiltV de informatie gebruikt om op je aanvraag te reageren."
+      },
+      "projectTypes": {
+        "website": "Website",
+        "software": "Software / SaaS",
+        "businessSystem": "Bedrijfssysteem",
+        "ai": "AI & automatisering",
+        "engineering": "Product engineering",
+        "notSure": "Nog niet zeker"
+      },
+      "budgets": {
+        "under2500": "Onder €2.500",
+        "2500to5000": "€2.500 – €5.000",
+        "5000to10000": "€5.000 – €10.000",
+        "10000plus": "€10.000+",
+        "notSure": "Nog niet zeker"
+      },
+      "email": {
+        "notProvided": "Niet opgegeven",
+        "notSelected": "Niet geselecteerd",
+        "subject": "BuiltV Projectaanvraag",
+        "heading": "Nieuwe BuiltV Projectaanvraag",
+        "projectType": "Projecttype"
+      },
+      "cta": {
+        "eyebrow": "Niet zeker wat je nodig hebt?",
+        "titleStart": "Dat is helemaal prima.",
+        "titleHighlight": "Begin met het bedrijfsprobleem.",
+        "description": "We helpen een ruw idee, inefficiënte workflow of productvereiste om te zetten in een duidelijkere technische richting.",
+        "button": "E-mail BuiltV"
+      }
+    }
+  },
+  "fr": {
+    "pricingPage": {
+      "hero": {
+        "eyebrow": "Tarifs",
+        "titleStart": "Un périmètre clair avant",
+        "titleHighlight": "de commencer le développement sérieux.",
+        "description": "Chaque projet BuiltV est défini selon le produit, le workflow et la complexité technique réels, plutôt que d'imposer le même forfait à toutes les entreprises.",
+        "estimate": "Demander une estimation",
+        "viewTypes": "Voir les types d'engagement"
+      },
+      "engagements": {
+        "eyebrow": "Types d'engagement",
+        "titleStart": "Des projets différents nécessitent",
+        "titleHighlight": "des périmètres différents."
+      },
+      "mostFlexible": "Le plus flexible",
+      "pricingLabel": "Tarification",
+      "idealFor": "Idéal pour",
+      "discuss": "Discuter de ce projet",
+      "plans": {
+        "web": {
+          "label": "Projet ciblé",
+          "title": "Expérience Web",
+          "description": "Pour les entreprises qui ont besoin d'un site marketing premium, d'une landing page ou d'une présence numérique ciblée.",
+          "price": "Défini par projet",
+          "idealFor": "Sites web, landing pages, refontes",
+          "features": [
+            "Design produit responsive",
+            "Développement frontend",
+            "Optimisation des performances",
+            "Parcours de contact & conversion",
+            "Intégrations de base",
+            "Support au déploiement"
+          ]
+        },
+        "software": {
+          "label": "Développement produit",
+          "title": "Logiciels & SaaS",
+          "description": "Pour les startups et entreprises qui créent des tableaux de bord, portails, logiciels internes ou produits SaaS complets.",
+          "price": "Périmètre sur mesure",
+          "idealFor": "SaaS, tableaux de bord, portails, MVP",
+          "features": [
+            "Architecture produit",
+            "Frontend & backend",
+            "Conception de base de données",
+            "Authentification",
+            "Intégrations API",
+            "Configuration du déploiement"
+          ]
+        },
+        "automation": {
+          "label": "Systèmes opérationnels",
+          "title": "Automatisation & Systèmes",
+          "description": "Pour les entreprises qui remplacent des workflows répétitifs, des outils déconnectés et du travail manuel.",
+          "price": "Défini par workflow",
+          "idealFor": "Automatisation, opérations, workflows IA",
+          "features": [
+            "Analyse des workflows",
+            "Conception d'automatisation",
+            "Intégrations métier",
+            "Intégrations IA",
+            "Tableaux de bord internes",
+            "Documentation des processus"
+          ]
+        }
+      },
+      "factors": {
+        "eyebrow": "Ce qui influence le prix",
+        "titleStart": "Nous tarifons le travail,",
+        "titleHighlight": "pas un forfait générique.",
+        "description": "Deux projets peuvent sembler similaires tout en nécessitant des niveaux d'ingénierie très différents.",
+        "items": {
+          "scope": {
+            "title": "Périmètre",
+            "text": "Le nombre d'écrans, workflows, rôles et fonctionnalités du produit."
+          },
+          "complexity": {
+            "title": "Complexité technique",
+            "text": "Logique backend sur mesure, API, intégrations, architecture des données et infrastructure."
+          },
+          "automation": {
+            "title": "Profondeur de l'automatisation",
+            "text": "Le nombre de systèmes, règles métier et actions automatisées qui doivent fonctionner ensemble."
+          },
+          "timeline": {
+            "title": "Calendrier",
+            "text": "Vitesse de livraison, exigences de lancement et besoin éventuel de phases."
+          }
+        }
+      },
+      "process": {
+        "eyebrow": "Comment fonctionnent les estimations",
+        "titleStart": "Du problème métier à",
+        "titleHighlight": "un périmètre clair.",
+        "steps": {
+          "problem": {
+            "title": "Expliquez-nous le problème",
+            "text": "Partagez ce que vous souhaitez créer ou ce qui ralentit actuellement l'entreprise."
+          },
+          "scope": {
+            "title": "Nous définissons le périmètre",
+            "text": "Nous clarifions les workflows principaux, les fonctionnalités requises et la direction technique."
+          },
+          "proposal": {
+            "title": "Vous recevez une proposition",
+            "text": "Vous recevez un périmètre clair, une approche de livraison et une estimation commerciale."
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Besoin d'une estimation ?",
+        "titleStart": "Dites-nous ce qu'il faut construire.",
+        "titleHighlight": "Nous vous aiderons à définir le périmètre.",
+        "description": "Vous pouvez commencer par une idée produit, un problème de workflow ou un système existant. Une spécification technique complète n'est pas nécessaire.",
+        "button": "Demander une estimation"
+      }
+    },
+    "aboutPage": {
+      "hero": {
+        "eyebrow": "À propos de BuiltV",
+        "titleStart": "Nous créons des systèmes numériques pour",
+        "titleHighlight": "la suite.",
+        "description": "BuiltV est un studio de produits numériques spécialisé dans les sites web, logiciels, systèmes métier, IA et automatisation pour les entreprises ambitieuses.",
+        "start": "Démarrer un projet",
+        "work": "Voir nos projets"
+      },
+      "why": {
+        "eyebrow": "Pourquoi BuiltV existe",
+        "titleStart": "De meilleurs systèmes créent",
+        "titleHighlight": "de meilleures entreprises.",
+        "paragraphs": [
+          "De nombreuses entreprises grandissent en ajoutant des outils, des feuilles de calcul et des étapes manuelles. Avec le temps, la technologie crée de la friction au lieu de la supprimer.",
+          "BuiltV conçoit des systèmes numériques plus clairs autour de vrais workflows pour fluidifier l'expérience client et réduire la complexité inutile.",
+          "Parfois il s'agit d'un site web, parfois d'un logiciel complet, d'une plateforme interne ou d'un workflow alimenté par l'IA. Le but n'est pas plus de technologie, mais le bon système."
+        ]
+      },
+      "principles": {
+        "eyebrow": "Notre façon de penser",
+        "titleStart": "Les principes derrière",
+        "titleHighlight": "les produits que nous créons.",
+        "items": {
+          "problem": {
+            "title": "Le problème d'abord",
+            "text": "Nous commençons par le problème métier, le workflow et le besoin utilisateur avant de choisir la technologie."
+          },
+          "systems": {
+            "title": "Des systèmes plutôt que des fragments",
+            "text": "Nous privilégions des workflows connectés et des systèmes fiables plutôt qu'un outil isolé de plus."
+          },
+          "engineering": {
+            "title": "L'ingénierie compte",
+            "text": "Un bon produit repose sur un frontend, un backend, des API, des bases de données et une infrastructure fiables."
+          },
+          "trust": {
+            "title": "Conçu pour inspirer confiance",
+            "text": "Nous pensons à la fiabilité, la maintenabilité et au comportement du produit lorsque de vrais utilisateurs en dépendent."
+          }
+        }
+      },
+      "studio": {
+        "eyebrow": "Un seul studio",
+        "titleStart": "Design, logiciel et automatisation",
+        "titleHighlight": "sous un même toit.",
+        "description": "Les produits fonctionnent mieux lorsque stratégie, interface, backend et automatisation sont conçus comme une expérience connectée."
+      },
+      "capabilities": {
+        "web": "Expériences Web",
+        "software": "Logiciels & SaaS",
+        "systems": "Systèmes d'entreprise",
+        "ai": "IA & automatisation",
+        "engineering": "Ingénierie produit"
+      },
+      "global": {
+        "eyebrow": "Conçu pour le monde",
+        "titleStart": "Les produits numériques sont mondiaux.",
+        "titleHighlight": "Notre état d'esprit aussi.",
+        "description": "BuiltV travaille avec des entreprises modernes sur différents marchés, fuseaux horaires et environnements numériques tout en gardant une expérience claire et cohérente.",
+        "markets": {
+          "ireland": "Irlande",
+          "uk": "Royaume-Uni",
+          "netherlands": "Pays-Bas",
+          "germany": "Allemagne",
+          "europe": "Europe",
+          "global": "Monde"
+        }
+      },
+      "cta": {
+        "eyebrow": "Construisez avec BuiltV",
+        "titleStart": "Vous avez un problème qui mérite",
+        "titleHighlight": "d'être bien résolu ?",
+        "description": "Dites-nous ce que votre entreprise cherche à améliorer, remplacer ou construire ensuite. La conversation peut commencer là.",
+        "button": "Démarrer un projet"
+      }
+    },
+    "insightsPage": {
+      "hero": {
+        "eyebrow": "Perspectives",
+        "titleStart": "Réflexions sur les logiciels,",
+        "titleHighlight": "les systèmes et la suite.",
+        "description": "Idées et réflexions pratiques autour des produits numériques, workflows métier, ingénierie logicielle, IA et automatisation.",
+        "explore": "Découvrir les perspectives"
+      },
+      "featured": {
+        "eyebrow": "Réflexions à la une",
+        "titleStart": "Des idées utiles pour",
+        "titleHighlight": "les entreprises numériques modernes.",
+        "items": {
+          "workflow": {
+            "category": "Systèmes d'entreprise",
+            "title": "Quand une entreprise utilise trop d'outils, le vrai problème est souvent le workflow.",
+            "description": "Pourquoi les logiciels déconnectés créent de la friction et comment de meilleurs systèmes simplifient le travail."
+          },
+          "ai": {
+            "category": "IA & Automatisation",
+            "title": "L'IA crée de la valeur lorsqu'elle est reliée à un vrai processus métier.",
+            "description": "Une IA utile doit réduire le travail, améliorer les décisions ou accélérer un workflow — pas devenir un outil isolé de plus."
+          },
+          "engineering": {
+            "category": "Ingénierie produit",
+            "title": "Un bon logiciel commence avant la première ligne de code.",
+            "description": "Les meilleurs produits numériques commencent par le workflow, les utilisateurs et le comportement du système avant l'implémentation technique."
+          }
+        }
+      },
+      "articleLabel": "Article Insight",
+      "topics": {
+        "eyebrow": "Nos sujets",
+        "titleStart": "Moins de bruit.",
+        "titleHighlight": "Plus d'idées utiles.",
+        "description": "BuiltV Insights se concentre sur la pratique des produits numériques : ce qui fonctionne, ce qui casse et comment de meilleurs systèmes améliorent l'entreprise.",
+        "items": {
+          "systems": "Systèmes d'entreprise",
+          "ai": "IA & automatisation",
+          "engineering": "Ingénierie logicielle",
+          "strategy": "Stratégie produit",
+          "saas": "SaaS",
+          "operations": "Opérations",
+          "experiences": "Expériences numériques"
+        }
+      },
+      "cards": {
+        "systems": {
+          "eyebrow": "Systèmes",
+          "title": "Construisez autour du workflow, pas autour du logiciel.",
+          "text": "Les bons systèmes suivent la façon dont le travail circule réellement dans l'entreprise au lieu d'imposer une complexité inutile."
+        },
+        "product": {
+          "eyebrow": "Produit",
+          "title": "La technologie est utile lorsqu'elle améliore quelque chose de mesurable.",
+          "text": "Une meilleure expérience client, moins de travail manuel, des opérations plus rapides ou un meilleur produit sont des objectifs plus utiles que simplement ajouter de la technologie."
+        }
+      },
+      "cta": {
+        "eyebrow": "De l'idée à l'exécution",
+        "titleStart": "Vous avez un système qui mérite",
+        "titleHighlight": "une meilleure réflexion ?",
+        "description": "Si votre entreprise a un workflow, un produit ou un problème opérationnel à améliorer, BuiltV peut le transformer en système numérique fonctionnel.",
+        "button": "Démarrer un projet"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "eyebrow": "Contact",
+        "titleStart": "Dites-nous ce que vous",
+        "titleHighlight": "essayez de construire.",
+        "description": "Commencez par l'idée, le workflow ou le problème métier. Vous n'avez pas besoin d'une spécification technique complète avant de nous contacter."
+      },
+      "intro": {
+        "title": "Commencez par le problème.",
+        "description": "Expliquez ce qui ne fonctionne pas aujourd'hui, ce que vous voulez améliorer ou le nouveau produit que vous souhaitez créer."
+      },
+      "reasons": {
+        "scoping": "Périmètre de projet clair",
+        "direction": "Direction technique avant développement",
+        "businessFirst": "Réflexion produit orientée métier",
+        "global": "Collaboration mondiale à distance"
+      },
+      "preferEmail": {
+        "eyebrow": "Vous préférez l'e-mail ?",
+        "description": "Envoyez un court résumé de votre projet, du problème actuel et de votre objectif."
+      },
+      "collaboration": {
+        "title": "Collaboration mondiale",
+        "text": "Communication de projet remote-first"
+      },
+      "form": {
+        "eyebrow": "Demande de projet",
+        "title": "Parlez-nous du projet.",
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "E-mail",
+        "company": "Entreprise",
+        "companyPlaceholder": "Entreprise ou startup",
+        "projectType": "Que souhaitez-vous construire ?",
+        "projectTypePlaceholder": "Sélectionner le type de projet",
+        "budget": "Budget approximatif",
+        "budgetPlaceholder": "Sélectionner une fourchette",
+        "details": "Détails du projet",
+        "detailsPlaceholder": "Que souhaitez-vous construire ou améliorer ?",
+        "openingEmail": "Ouverture de l'e-mail...",
+        "submit": "Envoyer la demande",
+        "consent": "En envoyant ce formulaire, vous acceptez que BuiltV utilise les informations fournies pour répondre à votre demande."
+      },
+      "projectTypes": {
+        "website": "Site web",
+        "software": "Logiciel / SaaS",
+        "businessSystem": "Système d'entreprise",
+        "ai": "IA & Automatisation",
+        "engineering": "Ingénierie produit",
+        "notSure": "Pas encore sûr"
+      },
+      "budgets": {
+        "under2500": "Moins de 2 500 €",
+        "2500to5000": "2 500 € – 5 000 €",
+        "5000to10000": "5 000 € – 10 000 €",
+        "10000plus": "10 000 €+",
+        "notSure": "Pas encore sûr"
+      },
+      "email": {
+        "notProvided": "Non fourni",
+        "notSelected": "Non sélectionné",
+        "subject": "Demande de projet BuiltV",
+        "heading": "Nouvelle demande de projet BuiltV",
+        "projectType": "Type de projet"
+      },
+      "cta": {
+        "eyebrow": "Vous ne savez pas encore ce qu'il vous faut ?",
+        "titleStart": "Aucun problème.",
+        "titleHighlight": "Commencez par le problème métier.",
+        "description": "Nous pouvons transformer une idée encore vague, un workflow inefficace ou une exigence produit en direction technique plus claire.",
+        "button": "Envoyer un e-mail à BuiltV"
+      }
+    }
+  },
+  "es": {
+    "pricingPage": {
+      "hero": {
+        "eyebrow": "Precios",
+        "titleStart": "Un alcance claro antes de",
+        "titleHighlight": "comenzar el trabajo serio de desarrollo.",
+        "description": "Cada proyecto de BuiltV se define según el producto, el flujo de trabajo y la complejidad técnica reales, en lugar de forzar a todas las empresas al mismo paquete.",
+        "estimate": "Solicitar estimación",
+        "viewTypes": "Ver tipos de colaboración"
+      },
+      "engagements": {
+        "eyebrow": "Tipos de colaboración",
+        "titleStart": "Proyectos diferentes necesitan",
+        "titleHighlight": "alcances diferentes."
+      },
+      "mostFlexible": "Más flexible",
+      "pricingLabel": "Precio",
+      "idealFor": "Ideal para",
+      "discuss": "Hablar de este proyecto",
+      "plans": {
+        "web": {
+          "label": "Proyecto enfocado",
+          "title": "Experiencia Web",
+          "description": "Para empresas que necesitan un sitio web de marketing premium, landing page o presencia digital enfocada.",
+          "price": "Definido por proyecto",
+          "idealFor": "Sitios web, landing pages, rediseños",
+          "features": [
+            "Diseño responsive",
+            "Desarrollo frontend",
+            "Optimización de rendimiento",
+            "Flujos de contacto y conversión",
+            "Integraciones básicas",
+            "Soporte de despliegue"
+          ]
+        },
+        "software": {
+          "label": "Desarrollo de producto",
+          "title": "Software & SaaS",
+          "description": "Para startups y empresas que crean dashboards, portales, software interno o productos SaaS completos.",
+          "price": "Alcance personalizado",
+          "idealFor": "SaaS, dashboards, portales, MVPs",
+          "features": [
+            "Arquitectura de producto",
+            "Frontend & backend",
+            "Diseño de base de datos",
+            "Autenticación",
+            "Integraciones API",
+            "Configuración de despliegue"
+          ]
+        },
+        "automation": {
+          "label": "Sistemas operativos",
+          "title": "Automatización & Sistemas",
+          "description": "Para empresas que quieren sustituir flujos repetitivos, herramientas desconectadas y trabajo operativo manual.",
+          "price": "Definido por flujo",
+          "idealFor": "Automatización, operaciones, flujos de IA",
+          "features": [
+            "Análisis de workflows",
+            "Diseño de automatización",
+            "Integraciones empresariales",
+            "Integraciones de IA",
+            "Dashboards internos",
+            "Documentación de procesos"
+          ]
+        }
+      },
+      "factors": {
+        "eyebrow": "Qué afecta al precio",
+        "titleStart": "Ponemos precio al trabajo,",
+        "titleHighlight": "no a un paquete genérico.",
+        "description": "Dos proyectos pueden parecer similares y requerir niveles de ingeniería completamente diferentes.",
+        "items": {
+          "scope": {
+            "title": "Alcance",
+            "text": "Cantidad de pantallas, flujos, roles y funciones del producto."
+          },
+          "complexity": {
+            "title": "Complejidad técnica",
+            "text": "Lógica backend personalizada, APIs, integraciones, arquitectura de datos e infraestructura."
+          },
+          "automation": {
+            "title": "Profundidad de automatización",
+            "text": "Cuántos sistemas, reglas de negocio y acciones automatizadas deben trabajar juntos."
+          },
+          "timeline": {
+            "title": "Calendario",
+            "text": "Velocidad de entrega, requisitos de lanzamiento y si el trabajo debe dividirse en fases."
+          }
+        }
+      },
+      "process": {
+        "eyebrow": "Cómo funcionan las estimaciones",
+        "titleStart": "Del problema de negocio a",
+        "titleHighlight": "un alcance claro.",
+        "steps": {
+          "problem": {
+            "title": "Cuéntanos el problema",
+            "text": "Comparte qué quieres construir o qué está frenando actualmente al negocio."
+          },
+          "scope": {
+            "title": "Definimos el alcance",
+            "text": "Aclaramos los flujos principales, funciones necesarias y dirección técnica."
+          },
+          "proposal": {
+            "title": "Recibes una propuesta",
+            "text": "Obtienes un alcance claro, enfoque de entrega y estimación comercial."
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "¿Necesitas una estimación?",
+        "titleStart": "Cuéntanos qué hay que construir.",
+        "titleHighlight": "Te ayudaremos a definir el alcance.",
+        "description": "Puedes empezar con una idea de producto, un problema de flujo o un sistema existente. No necesitas una especificación técnica completa.",
+        "button": "Solicitar estimación"
+      }
+    },
+    "aboutPage": {
+      "hero": {
+        "eyebrow": "Sobre BuiltV",
+        "titleStart": "Construimos sistemas digitales para",
+        "titleHighlight": "lo que viene.",
+        "description": "BuiltV es un estudio de productos digitales centrado en sitios web, software, sistemas empresariales, IA y automatización para empresas ambiciosas.",
+        "start": "Iniciar un proyecto",
+        "work": "Ver nuestro trabajo"
+      },
+      "why": {
+        "eyebrow": "Por qué existe BuiltV",
+        "titleStart": "Mejores sistemas crean",
+        "titleHighlight": "mejores empresas.",
+        "paragraphs": [
+          "Muchas empresas crecen añadiendo más herramientas, hojas de cálculo y pasos manuales. Con el tiempo, la tecnología empieza a crear fricción.",
+          "BuiltV diseña sistemas digitales más claros alrededor de flujos reales para que clientes y equipos trabajen con menos complejidad.",
+          "A veces significa un sitio web; otras, un producto de software completo, una plataforma interna o un flujo con IA. El objetivo no es más tecnología, sino el sistema correcto."
+        ]
+      },
+      "principles": {
+        "eyebrow": "Cómo pensamos",
+        "titleStart": "Principios detrás de",
+        "titleHighlight": "los productos que construimos.",
+        "items": {
+          "problem": {
+            "title": "Primero el problema",
+            "text": "Comenzamos por el problema de negocio, el flujo y la necesidad del usuario antes de decidir la tecnología."
+          },
+          "systems": {
+            "title": "Sistemas sobre fragmentos",
+            "text": "Preferimos flujos conectados y sistemas fiables antes que otra herramienta aislada."
+          },
+          "engineering": {
+            "title": "La ingeniería importa",
+            "text": "Un buen diseño de producto necesita frontend, backend, APIs, bases de datos e infraestructura fiables."
+          },
+          "trust": {
+            "title": "Construido para generar confianza",
+            "text": "Pensamos en fiabilidad, mantenibilidad y comportamiento del producto cuando usuarios reales dependen de él."
+          }
+        }
+      },
+      "studio": {
+        "eyebrow": "Un solo estudio",
+        "titleStart": "Diseño, software y automatización",
+        "titleHighlight": "bajo un mismo techo.",
+        "description": "Los productos funcionan mejor cuando estrategia, interfaz, backend y automatización se diseñan como una experiencia conectada."
+      },
+      "capabilities": {
+        "web": "Experiencias Web",
+        "software": "Software & SaaS",
+        "systems": "Sistemas empresariales",
+        "ai": "IA & automatización",
+        "engineering": "Ingeniería de producto"
+      },
+      "global": {
+        "eyebrow": "Construido globalmente",
+        "titleStart": "Los productos digitales son globales.",
+        "titleHighlight": "Nuestra mentalidad también.",
+        "description": "BuiltV trabaja con empresas modernas en distintos mercados, zonas horarias y entornos digitales manteniendo una experiencia clara y consistente.",
+        "markets": {
+          "ireland": "Irlanda",
+          "uk": "Reino Unido",
+          "netherlands": "Países Bajos",
+          "germany": "Alemania",
+          "europe": "Europa",
+          "global": "Global"
+        }
+      },
+      "cta": {
+        "eyebrow": "Construye con BuiltV",
+        "titleStart": "¿Tienes un problema que merece",
+        "titleHighlight": "resolverse bien?",
+        "description": "Cuéntanos qué intenta mejorar, sustituir o construir tu empresa. La conversación puede empezar ahí.",
+        "button": "Iniciar un proyecto"
+      }
+    },
+    "insightsPage": {
+      "hero": {
+        "eyebrow": "Ideas",
+        "titleStart": "Pensando en software,",
+        "titleHighlight": "sistemas y lo que viene.",
+        "description": "Ideas y pensamiento práctico sobre productos digitales, flujos empresariales, ingeniería de software, IA y automatización.",
+        "explore": "Explorar ideas"
+      },
+      "featured": {
+        "eyebrow": "Ideas destacadas",
+        "titleStart": "Ideas útiles para",
+        "titleHighlight": "empresas digitales modernas.",
+        "items": {
+          "workflow": {
+            "category": "Sistemas empresariales",
+            "title": "Cuando una empresa tiene demasiadas herramientas, el problema real suele ser el flujo de trabajo.",
+            "description": "Por qué el software desconectado crea fricción y cómo mejores sistemas simplifican el trabajo."
+          },
+          "ai": {
+            "category": "IA & Automatización",
+            "title": "La IA crea valor cuando está conectada a un proceso de negocio real.",
+            "description": "La IA práctica debe reducir trabajo, mejorar decisiones o acelerar un flujo — no ser otra herramienta aislada."
+          },
+          "engineering": {
+            "category": "Ingeniería de producto",
+            "title": "El buen software comienza antes de la primera línea de código.",
+            "description": "Los productos digitales sólidos comienzan por el flujo, los usuarios y el comportamiento del sistema antes de la implementación técnica."
+          }
+        }
+      },
+      "articleLabel": "Artículo de ideas",
+      "topics": {
+        "eyebrow": "Sobre qué escribimos",
+        "titleStart": "Menos ruido.",
+        "titleHighlight": "Más ideas útiles.",
+        "description": "BuiltV Insights se centra en el lado práctico de los productos digitales: qué funciona, qué falla y cómo mejores sistemas pueden mejorar el negocio.",
+        "items": {
+          "systems": "Sistemas empresariales",
+          "ai": "IA & automatización",
+          "engineering": "Ingeniería de software",
+          "strategy": "Estrategia de producto",
+          "saas": "SaaS",
+          "operations": "Operaciones",
+          "experiences": "Experiencias digitales"
+        }
+      },
+      "cards": {
+        "systems": {
+          "eyebrow": "Sistemas",
+          "title": "Construye alrededor del flujo, no alrededor del software.",
+          "text": "Los buenos sistemas deben seguir cómo se mueve realmente el trabajo por la empresa, sin obligar a los equipos a asumir complejidad innecesaria."
+        },
+        "product": {
+          "eyebrow": "Producto",
+          "title": "La tecnología es útil cuando mejora algo medible.",
+          "text": "Mejor experiencia del cliente, menos trabajo manual, operaciones más rápidas o un producto más sólido son objetivos más útiles que simplemente añadir tecnología."
+        }
+      },
+      "cta": {
+        "eyebrow": "De la idea a la ejecución",
+        "titleStart": "¿Tienes un sistema que necesita",
+        "titleHighlight": "mejor pensamiento?",
+        "description": "Si tu empresa tiene un flujo, producto o problema operativo que vale la pena mejorar, BuiltV puede convertirlo en un sistema digital funcional.",
+        "button": "Iniciar un proyecto"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "eyebrow": "Contacto",
+        "titleStart": "Cuéntanos qué estás",
+        "titleHighlight": "intentando construir.",
+        "description": "Empieza con la idea, el flujo o el problema de negocio. No necesitas una especificación técnica completa antes de contactar."
+      },
+      "intro": {
+        "title": "Empieza por el problema.",
+        "description": "Comparte qué no funciona hoy, qué quieres mejorar o qué nuevo producto quieres crear."
+      },
+      "reasons": {
+        "scoping": "Alcance de proyecto claro",
+        "direction": "Dirección técnica antes del desarrollo",
+        "businessFirst": "Pensamiento de producto centrado en negocio",
+        "global": "Colaboración remota global"
+      },
+      "preferEmail": {
+        "eyebrow": "¿Prefieres email?",
+        "description": "Envía un breve resumen de tu proyecto, el problema actual y lo que quieres conseguir."
+      },
+      "collaboration": {
+        "title": "Colaboración global",
+        "text": "Comunicación de proyecto remote-first"
+      },
+      "form": {
+        "eyebrow": "Consulta de proyecto",
+        "title": "Cuéntanos sobre el proyecto.",
+        "name": "Nombre",
+        "namePlaceholder": "Tu nombre",
+        "email": "Email",
+        "company": "Empresa",
+        "companyPlaceholder": "Empresa o startup",
+        "projectType": "¿Qué quieres construir?",
+        "projectTypePlaceholder": "Selecciona tipo de proyecto",
+        "budget": "Presupuesto aproximado",
+        "budgetPlaceholder": "Selecciona rango de presupuesto",
+        "details": "Detalles del proyecto",
+        "detailsPlaceholder": "¿Qué estás intentando construir o mejorar?",
+        "openingEmail": "Abriendo email...",
+        "submit": "Enviar consulta",
+        "consent": "Al enviar este formulario, aceptas que BuiltV use la información proporcionada para responder a tu consulta."
+      },
+      "projectTypes": {
+        "website": "Sitio web",
+        "software": "Software / SaaS",
+        "businessSystem": "Sistema empresarial",
+        "ai": "IA & Automatización",
+        "engineering": "Ingeniería de producto",
+        "notSure": "Aún no estoy seguro"
+      },
+      "budgets": {
+        "under2500": "Menos de 2.500 €",
+        "2500to5000": "2.500 € – 5.000 €",
+        "5000to10000": "5.000 € – 10.000 €",
+        "10000plus": "10.000 €+",
+        "notSure": "Aún no estoy seguro"
+      },
+      "email": {
+        "notProvided": "No proporcionado",
+        "notSelected": "No seleccionado",
+        "subject": "Consulta de proyecto BuiltV",
+        "heading": "Nueva consulta de proyecto BuiltV",
+        "projectType": "Tipo de proyecto"
+      },
+      "cta": {
+        "eyebrow": "¿No sabes exactamente qué necesitas?",
+        "titleStart": "No pasa nada.",
+        "titleHighlight": "Empieza por el problema de negocio.",
+        "description": "Podemos convertir una idea inicial, un flujo ineficiente o un requisito de producto en una dirección técnica más clara.",
+        "button": "Enviar email a BuiltV"
+      }
+    }
+  }
+} as const;
+
+const extendedResources = {
+  en: {
+    translation: {
+      ...resources.en.translation,
+      ...additionalPageResources.en,
+    },
+  },
+  de: {
+    translation: {
+      ...resources.de.translation,
+      ...additionalPageResources.de,
+    },
+  },
+  nl: {
+    translation: {
+      ...resources.nl.translation,
+      ...additionalPageResources.nl,
+    },
+  },
+  fr: {
+    translation: {
+      ...resources.fr.translation,
+      ...additionalPageResources.fr,
+    },
+  },
+  es: {
+    translation: {
+      ...resources.es.translation,
+      ...additionalPageResources.es,
+    },
+  },
+};
+
 void i18n.use(initReactI18next).init({
-  resources,
+  resources: extendedResources,
 
   lng:
     savedLanguage &&

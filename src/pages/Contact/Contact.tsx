@@ -9,64 +9,56 @@ import {
   Send,
   Sparkles,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import PageLayout from "../../components/layout/PageLayout";
 
 const projectTypes = [
-  "Website",
-  "Software / SaaS",
-  "Business System",
-  "AI & Automation",
-  "Product Engineering",
-  "Not sure yet",
-];
+  "website",
+  "software",
+  "businessSystem",
+  "ai",
+  "engineering",
+  "notSure",
+] as const;
 
-const budgets = [
-  "Under €2,500",
-  "€2,500 – €5,000",
-  "€5,000 – €10,000",
-  "€10,000+",
-  "Not sure yet",
-];
+const budgets = ["under2500", "2500to5000", "5000to10000", "10000plus", "notSure"] as const;
 
-const reasons = [
-  "Clear project scoping",
-  "Technical direction before development",
-  "Business-first product thinking",
-  "Global remote collaboration",
-];
+const reasons = ["scoping", "direction", "businessFirst", "global"] as const;
 
 function Contact() {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
 
     const name = String(formData.get("name") || "");
     const email = String(formData.get("email") || "");
-    const company = String(formData.get("company") || "Not provided");
+    const company = String(formData.get("company") || t("contactPage.email.notProvided"));
     const projectType = String(
-      formData.get("projectType") || "Not selected",
+      formData.get("projectType") || t("contactPage.email.notSelected"),
     );
-    const budget = String(formData.get("budget") || "Not selected");
+    const budget = String(
+      formData.get("budget") || t("contactPage.email.notSelected"),
+    );
     const details = String(formData.get("details") || "");
 
-    const subject = `BuiltV Project Enquiry - ${name}`;
+    const subject = `${t("contactPage.email.subject")} - ${name}`;
 
     const body = `
-New BuiltV Project Enquiry
+${t("contactPage.email.heading")}
 
-Name: ${name}
-Email: ${email}
-Company: ${company}
-Project Type: ${projectType}
-Budget: ${budget}
+${t("contactPage.form.name")}: ${name}
+${t("contactPage.form.email")}: ${email}
+${t("contactPage.form.company")}: ${company}
+${t("contactPage.email.projectType")}: ${projectType}
+${t("contactPage.form.budget")}: ${budget}
 
-Project Details:
+${t("contactPage.form.details")}:
 ${details}
     `.trim();
 
@@ -98,17 +90,19 @@ ${details}
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="max-w-5xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Contact
+              {t("contactPage.hero.eyebrow")}
             </p>
 
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
-              Tell us what you&apos;re
-              <span className="text-sky-400"> trying to build.</span>
+              {t("contactPage.hero.titleStart")}
+              <span className="text-sky-400">
+                {" "}
+                {t("contactPage.hero.titleHighlight")}
+              </span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
-              Start with the idea, workflow or business problem. You do not need
-              a complete technical specification before getting in touch.
+              {t("contactPage.hero.description")}
             </p>
           </div>
         </div>
@@ -123,12 +117,11 @@ ${details}
               </div>
 
               <h2 className="mt-5 text-2xl font-semibold text-white">
-                Start with the problem.
+                {t("contactPage.intro.title")}
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                Share what is not working today, what you want to improve or
-                what new product you want to create.
+                {t("contactPage.intro.description")}
               </p>
 
               <div className="mt-6 space-y-3">
@@ -138,7 +131,7 @@ ${details}
                     className="flex items-center gap-3 text-sm text-slate-300"
                   >
                     <CheckCircle2 size={17} className="text-sky-300" />
-                    {reason}
+                    {t(`contactPage.reasons.${reason}`)}
                   </div>
                 ))}
               </div>
@@ -150,7 +143,7 @@ ${details}
               </div>
 
               <p className="mt-5 text-xs font-medium uppercase tracking-widest text-slate-500">
-                Prefer email?
+                {t("contactPage.preferEmail.eyebrow")}
               </p>
 
               <a
@@ -161,8 +154,7 @@ ${details}
               </a>
 
               <p className="mt-3 text-sm leading-6 text-slate-500">
-                Send a short summary of your project, current problem and what
-                you want to achieve.
+                {t("contactPage.preferEmail.description")}
               </p>
             </div>
 
@@ -174,11 +166,10 @@ ${details}
 
                 <div>
                   <p className="text-sm font-medium text-white">
-                    Global collaboration
+                    {t("contactPage.collaboration.title")}
                   </p>
-
                   <p className="mt-1 text-xs text-slate-500">
-                    Remote-first project communication
+                    {t("contactPage.collaboration.text")}
                   </p>
                 </div>
               </div>
@@ -189,11 +180,10 @@ ${details}
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-                  Project enquiry
+                  {t("contactPage.form.eyebrow")}
                 </p>
-
                 <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-                  Tell us about the project.
+                  {t("contactPage.form.title")}
                 </h2>
               </div>
 
@@ -203,32 +193,24 @@ ${details}
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                  >
-                    Name
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
+                    {t("contactPage.form.name")}
                   </label>
-
                   <input
                     id="name"
                     name="name"
                     type="text"
                     required
                     autoComplete="name"
-                    placeholder="Your name"
+                    placeholder={t("contactPage.form.namePlaceholder")}
                     className="min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-slate-300"
-                  >
-                    Email
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
+                    {t("contactPage.form.email")}
                   </label>
-
                   <input
                     id="email"
                     name="email"
@@ -242,31 +224,23 @@ ${details}
               </div>
 
               <div>
-                <label
-                  htmlFor="company"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  Company
+                <label htmlFor="company" className="mb-2 block text-sm font-medium text-slate-300">
+                  {t("contactPage.form.company")}
                 </label>
-
                 <input
                   id="company"
                   name="company"
                   type="text"
                   autoComplete="organization"
-                  placeholder="Company or startup name"
+                  placeholder={t("contactPage.form.companyPlaceholder")}
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="projectType"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  What are you looking to build?
+                <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-slate-300">
+                  {t("contactPage.form.projectType")}
                 </label>
-
                 <select
                   id="projectType"
                   name="projectType"
@@ -275,25 +249,20 @@ ${details}
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-[#0F141C] px-4 text-sm text-slate-300 outline-none transition focus:border-sky-400/40"
                 >
                   <option value="" disabled>
-                    Select project type
+                    {t("contactPage.form.projectTypePlaceholder")}
                   </option>
-
                   {projectTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
+                    <option key={type} value={t(`contactPage.projectTypes.${type}`)}>
+                      {t(`contactPage.projectTypes.${type}`)}
                     </option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label
-                  htmlFor="budget"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  Approximate budget
+                <label htmlFor="budget" className="mb-2 block text-sm font-medium text-slate-300">
+                  {t("contactPage.form.budget")}
                 </label>
-
                 <select
                   id="budget"
                   name="budget"
@@ -302,32 +271,27 @@ ${details}
                   className="min-h-12 w-full rounded-xl border border-white/10 bg-[#0F141C] px-4 text-sm text-slate-300 outline-none transition focus:border-sky-400/40"
                 >
                   <option value="" disabled>
-                    Select budget range
+                    {t("contactPage.form.budgetPlaceholder")}
                   </option>
-
                   {budgets.map((budget) => (
-                    <option key={budget} value={budget}>
-                      {budget}
+                    <option key={budget} value={t(`contactPage.budgets.${budget}`)}>
+                      {t(`contactPage.budgets.${budget}`)}
                     </option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label
-                  htmlFor="details"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  Project details
+                <label htmlFor="details" className="mb-2 block text-sm font-medium text-slate-300">
+                  {t("contactPage.form.details")}
                 </label>
-
                 <textarea
                   id="details"
                   name="details"
                   required
                   minLength={20}
                   rows={7}
-                  placeholder="What are you trying to build or improve?"
+                  placeholder={t("contactPage.form.detailsPlaceholder")}
                   className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400/40"
                 />
               </div>
@@ -338,15 +302,13 @@ ${details}
                 className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
                 {isSubmitting
-                  ? "Opening email..."
-                  : "Send project enquiry"}
-
+                  ? t("contactPage.form.openingEmail")
+                  : t("contactPage.form.submit")}
                 {!isSubmitting && <Send size={16} />}
               </button>
 
               <p className="text-xs leading-5 text-slate-600">
-                By submitting this form, you agree that BuiltV may use the
-                information provided to respond to your enquiry.
+                {t("contactPage.form.consent")}
               </p>
             </form>
           </div>
@@ -356,27 +318,26 @@ ${details}
       <section className="border-y border-white/10 bg-[#080A0E] py-20 sm:py-24">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-            Not sure what you need?
+            {t("contactPage.cta.eyebrow")}
           </p>
 
           <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-            That&apos;s completely fine.
+            {t("contactPage.cta.titleStart")}
             <span className="text-sky-400">
               {" "}
-              Start with the business problem.
+              {t("contactPage.cta.titleHighlight")}
             </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400">
-            We can help turn a rough idea, inefficient workflow or product
-            requirement into a clearer technical direction.
+            {t("contactPage.cta.description")}
           </p>
 
           <a
             href="mailto:AerqonBusiness@gmail.com"
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-7 py-3 text-sm font-medium text-white transition hover:bg-white/10"
           >
-            Email BuiltV
+            {t("contactPage.cta.button")}
             <ArrowRight size={17} />
           </a>
         </div>

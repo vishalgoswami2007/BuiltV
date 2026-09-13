@@ -7,45 +7,30 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import PageLayout from "../../components/layout/PageLayout";
 
 const featuredInsights = [
-  {
-    category: "Business Systems",
-    title: "When a business has too many tools, the real problem is usually the workflow.",
-    description:
-      "Why disconnected software creates operational friction and how better systems can simplify the way work moves through a business.",
-    icon: Workflow,
-  },
-  {
-    category: "AI & Automation",
-    title: "AI creates value when it is connected to an actual business process.",
-    description:
-      "Practical AI should reduce work, improve decisions or speed up a workflow — not exist as another isolated tool.",
-    icon: Bot,
-  },
-  {
-    category: "Product Engineering",
-    title: "Good software starts before the first line of code.",
-    description:
-      "The strongest digital products begin with the workflow, users and system behaviour before technical implementation starts.",
-    icon: Code2,
-  },
-];
+  { icon: Workflow, key: "workflow" },
+  { icon: Bot, key: "ai" },
+  { icon: Code2, key: "engineering" },
+] as const;
 
 const topics = [
-  "Business systems",
-  "AI & automation",
-  "Software engineering",
-  "Product strategy",
-  "SaaS",
-  "Operations",
-  "Digital experiences",
-];
+  "systems",
+  "ai",
+  "engineering",
+  "strategy",
+  "saas",
+  "operations",
+  "experiences",
+] as const;
 
 function Insights() {
+  const { t } = useTranslation();
+
   return (
     <PageLayout>
       <section className="relative overflow-hidden bg-[#050608] pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
@@ -63,17 +48,19 @@ function Insights() {
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="max-w-5xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Insights
+              {t("insightsPage.hero.eyebrow")}
             </p>
 
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
-              Thinking about software,
-              <span className="text-sky-400"> systems and what comes next.</span>
+              {t("insightsPage.hero.titleStart")}
+              <span className="text-sky-400">
+                {" "}
+                {t("insightsPage.hero.titleHighlight")}
+              </span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
-              Ideas and practical thinking around digital products, business
-              workflows, software engineering, AI and automation.
+              {t("insightsPage.hero.description")}
             </p>
 
             <div className="mt-8">
@@ -81,7 +68,7 @@ function Insights() {
                 href="#insights"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
               >
-                Explore insights
+                {t("insightsPage.hero.explore")}
                 <ArrowRight size={17} />
               </a>
             </div>
@@ -93,22 +80,26 @@ function Insights() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-              Featured thinking
+              {t("insightsPage.featured.eyebrow")}
             </p>
 
             <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-              Useful ideas for
-              <span className="text-slate-400"> modern digital businesses.</span>
+              {t("insightsPage.featured.titleStart")}
+              <span className="text-slate-400">
+                {" "}
+                {t("insightsPage.featured.titleHighlight")}
+              </span>
             </h2>
           </div>
 
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
             {featuredInsights.map((insight, index) => {
               const Icon = insight.icon;
+              const base = `insightsPage.featured.items.${insight.key}`;
 
               return (
                 <article
-                  key={insight.title}
+                  key={insight.key}
                   className="group flex min-h-96 flex-col justify-between rounded-2xl border border-white/10 bg-[#0A0D12] p-5 transition hover:border-sky-400/30 sm:p-7"
                 >
                   <div>
@@ -116,28 +107,25 @@ function Insights() {
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                         <Icon size={20} className="text-sky-300" />
                       </div>
-
-                      <span className="text-xs text-slate-600">
-                        0{index + 1}
-                      </span>
+                      <span className="text-xs text-slate-600">0{index + 1}</span>
                     </div>
 
                     <p className="mt-7 text-xs font-medium uppercase tracking-widest text-sky-300">
-                      {insight.category}
+                      {t(`${base}.category`)}
                     </p>
 
                     <h3 className="mt-4 text-xl font-semibold leading-8 text-white">
-                      {insight.title}
+                      {t(`${base}.title`)}
                     </h3>
 
                     <p className="mt-4 text-sm leading-7 text-slate-400">
-                      {insight.description}
+                      {t(`${base}.description`)}
                     </p>
                   </div>
 
                   <div className="mt-8 border-t border-white/10 pt-5">
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-500">
-                      Insight article
+                      {t("insightsPage.articleLabel")}
                       <ArrowUpRight size={15} />
                     </span>
                   </div>
@@ -157,18 +145,19 @@ function Insights() {
               </div>
 
               <p className="mt-6 text-xs font-medium uppercase tracking-widest text-sky-300">
-                What we write about
+                {t("insightsPage.topics.eyebrow")}
               </p>
 
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-                Less noise.
-                <span className="text-sky-400"> More useful thinking.</span>
+                {t("insightsPage.topics.titleStart")}
+                <span className="text-sky-400">
+                  {" "}
+                  {t("insightsPage.topics.titleHighlight")}
+                </span>
               </h2>
 
               <p className="mt-5 text-base leading-7 text-slate-400">
-                BuiltV Insights focuses on the practical side of building and
-                operating digital products — what works, what breaks and how
-                better systems can improve the business around them.
+                {t("insightsPage.topics.description")}
               </p>
             </div>
 
@@ -178,7 +167,7 @@ function Insights() {
                   key={topic}
                   className="rounded-full border border-white/10 bg-[#0A0D12] px-4 py-3 text-sm text-slate-300"
                 >
-                  {topic}
+                  {t(`insightsPage.topics.items.${topic}`)}
                 </span>
               ))}
             </div>
@@ -195,16 +184,15 @@ function Insights() {
               </div>
 
               <p className="mt-6 text-xs font-medium uppercase tracking-widest text-sky-300">
-                Systems
+                {t("insightsPage.cards.systems.eyebrow")}
               </p>
 
               <h3 className="mt-3 text-2xl font-semibold text-white">
-                Build around the workflow, not around the software.
+                {t("insightsPage.cards.systems.title")}
               </h3>
 
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                Good systems should follow the way work actually moves through a
-                company instead of forcing teams into unnecessary complexity.
+                {t("insightsPage.cards.systems.text")}
               </p>
             </div>
 
@@ -214,17 +202,15 @@ function Insights() {
               </div>
 
               <p className="mt-6 text-xs font-medium uppercase tracking-widest text-sky-300">
-                Product
+                {t("insightsPage.cards.product.eyebrow")}
               </p>
 
               <h3 className="mt-3 text-2xl font-semibold text-white">
-                Technology is useful when it improves something measurable.
+                {t("insightsPage.cards.product.title")}
               </h3>
 
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                Better customer experience, less manual work, faster operations
-                or a stronger product are more useful goals than simply adding
-                more technology.
+                {t("insightsPage.cards.product.text")}
               </p>
             </div>
           </div>
@@ -236,25 +222,26 @@ function Insights() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-8">
           <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
-            From insight to execution
+            {t("insightsPage.cta.eyebrow")}
           </p>
 
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Have a system that needs
-            <span className="text-sky-400"> better thinking?</span>
+            {t("insightsPage.cta.titleStart")}
+            <span className="text-sky-400">
+              {" "}
+              {t("insightsPage.cta.titleHighlight")}
+            </span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-            If your business has a workflow, product or operational problem
-            worth improving, BuiltV can help turn the idea into a working
-            digital system.
+            {t("insightsPage.cta.description")}
           </p>
 
           <Link
             to="/contact"
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-sky-100"
           >
-            Start a project
+            {t("insightsPage.cta.button")}
             <ArrowRight size={17} />
           </Link>
         </div>
