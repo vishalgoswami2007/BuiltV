@@ -9,6 +9,7 @@ import {
   Send,
   Sparkles,
 } from "lucide-react";
+
 import { useTranslation } from "react-i18next";
 
 import PageLayout from "../../components/layout/PageLayout";
@@ -22,55 +23,102 @@ const projectTypes = [
   "notSure",
 ] as const;
 
-const budgets = ["under2500", "2500to5000", "5000to10000", "10000plus", "notSure"] as const;
+const budgets = [
+  "under2500",
+  "2500to5000",
+  "5000to10000",
+  "10000plus",
+  "notSure",
+] as const;
 
 const reasons = ["scoping", "direction", "businessFirst", "global"] as const;
 
+type ApiResponse = {
+  success?: boolean;
+  message?: string;
+};
+
 function Contact() {
   const { t } = useTranslation();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
+    const form = event.currentTarget;
+
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+
+      email: String(formData.get("email") || "").trim(),
+
+      company: String(formData.get("company") || "").trim(),
+
+      projectType: String(formData.get("projectType") || "").trim(),
+
+      budget: String(formData.get("budget") || "").trim(),
+
+      details: String(formData.get("details") || "").trim(),
+
+      website: String(formData.get("website") || "").trim(),
+    };
+
     setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
 
-    const name = String(formData.get("name") || "");
-    const email = String(formData.get("email") || "");
-    const company = String(formData.get("company") || t("contactPage.email.notProvided"));
-    const projectType = String(
-      formData.get("projectType") || t("contactPage.email.notSelected"),
-    );
-    const budget = String(
-      formData.get("budget") || t("contactPage.email.notSelected"),
-    );
-    const details = String(formData.get("details") || "");
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-    const subject = `${t("contactPage.email.subject")} - ${name}`;
+        body: JSON.stringify(payload),
+      });
 
-    const body = `
-${t("contactPage.email.heading")}
+      const data = (await response.json()) as ApiResponse;
 
-${t("contactPage.form.name")}: ${name}
-${t("contactPage.form.email")}: ${email}
-${t("contactPage.form.company")}: ${company}
-${t("contactPage.email.projectType")}: ${projectType}
-${t("contactPage.form.budget")}: ${budget}
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message || "We couldn't send your enquiry. Please try again.",
+        );
+      }
 
-${t("contactPage.form.details")}:
-${details}
-    `.trim();
+      setSubmitStatus("success");
 
-    const mailtoLink = `mailto:AerqonBusiness@gmail.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+      setSubmitMessage(
+        data.message || "Thanks — your enquiry has been received.",
+      );
 
-    window.location.href = mailtoLink;
+      form.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
 
-    setTimeout(() => {
+      setSubmitStatus("error");
+
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -95,6 +143,7 @@ ${details}
 
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
               {t("contactPage.hero.titleStart")}
+
               <span className="text-sky-400">
                 {" "}
                 {t("contactPage.hero.titleHighlight")}
@@ -131,6 +180,7 @@ ${details}
                     className="flex items-center gap-3 text-sm text-slate-300"
                   >
                     <CheckCircle2 size={17} className="text-sky-300" />
+
                     {t(`contactPage.reasons.${reason}`)}
                   </div>
                 ))}
@@ -168,6 +218,7 @@ ${details}
                   <p className="text-sm font-medium text-white">
                     {t("contactPage.collaboration.title")}
                   </p>
+
                   <p className="mt-1 text-xs text-slate-500">
                     {t("contactPage.collaboration.text")}
                   </p>
@@ -182,6 +233,7 @@ ${details}
                 <p className="text-xs font-medium uppercase tracking-widest text-sky-300">
                   {t("contactPage.form.eyebrow")}
                 </p>
+
                 <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
                   {t("contactPage.form.title")}
                 </h2>
@@ -191,11 +243,30 @@ ${details}
             </div>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+              <div
+                className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+                aria-hidden="true"
+              >
+                <label htmlFor="website">Website</label>
+
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium text-slate-300"
+                  >
                     {t("contactPage.form.name")}
                   </label>
+
                   <input
                     id="name"
                     name="name"
@@ -208,9 +279,13 @@ ${details}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium text-slate-300"
+                  >
                     {t("contactPage.form.email")}
                   </label>
+
                   <input
                     id="email"
                     name="email"
@@ -224,9 +299,13 @@ ${details}
               </div>
 
               <div>
-                <label htmlFor="company" className="mb-2 block text-sm font-medium text-slate-300">
+                <label
+                  htmlFor="company"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
                   {t("contactPage.form.company")}
                 </label>
+
                 <input
                   id="company"
                   name="company"
@@ -238,9 +317,13 @@ ${details}
               </div>
 
               <div>
-                <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-slate-300">
+                <label
+                  htmlFor="projectType"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
                   {t("contactPage.form.projectType")}
                 </label>
+
                 <select
                   id="projectType"
                   name="projectType"
@@ -251,8 +334,12 @@ ${details}
                   <option value="" disabled>
                     {t("contactPage.form.projectTypePlaceholder")}
                   </option>
+
                   {projectTypes.map((type) => (
-                    <option key={type} value={t(`contactPage.projectTypes.${type}`)}>
+                    <option
+                      key={type}
+                      value={t(`contactPage.projectTypes.${type}`)}
+                    >
                       {t(`contactPage.projectTypes.${type}`)}
                     </option>
                   ))}
@@ -260,9 +347,13 @@ ${details}
               </div>
 
               <div>
-                <label htmlFor="budget" className="mb-2 block text-sm font-medium text-slate-300">
+                <label
+                  htmlFor="budget"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
                   {t("contactPage.form.budget")}
                 </label>
+
                 <select
                   id="budget"
                   name="budget"
@@ -273,8 +364,12 @@ ${details}
                   <option value="" disabled>
                     {t("contactPage.form.budgetPlaceholder")}
                   </option>
+
                   {budgets.map((budget) => (
-                    <option key={budget} value={t(`contactPage.budgets.${budget}`)}>
+                    <option
+                      key={budget}
+                      value={t(`contactPage.budgets.${budget}`)}
+                    >
                       {t(`contactPage.budgets.${budget}`)}
                     </option>
                   ))}
@@ -282,9 +377,13 @@ ${details}
               </div>
 
               <div>
-                <label htmlFor="details" className="mb-2 block text-sm font-medium text-slate-300">
+                <label
+                  htmlFor="details"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
                   {t("contactPage.form.details")}
                 </label>
+
                 <textarea
                   id="details"
                   name="details"
@@ -302,10 +401,36 @@ ${details}
                 className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
                 {isSubmitting
-                  ? t("contactPage.form.openingEmail")
+                  ? "Sending enquiry..."
                   : t("contactPage.form.submit")}
+
                 {!isSubmitting && <Send size={16} />}
               </button>
+
+              {submitStatus === "success" && (
+                <div
+                  role="status"
+                  className="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm leading-6 text-emerald-300"
+                >
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={17}
+                      className="mt-0.5 shrink-0"
+                    />
+
+                    <p>{submitMessage}</p>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div
+                  role="alert"
+                  className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm leading-6 text-red-300"
+                >
+                  {submitMessage}
+                </div>
+              )}
 
               <p className="text-xs leading-5 text-slate-600">
                 {t("contactPage.form.consent")}
@@ -323,6 +448,7 @@ ${details}
 
           <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
             {t("contactPage.cta.titleStart")}
+
             <span className="text-sky-400">
               {" "}
               {t("contactPage.cta.titleHighlight")}
@@ -338,6 +464,7 @@ ${details}
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-7 py-3 text-sm font-medium text-white transition hover:bg-white/10"
           >
             {t("contactPage.cta.button")}
+
             <ArrowRight size={17} />
           </a>
         </div>
