@@ -123,7 +123,7 @@ export default async function handler(
     const { data, error } = await resend.emails.send({
       from: "BuiltV Website <onboarding@resend.dev>",
 
-      to: ["AerqonBusiness@gmail.com"],
+      to: ["vg0767875@gmail.com"],
 
       replyTo: email,
 
