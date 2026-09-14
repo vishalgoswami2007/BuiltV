@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import logo from "../../assets/logo/builtv-logo.png";
+import logo from "../../assets/logo/builtv-logo-compressed.webp";
 
 const footerLinks = {
   services: [

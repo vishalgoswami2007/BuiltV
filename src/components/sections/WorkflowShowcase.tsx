@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import workflowVideo from "../../assets/videos/workflow.mp4";
+import workflowVideo from "../../assets/videos/workflow-compressed.mp4";
 
 const steps = [
   "enquiry",

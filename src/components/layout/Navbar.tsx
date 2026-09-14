@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import logo from "../../assets/logo/builtv-logo.png";
+import logo from "../../assets/logo/builtv-logo-compressed.webp";
 import LanguageSelector from "../localization/LanguageSelector";
 
 const navigationItems = [

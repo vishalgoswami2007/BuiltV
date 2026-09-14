@@ -1,7 +1,10 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-const savedLanguage = localStorage.getItem("builtv-language");
+const savedLanguage =
+  typeof window !== "undefined"
+    ? localStorage.getItem("builtv-language")
+    : null;
 
 const resources = {
   en: {

@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import heroVideo from "../../assets/videos/hero.mp4";
+import heroVideo from "../../assets/videos/hero-compressed.mp4";
 
 function Hero() {
   const { t } = useTranslation();
