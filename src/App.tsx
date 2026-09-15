@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import AppRoutes from "./routes/AppRoutes";
@@ -6,9 +7,15 @@ import CookieConsent from "./components/common/CookieConsent";
 import LocaleSuggestion from "./components/localization/LocaleSuggestion";
 import RouteSEO from "./components/seo/RouteSEO";
 
-function App() {
+interface AppProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  RouterComponent?: ComponentType<any>;
+  routerProps?: Record<string, unknown>;
+}
+
+function App({ RouterComponent = BrowserRouter, routerProps = {} }: AppProps) {
   return (
-    <BrowserRouter>
+    <RouterComponent {...routerProps}>
       <ScrollToTop />
       <RouteSEO />
 
@@ -17,7 +24,7 @@ function App() {
       <AppRoutes />
 
       <CookieConsent />
-    </BrowserRouter>
+    </RouterComponent>
   );
 }
 

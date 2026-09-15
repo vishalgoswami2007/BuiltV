@@ -7,9 +7,12 @@ type CookieChoice = "accepted" | "rejected" | null;
 const STORAGE_KEY = "builtv-cookie-consent";
 
 function CookieConsent() {
-  const [choice, setChoice] = useState<CookieChoice>(() => {
-    const savedChoice = localStorage.getItem(STORAGE_KEY);
+    const [choice, setChoice] = useState<CookieChoice>(() => {
+    if (typeof window === "undefined") {
+      return null;
+    }
 
+    const savedChoice = localStorage.getItem(STORAGE_KEY);
     if (savedChoice === "accepted" || savedChoice === "rejected") {
       return savedChoice;
     }
