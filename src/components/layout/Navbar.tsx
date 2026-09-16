@@ -8,20 +8,20 @@ import LanguageSelector from "../localization/LanguageSelector";
 
 const navigationItems = [
   {
-    key: "services",
-    path: "/services",
-  },
-  {
-    key: "work",
-    path: "/work",
-  },
-  {
     key: "solutions",
     path: "/solutions",
   },
   {
+    key: "demo",
+    path: "/demo",
+  },
+  {
     key: "pricing",
     path: "/pricing",
+  },
+  {
+    key: "work",
+    path: "/work",
   },
   {
     key: "about",
@@ -39,7 +39,6 @@ const navigationItems = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const { t } = useTranslation();
 
   return (
@@ -49,6 +48,7 @@ function Navbar() {
           className="flex h-14 items-center justify-between rounded-2xl border border-white/10 bg-[#050608]/85 px-3 shadow-lg shadow-black/20 backdrop-blur-xl sm:h-16 sm:px-5"
           aria-label="Main navigation"
         >
+          {/* Brand */}
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
@@ -66,6 +66,7 @@ function Navbar() {
             </span>
           </Link>
 
+          {/* Desktop Navigation */}
           <div className="hidden items-center gap-7 lg:flex">
             {navigationItems.map((item) => (
               <NavLink
@@ -84,18 +85,20 @@ function Navbar() {
             ))}
           </div>
 
+          {/* Desktop Actions */}
           <div className="hidden items-center gap-3 lg:flex">
             <LanguageSelector />
 
             <Link
-              to="/contact"
+              to="/demo"
               className="flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black transition-transform duration-200 hover:scale-[1.02]"
             >
-              {t("nav.startProject")}
+              {t("nav.startDemo")}
               <ArrowUpRight size={16} />
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setIsOpen((current) => !current)}
@@ -108,6 +111,7 @@ function Navbar() {
           </button>
         </nav>
 
+        {/* Mobile Navigation */}
         {isOpen && (
           <div
             id="mobile-navigation"
@@ -141,11 +145,11 @@ function Navbar() {
               </div>
 
               <Link
-                to="/contact"
+                to="/demo"
                 onClick={() => setIsOpen(false)}
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-medium text-black transition hover:bg-sky-100"
               >
-                {t("nav.startProject")}
+                {t("nav.startDemo")}
                 <ArrowUpRight size={16} />
               </Link>
             </div>
