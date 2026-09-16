@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import BookingFlow from "./Booking/BookingFlow";
 import { Link, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -275,123 +276,97 @@ function DemoExperience() {
       </header>
 
       {/* Hero */}
-      <section className="relative">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10 lg:py-28">
-          <div>
-            <div
-              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold ${theme.accentSoft} ${theme.accent}`}
-            >
-              <CheckCircle2 size={14} />
-              Professional {industry.label} Services
-            </div>
+<section className="relative">
+  <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10 lg:py-28">
+    
+    {/* Hero Content */}
+    <div>
+      <div
+        className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold ${theme.accentSoft} ${theme.accent}`}
+      >
+        <CheckCircle2 size={14} />
+        Professional {industry.label} Services
+      </div>
 
-            <h1 className="mt-7 max-w-3xl text-5xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-              {industry.heroTitle}
-            </h1>
+      <h1 className="mt-7 max-w-3xl text-5xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
+        {industry.heroTitle}
+      </h1>
 
-            <p
-              className={`mt-6 max-w-xl text-base leading-8 sm:text-lg ${theme.muted}`}
-            >
-              {industry.heroDescription}
-            </p>
+      <p
+        className={`mt-6 max-w-xl text-base leading-8 sm:text-lg ${theme.muted}`}
+      >
+        {industry.heroDescription}
+      </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#booking"
-                className={`flex min-h-13 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition hover:opacity-90 ${theme.button} ${theme.buttonText}`}
-              >
-                Book a Service
-                <ArrowRight size={17} />
-              </a>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="#booking"
+          className={`flex min-h-13 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition hover:opacity-90 ${theme.button} ${theme.buttonText}`}
+        >
+          Book a Service
+          <ArrowRight size={17} />
+        </a>
 
-              <a
-                href="#services"
-                className={`flex min-h-13 items-center justify-center rounded-xl border px-6 text-sm font-semibold transition hover:opacity-70 ${theme.border}`}
-              >
-                Explore Services
-              </a>
-            </div>
+        <a
+          href="#services"
+          className={`flex min-h-13 items-center justify-center rounded-xl border px-6 text-sm font-semibold transition hover:opacity-70 ${theme.border}`}
+        >
+          Explore Services
+        </a>
+      </div>
 
-            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3">
-              <div className={`flex items-center gap-2 text-sm ${theme.muted}`}>
-                <ShieldCheck size={17} className={theme.accent} />
-                Professional service
-              </div>
-
-              <div className={`flex items-center gap-2 text-sm ${theme.muted}`}>
-                <CalendarDays size={17} className={theme.accent} />
-                Online booking
-              </div>
-
-              <div className={`flex items-center gap-2 text-sm ${theme.muted}`}>
-                <Clock3 size={17} className={theme.accent} />
-                Easy scheduling
-              </div>
-            </div>
-          </div>
-
-          {/* Booking preview */}
-          <div
-            id="booking"
-            className={`rounded-3xl border p-5 shadow-2xl sm:p-7 ${theme.card} ${theme.border}`}
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className={`text-xs font-semibold uppercase tracking-widest ${theme.accent}`}>
-                  Online Booking
-                </p>
-
-                <h2 className="mt-2 text-2xl font-semibold">
-                  Book your service
-                </h2>
-              </div>
-
-              <div
-                className={`flex h-11 w-11 items-center justify-center rounded-xl ${theme.accentSoft}`}
-              >
-                <CalendarDays size={20} className={theme.accent} />
-              </div>
-            </div>
-
-            <div className="mt-7">
-              <p className={`text-xs font-medium ${theme.muted}`}>
-                SELECT A SERVICE
-              </p>
-
-              <div className="mt-3 space-y-3">
-                {industry.bookingServices.slice(0, 3).map((service, index) => (
-                  <button
-                    key={service}
-                    type="button"
-                    className={`flex w-full items-center justify-between rounded-xl border p-4 text-left transition hover:opacity-75 ${theme.border} ${
-                      index === 0 ? theme.accentSoft : theme.cardMuted
-                    }`}
-                  >
-                    <div>
-                      <p className="text-sm font-semibold">
-                        {service}
-                      </p>
-
-                      <p className={`mt-1 text-xs ${theme.muted}`}>
-                        View available appointments
-                      </p>
-                    </div>
-
-                    <ArrowRight size={16} className={theme.muted} />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className={`mt-5 rounded-xl p-4 text-xs leading-5 ${theme.cardMuted} ${theme.muted}`}
-            >
-              Choose a service to see available dates and appointment
-              times.
-            </div>
-          </div>
+      <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3">
+        <div
+          className={`flex items-center gap-2 text-sm ${theme.muted}`}
+        >
+          <ShieldCheck
+            size={17}
+            className={theme.accent}
+          />
+          Professional service
         </div>
-      </section>
+
+        <div
+          className={`flex items-center gap-2 text-sm ${theme.muted}`}
+        >
+          <CalendarDays
+            size={17}
+            className={theme.accent}
+          />
+          Online booking
+        </div>
+
+        <div
+          className={`flex items-center gap-2 text-sm ${theme.muted}`}
+        >
+          <Clock3
+            size={17}
+            className={theme.accent}
+          />
+          Easy scheduling
+        </div>
+      </div>
+    </div>
+
+    {/* Interactive Booking Engine */}
+    <div
+      id="booking"
+      className={`rounded-3xl border p-5 shadow-2xl sm:p-7 ${theme.card} ${theme.border}`}
+    >
+      <BookingFlow
+        businessName={config.businessName}
+        services={industry.bookingServices}
+        accentClass={theme.accent}
+        accentSoftClass={theme.accentSoft}
+        buttonClass={theme.button}
+        buttonTextClass={theme.buttonText}
+        cardClass={theme.cardMuted}
+        mutedClass={theme.muted}
+        borderClass={theme.border}
+      />
+    </div>
+  </div>
+</section>
 
       {/* Trust strip */}
       <section className={`border-y ${theme.border}`}>
@@ -560,13 +535,13 @@ function DemoExperience() {
             </p>
           </div>
 
-          <button
-            type="button"
-            className="flex min-h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-black"
-          >
+          <Link
+              to="/demo/business"
+               className="flex min-h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-black"
+           >
             See Business View
-            <ArrowRight size={16} />
-          </button>
+           <ArrowRight size={16} />
+           </Link>
         </div>
       </section>
     </main>

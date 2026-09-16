@@ -7,6 +7,7 @@ import Solutions from "../pages/Solutions/Solutions";
 import Pricing from "../pages/Pricing/Pricing";
 import Demo from "../pages/Demo/Demo";
 import DemoExperience from "../pages/Demo/DemoExperience";
+import BusinessDashboard from "../pages/Demo/Business/BusinessDashboard";
 import About from "../pages/About/About";
 import Insights from "../pages/Insights/Insights";
 import Contact from "../pages/Contact/Contact";
@@ -16,6 +17,7 @@ import Terms from "../pages/Terms/Terms";
 import Cookies from "../pages/Cookies/Cookies";
 import Accessibility from "../pages/Accessibility/Accessibility";
 import Security from "../pages/Security/Security";
+
 
 function AppRoutes() {
   return (
@@ -27,6 +29,7 @@ function AppRoutes() {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/demo" element={<Demo />} />
       <Route path="/demo/experience" element={<DemoExperience />} />
+      <Route path="/demo/business" element={<BusinessDashboard />}/>
       <Route path="/about" element={<About />} />
       <Route path="/insights" element={<Insights />} />
       <Route path="/contact" element={<Contact />} />
