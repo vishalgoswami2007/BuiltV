@@ -6,6 +6,7 @@ import Work from "../pages/Work/Work";
 import Solutions from "../pages/Solutions/Solutions";
 import Pricing from "../pages/Pricing/Pricing";
 import Demo from "../pages/Demo/Demo";
+import DemoExperience from "../pages/Demo/DemoExperience";
 import About from "../pages/About/About";
 import Insights from "../pages/Insights/Insights";
 import Contact from "../pages/Contact/Contact";
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path="/solutions" element={<Solutions />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/demo" element={<Demo />} />
+      <Route path="/demo/experience" element={<DemoExperience />} />
       <Route path="/about" element={<About />} />
       <Route path="/insights" element={<Insights />} />
       <Route path="/contact" element={<Contact />} />

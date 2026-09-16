@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -6,7 +7,7 @@ import {
   Check,
   Sparkles,
 } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams , useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo/builtv-logo-compressed.webp";
 import {
@@ -25,6 +26,8 @@ const packageNames: Record<PackageType, string> = {
 };
 
 function Demo() {
+      const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
 
   const requestedPackage = searchParams.get("package");
@@ -48,29 +51,24 @@ function Demo() {
     [businessName],
   );
 
-  const handleLaunch = () => {
-    if (!canLaunch) return;
+ const handleLaunch = () => {
+  if (!canLaunch) return;
 
-    const demoConfig = {
-      businessName: businessName.trim(),
-      industry: businessType,
-      theme,
-      package: selectedPackage,
-      currency: "GBP",
-    };
-
-    sessionStorage.setItem(
-      "builtv-demo-config",
-      JSON.stringify(demoConfig),
-    );
-
-    console.log("BuiltV Demo Config:", demoConfig);
-
-    /*
-      NEXT STEP:
-      navigate("/demo/experience")
-    */
+  const demoConfig = {
+    businessName: businessName.trim(),
+    industry: businessType,
+    theme,
+    package: selectedPackage,
+    currency: "GBP",
   };
+
+  sessionStorage.setItem(
+    "builtv-demo-config",
+    JSON.stringify(demoConfig),
+  );
+
+  navigate("/demo/experience");
+};
 
   return (
     <main className="relative min-h-svh overflow-hidden bg-[#050608] text-white">
