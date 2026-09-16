@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import JobWorkflow from "./JobWorkflows";
 import { Link, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -574,44 +575,48 @@ function BusinessDashboard() {
                 )}
               </>
             )}
+{/* Jobs Workflow */}
+{activeTab === "Jobs" && (
+  <JobWorkflow booking={booking} />
+)}
 
-            {activeTab !== "Overview" && (
-              <div className="rounded-2xl border border-slate-200 bg-white p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
-                  BuiltV Business Pro
-                </p>
+{/* Other Business Pro Sections */}
+{activeTab !== "Overview" && activeTab !== "Jobs" && (
+  <div className="rounded-2xl border border-slate-200 bg-white p-8">
+    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
+      BuiltV Business Pro
+    </p>
 
-                <h2 className="mt-3 text-2xl font-semibold">
-                  {activeTab}
-                </h2>
+    <h2 className="mt-3 text-2xl font-semibold">
+      {activeTab}
+    </h2>
 
-                <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-                  This workspace section is part of the interactive
-                  Business Pro demo. We&apos;ll connect the operational
-                  workflow here next.
-                </p>
+    <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
+      This workspace section is part of the interactive
+      Business Pro demo.
+    </p>
 
-                {activeTab === "Bookings" && (
-                  <div className="mt-7 rounded-xl border border-slate-200 bg-slate-50 p-5">
-                    <p className="font-semibold">
-                      {displayBooking.customer.name}
-                    </p>
+    {activeTab === "Bookings" && (
+      <div className="mt-7 rounded-xl border border-slate-200 bg-slate-50 p-5">
+        <p className="font-semibold">
+          {displayBooking.customer.name}
+        </p>
 
-                    <p className="mt-2 text-sm text-slate-600">
-                      {displayBooking.service}
-                    </p>
+        <p className="mt-2 text-sm text-slate-600">
+          {displayBooking.service}
+        </p>
 
-                    <p className="mt-2 text-xs text-slate-500">
-                      {booking
-                        ? `${formatBookingDate(
-                            displayBooking.date,
-                          )} · ${displayBooking.time}`
-                        : "Sample booking"}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+        <p className="mt-2 text-xs text-slate-500">
+          {booking
+            ? `${formatBookingDate(
+                displayBooking.date,
+              )} · ${displayBooking.time}`
+            : "Sample booking"}
+        </p>
+      </div>
+    )}
+  </div>
+)}
           </div>
         </section>
       </div>
