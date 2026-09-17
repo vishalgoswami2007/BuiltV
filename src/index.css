@@ -53,3 +53,14 @@ video {
     transform: none;
   }
 }
+
+@keyframes aiHint {
+  0%,
+  100% {
+    transform: translateX(0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateX(8px) rotate(4deg);
+  }
+}

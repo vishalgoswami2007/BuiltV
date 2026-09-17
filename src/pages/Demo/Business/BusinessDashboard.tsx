@@ -577,7 +577,114 @@ function BusinessDashboard() {
             )}
 {/* Jobs Workflow */}
 {activeTab === "Jobs" && (
-  <JobWorkflow booking={booking} />
+  <div className="space-y-6">
+    <JobWorkflow booking={booking} />
+
+    {/* Operations + AI Upgrade */}
+    <div className="relative overflow-hidden rounded-3xl bg-slate-950 p-6 text-white sm:p-8">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-sky-400/10 blur-3xl" />
+
+      <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+        <div className="max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300">
+              Next Experience
+            </span>
+
+            <span className="text-xs text-slate-500">
+              Operations + AI
+            </span>
+          </div>
+
+          <h3 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Ready to automate what happens next?
+          </h3>
+
+          <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">
+            See how BuiltV can connect customer conversations,
+            bookings, jobs and operational workflows into one
+            intelligent system.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {[
+              "AI Customer Agent",
+              "Workflow Automation",
+              "Connected Operations",
+              "Smart Follow-ups",
+            ].map((feature) => (
+              <span
+                key={feature}
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300"
+              >
+                {feature}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <Link
+          to="/demo/experience"
+          onClick={() => {
+            const currentConfig =
+              sessionStorage.getItem("builtv-demo-config");
+
+            if (!currentConfig) return;
+
+            try {
+              const parsedConfig = JSON.parse(currentConfig);
+
+              sessionStorage.setItem(
+                "builtv-demo-config",
+                JSON.stringify({
+                  ...parsedConfig,
+                  package: "operations-ai",
+                }),
+              );
+            } catch {
+              // Keep the existing demo configuration unchanged
+              // if stored data cannot be parsed.
+            }
+          }}
+          className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+        >
+          Continue to Operations + AI
+          <ArrowRight size={16} />
+        </Link>
+      </div>
+
+      {/* Progress */}
+      <div className="relative mt-8 border-t border-white/10 pt-5">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <span className="flex items-center gap-1.5 text-emerald-400">
+            <CheckCircle2 size={14} />
+            Booking
+          </span>
+
+          <ChevronRight
+            size={14}
+            className="text-slate-600"
+          />
+
+          <span className="flex items-center gap-1.5 text-emerald-400">
+            <CheckCircle2 size={14} />
+            Business Operations
+          </span>
+
+          <ChevronRight
+            size={14}
+            className="text-slate-600"
+          />
+
+          <span className="font-semibold text-violet-300">
+            AI + Automation
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 )}
 
 {/* Other Business Pro Sections */}

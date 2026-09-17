@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import BookingFlow from "./Booking/BookingFlow";
 import { Link, Navigate } from "react-router-dom";
+import AICustomerAgent from "./AI/AICustomerAgent";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,6 +10,8 @@ import {
   Clock3,
   Menu,
   ShieldCheck,
+  Sparkles,
+  MousePointer2,
   Star,
   X,
 } from "lucide-react";
@@ -136,6 +139,11 @@ function DemoExperience() {
   );
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [aiAgentOpen, setAiAgentOpen] = useState(false);
+
+  const [showAiHint, setShowAiHint] = useState(() => {
+  return sessionStorage.getItem("builtv-ai-hint-seen") !== "true";
+});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -517,7 +525,7 @@ function DemoExperience() {
         </div>
       </section>
 
-      {/* Demo progression */}
+           {/* Demo progression */}
       <section className="bg-[#050608] px-5 py-12 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
           <div>
@@ -536,14 +544,81 @@ function DemoExperience() {
           </div>
 
           <Link
-              to="/demo/business"
-               className="flex min-h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-black"
-           >
+            to="/demo/business"
+            className="flex min-h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-black"
+          >
             See Business View
-           <ArrowRight size={16} />
-           </Link>
+            <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
+
+           {/* AI Customer Agent — Operations + AI package only */}
+      {config.package === "operations-ai" && (
+        <div className="fixed bottom-5 right-5 z-50 sm:bottom-7 sm:right-7">
+          {/* Chat Window */}
+          {aiAgentOpen && (
+            <div className="absolute bottom-16 right-0 w-[calc(100vw-2.5rem)] max-w-105">
+              <AICustomerAgent
+                businessName={config.businessName}
+                industry={config.industry}
+              />
+            </div>
+          )}
+
+          {/* Animated AI discovery hint */}
+          {showAiHint && !aiAgentOpen && (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-14 top-1/2 -translate-y-1/2"
+            >
+              <span className="absolute inset-0 scale-150 animate-ping rounded-full bg-violet-500/20" />
+
+              <div className="relative animate-[aiHint_1.2s_ease-in-out_infinite] rounded-full border border-violet-400/30 bg-slate-950/90 p-2.5 text-violet-300 shadow-lg shadow-violet-500/20 backdrop-blur">
+                <MousePointer2
+                  size={22}
+                  strokeWidth={2}
+                 className="rotate-110"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Ask AI Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setAiAgentOpen((current) => !current);
+
+              if (showAiHint) {
+                setShowAiHint(false);
+
+                sessionStorage.setItem(
+                  "builtv-ai-hint-seen",
+                  "true",
+                );
+              }
+            }}
+            className="relative ml-auto flex min-h-13 items-center gap-2 overflow-hidden rounded-full bg-violet-600 px-5 text-sm font-semibold text-white shadow-2xl shadow-violet-950/30 transition hover:-translate-y-0.5 hover:bg-violet-500"
+          >
+            {!aiAgentOpen && (
+              <span className="absolute inset-0 animate-pulse bg-white/5" />
+            )}
+
+            {aiAgentOpen ? (
+              <>
+                <X size={17} />
+                <span>Close</span>
+              </>
+            ) : (
+              <>
+                <Sparkles size={17} />
+                <span>Ask AI</span>
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </main>
   );
 }
