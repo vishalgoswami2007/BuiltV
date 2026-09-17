@@ -93,30 +93,66 @@ function BookingFlow({
     customer.phone.trim().length >= 7;
 
   const handleConfirmBooking = () => {
-    if (!customerValid) return;
+  if (!customerValid) return;
 
-    const booking = {
-      id: `BV-${Date.now()}`,
-      businessName,
-      service: selectedService,
-      date: selectedDate,
-      time: selectedTime,
-      customer: {
-        name: customer.name.trim(),
-        email: customer.email.trim(),
-        phone: customer.phone.trim(),
-      },
-      status: "Confirmed",
-      createdAt: new Date().toISOString(),
-    };
+  const booking = {
+    id: `BV-${Date.now()}`,
+    businessName,
+    service: selectedService,
+    date: selectedDate,
+    time: selectedTime,
+    customer: {
+      name: customer.name.trim(),
+      email: customer.email.trim(),
+      phone: customer.phone.trim(),
+    },
+    status: "Confirmed",
+    createdAt: new Date().toISOString(),
+  };
+
+  try {
+    const storedBookings = sessionStorage.getItem(
+      "builtv-demo-bookings",
+    );
+
+    const existingBookings = storedBookings
+      ? JSON.parse(storedBookings)
+      : [];
+
+    const bookings = Array.isArray(existingBookings)
+      ? existingBookings
+      : [];
+
+    const updatedBookings = [
+      booking,
+      ...bookings,
+    ];
+
+    sessionStorage.setItem(
+      "builtv-demo-bookings",
+      JSON.stringify(updatedBookings),
+    );
+
+    // Keep latest booking available for the existing
+    // Job → Staff → Automation workflow.
+    sessionStorage.setItem(
+      "builtv-demo-booking",
+      JSON.stringify(booking),
+    );
+  } catch {
+    sessionStorage.setItem(
+      "builtv-demo-bookings",
+      JSON.stringify([booking]),
+    );
 
     sessionStorage.setItem(
       "builtv-demo-booking",
       JSON.stringify(booking),
     );
+  }
 
-    setStep("success");
-  };
+  setStep("success");
+};
 
   const resetBooking = () => {
     setSelectedService("");

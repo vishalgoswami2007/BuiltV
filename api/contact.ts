@@ -4,9 +4,15 @@ import { Resend } from "resend";
 type ContactPayload = {
   name?: unknown;
   email?: unknown;
+  phone?: unknown;
   company?: unknown;
-  projectType?: unknown;
-  budget?: unknown;
+  businessWebsite?: unknown;
+  region?: unknown;
+  businessType?: unknown;
+  selectedPackage?: unknown;
+  solutionNeed?: unknown;
+  currentSetup?: unknown;
+  timeline?: unknown;
   details?: unknown;
   website?: unknown;
 };
@@ -32,17 +38,29 @@ const escapeHtml = (value: string) => {
     .replaceAll("'", "&#039;");
 };
 
+const formatOptionalValue = (value: string) => {
+  return value || "Not provided";
+};
+
 export default async function handler(
   request: VercelRequest,
   response: VercelResponse,
 ) {
+  /*
+   * Only allow POST requests.
+   */
   if (request.method !== "POST") {
+    response.setHeader("Allow", "POST");
+
     return response.status(405).json({
       success: false,
       message: "Method not allowed.",
     });
   }
 
+  /*
+   * Check email service configuration.
+   */
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
@@ -50,30 +68,89 @@ export default async function handler(
 
     return response.status(500).json({
       success: false,
-      message: "Email service is not configured.",
+      message:
+        "The contact service is temporarily unavailable. Please try again later.",
     });
   }
 
+  /*
+   * Safely read request body.
+   */
   const body = (request.body ?? {}) as ContactPayload;
 
   /*
    * Honeypot spam protection.
-   * Real visitors never fill this hidden field.
+   *
+   * Real users should never fill this hidden field.
+   * If it contains a value, silently return success.
    */
   if (cleanText(body.website, 200)) {
     return response.status(200).json({
       success: true,
-      message: "Message received.",
+      message: "Your project request has been received.",
     });
   }
 
+  /*
+   * Clean and normalize all incoming fields.
+   */
   const name = cleanText(body.name, 100);
-  const email = cleanText(body.email, 200).toLowerCase();
-  const company = cleanText(body.company, 150);
-  const projectType = cleanText(body.projectType, 100);
-  const budget = cleanText(body.budget, 100);
-  const details = cleanText(body.details, 5000);
 
+  const email = cleanText(
+    body.email,
+    200,
+  ).toLowerCase();
+
+  const phone = cleanText(body.phone, 80);
+
+  const company = cleanText(
+    body.company,
+    150,
+  );
+
+  const businessWebsite = cleanText(
+    body.businessWebsite,
+    300,
+  );
+
+  const region = cleanText(
+    body.region,
+    150,
+  );
+
+  const businessType = cleanText(
+    body.businessType,
+    150,
+  );
+
+  const selectedPackage = cleanText(
+    body.selectedPackage,
+    250,
+  );
+
+  const solutionNeed = cleanText(
+    body.solutionNeed,
+    200,
+  );
+
+  const currentSetup = cleanText(
+    body.currentSetup,
+    200,
+  );
+
+  const timeline = cleanText(
+    body.timeline,
+    150,
+  );
+
+  const details = cleanText(
+    body.details,
+    5000,
+  );
+
+  /*
+   * Required-field validation.
+   */
   if (!name) {
     return response.status(400).json({
       success: false,
@@ -84,296 +161,520 @@ export default async function handler(
   if (!email || !isValidEmail(email)) {
     return response.status(400).json({
       success: false,
-      message: "Please enter a valid email address.",
+      message:
+        "Please enter a valid email address.",
     });
   }
 
-  if (!projectType) {
+  if (!company) {
     return response.status(400).json({
       success: false,
-      message: "Please select a project type.",
+      message:
+        "Please enter your business name.",
     });
   }
 
-  if (!budget) {
+  if (!businessType) {
     return response.status(400).json({
       success: false,
-      message: "Please select a budget.",
+      message:
+        "Please select your business type.",
+    });
+  }
+
+  if (!region) {
+    return response.status(400).json({
+      success: false,
+      message:
+        "Please enter your country or region.",
+    });
+  }
+
+  if (!selectedPackage) {
+    return response.status(400).json({
+      success: false,
+      message:
+        "Please select a BuiltV package.",
+    });
+  }
+
+  if (!solutionNeed) {
+    return response.status(400).json({
+      success: false,
+      message:
+        "Please select your primary requirement.",
+    });
+  }
+
+  if (!currentSetup) {
+    return response.status(400).json({
+      success: false,
+      message:
+        "Please select your current setup.",
+    });
+  }
+
+  if (!timeline) {
+    return response.status(400).json({
+      success: false,
+      message:
+        "Please select your preferred timeline.",
     });
   }
 
   if (details.length < 20) {
     return response.status(400).json({
       success: false,
-      message: "Please provide a little more detail about your project.",
+      message:
+        "Please provide a little more detail about your business and what you would like BuiltV to improve.",
     });
   }
 
-  const resend = new Resend(apiKey);
-
+  /*
+   * Escape all user-provided values before inserting
+   * them into the HTML email.
+   */
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
-  const safeCompany = escapeHtml(company || "Not provided");
-  const safeProjectType = escapeHtml(projectType);
-  const safeBudget = escapeHtml(budget);
 
-  const safeDetails = escapeHtml(details).replace(/\n/g, "<br />");
+  const safePhone = escapeHtml(
+    formatOptionalValue(phone),
+  );
+
+  const safeCompany = escapeHtml(company);
+
+  const safeBusinessWebsite = escapeHtml(
+    formatOptionalValue(businessWebsite),
+  );
+
+  const safeRegion = escapeHtml(region);
+
+  const safeBusinessType =
+    escapeHtml(businessType);
+
+  const safeSelectedPackage =
+    escapeHtml(selectedPackage);
+
+  const safeSolutionNeed =
+    escapeHtml(solutionNeed);
+
+  const safeCurrentSetup =
+    escapeHtml(currentSetup);
+
+  const safeTimeline =
+    escapeHtml(timeline);
+
+  const safeDetails = escapeHtml(
+    details,
+  ).replace(/\n/g, "<br />");
+
+  const resend = new Resend(apiKey);
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: "BuiltV Website <onboarding@resend.dev>",
+    const { data, error } =
+      await resend.emails.send({
+        from: "BuiltV Website <onboarding@resend.dev>",
 
-      to: ["vg0767875@gmail.com"],
+        to: ["vg0767875@gmail.com"],
 
-      replyTo: email,
+        replyTo: email,
 
-      subject: `New BuiltV project enquiry — ${name}`,
+        subject: `New BuiltV project request — ${company}`,
 
-      html: `
-        <div
-          style="
-            margin: 0;
-            padding: 40px 20px;
-            background: #050608;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #ffffff;
-          "
-        >
+        html: `
           <div
             style="
-              max-width: 680px;
-              margin: 0 auto;
+              margin: 0;
+              padding: 40px 20px;
+              background: #050608;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #ffffff;
             "
           >
             <div
               style="
-                margin-bottom: 24px;
+                max-width: 720px;
+                margin: 0 auto;
               "
             >
-              <p
-                style="
-                  margin: 0 0 8px;
-                  color: #7dd3fc;
-                  font-size: 12px;
-                  font-weight: 600;
-                  letter-spacing: 2px;
-                  text-transform: uppercase;
-                "
-              >
-                BuiltV
-              </p>
-
-              <h1
-                style="
-                  margin: 0;
-                  color: #ffffff;
-                  font-size: 28px;
-                  line-height: 1.3;
-                "
-              >
-                New project enquiry
-              </h1>
-            </div>
-
-            <div
-              style="
-                padding: 28px;
-                background: #0a0d12;
-                border: 1px solid #202631;
-                border-radius: 16px;
-              "
-            >
-              <table
-                style="
-                  width: 100%;
-                  border-collapse: collapse;
-                "
-              >
-                <tr>
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #64748b;
-                      font-size: 14px;
-                      width: 140px;
-                    "
-                  >
-                    Name
-                  </td>
-
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #ffffff;
-                      font-size: 14px;
-                    "
-                  >
-                    ${safeName}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #64748b;
-                      font-size: 14px;
-                    "
-                  >
-                    Email
-                  </td>
-
-                  <td
-                    style="
-                      padding: 10px 0;
-                      font-size: 14px;
-                    "
-                  >
-                    <a
-                      href="mailto:${safeEmail}"
-                      style="
-                        color: #7dd3fc;
-                        text-decoration: none;
-                      "
-                    >
-                      ${safeEmail}
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #64748b;
-                      font-size: 14px;
-                    "
-                  >
-                    Company
-                  </td>
-
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #ffffff;
-                      font-size: 14px;
-                    "
-                  >
-                    ${safeCompany}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #64748b;
-                      font-size: 14px;
-                    "
-                  >
-                    Project type
-                  </td>
-
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #ffffff;
-                      font-size: 14px;
-                    "
-                  >
-                    ${safeProjectType}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #64748b;
-                      font-size: 14px;
-                    "
-                  >
-                    Budget
-                  </td>
-
-                  <td
-                    style="
-                      padding: 10px 0;
-                      color: #ffffff;
-                      font-size: 14px;
-                    "
-                  >
-                    ${safeBudget}
-                  </td>
-                </tr>
-              </table>
+              <!-- HEADER -->
 
               <div
                 style="
-                  height: 1px;
-                  margin: 24px 0;
-                  background: #202631;
-                "
-              ></div>
-
-              <p
-                style="
-                  margin: 0 0 10px;
-                  color: #ffffff;
-                  font-size: 14px;
-                  font-weight: 600;
+                  margin-bottom: 24px;
                 "
               >
-                Project details
-              </p>
+                <p
+                  style="
+                    margin: 0 0 8px;
+                    color: #7dd3fc;
+                    font-size: 12px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                  "
+                >
+                  BUILTV PROJECT REQUEST
+                </p>
 
-              <p
+                <h1
+                  style="
+                    margin: 0;
+                    color: #ffffff;
+                    font-size: 28px;
+                    line-height: 1.3;
+                  "
+                >
+                  New business enquiry
+                </h1>
+
+                <p
+                  style="
+                    margin: 10px 0 0;
+                    color: #94a3b8;
+                    font-size: 14px;
+                    line-height: 1.6;
+                  "
+                >
+                  A new project review request was submitted through
+                  the BuiltV website.
+                </p>
+              </div>
+
+              <!-- CONTACT -->
+
+              <div
                 style="
-                  margin: 0;
-                  color: #cbd5e1;
-                  font-size: 14px;
-                  line-height: 1.75;
+                  margin-bottom: 16px;
+                  padding: 26px;
+                  background: #0a0d12;
+                  border: 1px solid #202631;
+                  border-radius: 16px;
                 "
               >
-                ${safeDetails}
-              </p>
+                <p
+                  style="
+                    margin: 0 0 18px;
+                    color: #7dd3fc;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  CONTACT
+                </p>
+
+                <table
+                  style="
+                    width: 100%;
+                    border-collapse: collapse;
+                  "
+                >
+                  <tr>
+                    <td style="${labelStyle}">
+                      Name
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeName}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Email
+                    </td>
+
+                    <td style="${valueStyle}">
+                      <a
+                        href="mailto:${safeEmail}"
+                        style="
+                          color: #7dd3fc;
+                          text-decoration: none;
+                        "
+                      >
+                        ${safeEmail}
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Phone / WhatsApp
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safePhone}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Business
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeCompany}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- BUSINESS -->
+
+              <div
+                style="
+                  margin-bottom: 16px;
+                  padding: 26px;
+                  background: #0a0d12;
+                  border: 1px solid #202631;
+                  border-radius: 16px;
+                "
+              >
+                <p
+                  style="
+                    margin: 0 0 18px;
+                    color: #7dd3fc;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  BUSINESS
+                </p>
+
+                <table
+                  style="
+                    width: 100%;
+                    border-collapse: collapse;
+                  "
+                >
+                  <tr>
+                    <td style="${labelStyle}">
+                      Business type
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeBusinessType}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Country / Region
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeRegion}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Website
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeBusinessWebsite}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- PROJECT -->
+
+              <div
+                style="
+                  margin-bottom: 16px;
+                  padding: 26px;
+                  background: #0a0d12;
+                  border: 1px solid #202631;
+                  border-radius: 16px;
+                "
+              >
+                <p
+                  style="
+                    margin: 0 0 18px;
+                    color: #7dd3fc;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  PROJECT
+                </p>
+
+                <table
+                  style="
+                    width: 100%;
+                    border-collapse: collapse;
+                  "
+                >
+                  <tr>
+                    <td style="${labelStyle}">
+                      Package
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeSelectedPackage}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Primary requirement
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeSolutionNeed}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Current setup
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeCurrentSetup}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="${labelStyle}">
+                      Timeline
+                    </td>
+
+                    <td style="${valueStyle}">
+                      ${safeTimeline}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- DETAILS -->
+
+              <div
+                style="
+                  padding: 26px;
+                  background: #0a0d12;
+                  border: 1px solid #202631;
+                  border-radius: 16px;
+                "
+              >
+                <p
+                  style="
+                    margin: 0 0 14px;
+                    color: #7dd3fc;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  WORKFLOW & REQUIREMENTS
+                </p>
+
+                <p
+                  style="
+                    margin: 0;
+                    color: #cbd5e1;
+                    font-size: 14px;
+                    line-height: 1.8;
+                  "
+                >
+                  ${safeDetails}
+                </p>
+              </div>
+
+              <!-- FOOTER -->
+
+              <div
+                style="
+                  margin-top: 22px;
+                  padding-top: 18px;
+                  border-top: 1px solid #1e293b;
+                "
+              >
+                <p
+                  style="
+                    margin: 0;
+                    color: #475569;
+                    font-size: 12px;
+                    line-height: 1.6;
+                  "
+                >
+                  Sent automatically from the BuiltV website
+                  project request form.
+                </p>
+
+                <p
+                  style="
+                    margin: 6px 0 0;
+                    color: #475569;
+                    font-size: 12px;
+                  "
+                >
+                  Reply directly to this email to contact
+                  ${safeName}.
+                </p>
+              </div>
             </div>
-
-            <p
-              style="
-                margin-top: 20px;
-                color: #475569;
-                font-size: 12px;
-              "
-            >
-              Sent from the BuiltV website contact form.
-            </p>
           </div>
-        </div>
-      `,
-    });
+        `,
+      });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error(
+        "Resend email error:",
+        error,
+      );
 
       return response.status(500).json({
         success: false,
-        message: "We couldn't send your enquiry. Please try again.",
+        message:
+          "We couldn't send your project request. Please try again.",
       });
     }
 
-    console.log("BuiltV enquiry sent:", data?.id);
+    console.log(
+      "BuiltV project request sent:",
+      data?.id,
+    );
 
     return response.status(200).json({
       success: true,
-      message: "Thanks — your enquiry has been received.",
+      message:
+        "Thanks — your project request has been received. We'll review the details and get back to you.",
     });
   } catch (error) {
-    console.error("Contact API error:", error);
+    console.error(
+      "BuiltV contact API error:",
+      error,
+    );
 
     return response.status(500).json({
       success: false,
-      message: "Something went wrong. Please try again.",
+      message:
+        "Something went wrong while sending your request. Please try again.",
     });
   }
 }
+
+const labelStyle = `
+  padding: 9px 18px 9px 0;
+  color: #64748b;
+  font-size: 13px;
+  width: 170px;
+  vertical-align: top;
+`;
+
+const valueStyle = `
+  padding: 9px 0;
+  color: #ffffff;
+  font-size: 14px;
+  vertical-align: top;
+`;

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
-import JobWorkflow from "./JobWorkflows";
 import { Link, Navigate } from "react-router-dom";
+import JobWorkflow from "./JobWorkflows";
+import AutomationWorkflow from "./AutomationWorkflow";
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,13 +17,17 @@ import {
   Menu,
   Search,
   Settings,
+  Sparkles,
   UserRound,
   UsersRound,
   Wrench,
   X,
 } from "lucide-react";
 
-import { industryConfig, type IndustryId } from "../industryConfig";
+import {
+  industryConfig,
+  type IndustryId,
+} from "../industryConfig";
 
 interface StoredDemoConfig {
   businessName: string;
@@ -43,6 +49,7 @@ interface DemoBooking {
     phone: string;
   };
   status: string;
+  source?: string;
   createdAt: string;
 }
 
@@ -83,7 +90,9 @@ const navItems = [
 
 function getStoredConfig(): StoredDemoConfig | null {
   try {
-    const stored = sessionStorage.getItem("builtv-demo-config");
+    const stored = sessionStorage.getItem(
+      "builtv-demo-config",
+    );
 
     if (!stored) return null;
 
@@ -95,13 +104,44 @@ function getStoredConfig(): StoredDemoConfig | null {
 
 function getStoredBooking(): DemoBooking | null {
   try {
-    const stored = sessionStorage.getItem("builtv-demo-booking");
+    const stored = sessionStorage.getItem(
+      "builtv-demo-booking",
+    );
 
     if (!stored) return null;
 
     return JSON.parse(stored) as DemoBooking;
   } catch {
     return null;
+  }
+}
+
+function getStoredBookings(): DemoBooking[] {
+  try {
+    const stored = sessionStorage.getItem(
+      "builtv-demo-bookings",
+    );
+
+    if (stored) {
+      const parsed = JSON.parse(stored);
+
+      if (Array.isArray(parsed)) {
+        return parsed as DemoBooking[];
+      }
+    }
+
+    /*
+     * Backward compatibility:
+     * if an older demo only has one stored booking,
+     * still show it in the new dashboard.
+     */
+    const oldBooking = getStoredBooking();
+
+    return oldBooking ? [oldBooking] : [];
+  } catch {
+    const oldBooking = getStoredBooking();
+
+    return oldBooking ? [oldBooking] : [];
   }
 }
 
@@ -122,21 +162,58 @@ function BusinessDashboard() {
     getStoredConfig(),
   );
 
-  const [booking] = useState<DemoBooking | null>(() =>
-    getStoredBooking(),
+  const [bookings] = useState<DemoBooking[]>(() =>
+    getStoredBookings(),
   );
+
+  /*
+   * Latest booking remains the active booking for
+   * Job → Staff → Automation.
+   */
+  const booking = bookings[0] ?? null;
 
   const [activeTab, setActiveTab] =
     useState<DashboardTab>("Overview");
 
-  const [mobileSidebarOpen, setMobileSidebarOpen] =
-    useState(false);
+  const [
+    mobileSidebarOpen,
+    setMobileSidebarOpen,
+  ] = useState(false);
 
   const industry = useMemo(() => {
     if (!config) return null;
 
     return industryConfig[config.industry];
   }, [config]);
+
+  const customerCount = useMemo(() => {
+    const customers = new Set(
+      bookings.map((item) =>
+        item.customer.email.trim().toLowerCase(),
+      ),
+    );
+
+    return customers.size;
+  }, [bookings]);
+
+  const uniqueCustomers = useMemo(() => {
+    const customers = new Map<
+      string,
+      DemoBooking["customer"]
+    >();
+
+    bookings.forEach((item) => {
+      const key =
+        item.customer.email.trim().toLowerCase() ||
+        item.customer.phone.trim();
+
+      if (!customers.has(key)) {
+        customers.set(key, item.customer);
+      }
+    });
+
+    return Array.from(customers.values());
+  }, [bookings]);
 
   if (!config || !industry) {
     return <Navigate to="/demo" replace />;
@@ -145,20 +222,8 @@ function BusinessDashboard() {
   const businessInitial =
     config.businessName.charAt(0).toUpperCase() || "B";
 
-  const displayBooking = booking ?? {
-    id: "DEMO-BOOKING",
-    businessName: config.businessName,
-    service: industry.bookingServices[0],
-    date: "",
-    time: "10:30",
-    customer: {
-      name: "Sample Customer",
-      email: "customer@example.com",
-      phone: "Demo contact",
-    },
-    status: "Demo",
-    createdAt: new Date().toISOString(),
-  };
+  const isAiBooking =
+    booking?.source === "AI Customer Agent Demo";
 
   return (
     <main className="min-h-svh bg-[#f5f7fa] text-slate-950">
@@ -174,7 +239,9 @@ function BusinessDashboard() {
           </Link>
 
           <div className="hidden text-xs text-slate-500 sm:block">
-            BuiltV Business Pro Experience
+            {config.package === "operations-ai"
+              ? "BuiltV Operations + AI Experience"
+              : "BuiltV Business Pro Experience"}
           </div>
 
           <Link
@@ -215,13 +282,16 @@ function BusinessDashboard() {
             <nav className="space-y-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const active = activeTab === item.label;
+                const active =
+                  activeTab === item.label;
 
                 return (
                   <button
                     key={item.label}
                     type="button"
-                    onClick={() => setActiveTab(item.label)}
+                    onClick={() =>
+                      setActiveTab(item.label)
+                    }
                     className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition ${
                       active
                         ? "bg-slate-950 text-white"
@@ -253,7 +323,9 @@ function BusinessDashboard() {
             <button
               type="button"
               aria-label="Close sidebar"
-              onClick={() => setMobileSidebarOpen(false)}
+              onClick={() =>
+                setMobileSidebarOpen(false)
+              }
               className="absolute inset-0 bg-black/40"
             />
 
@@ -265,13 +337,18 @@ function BusinessDashboard() {
                   </p>
 
                   <p className="text-xs text-slate-500">
-                    Business Pro
+                    {config.package ===
+                    "operations-ai"
+                      ? "Operations + AI"
+                      : "Business Pro"}
                   </p>
                 </div>
 
                 <button
                   type="button"
-                  onClick={() => setMobileSidebarOpen(false)}
+                  onClick={() =>
+                    setMobileSidebarOpen(false)
+                  }
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200"
                 >
                   <X size={18} />
@@ -281,7 +358,8 @@ function BusinessDashboard() {
               <nav className="mt-7 space-y-1">
                 {navItems.map((item) => {
                   const Icon = item.icon;
-                  const active = activeTab === item.label;
+                  const active =
+                    activeTab === item.label;
 
                   return (
                     <button
@@ -315,7 +393,9 @@ function BusinessDashboard() {
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setMobileSidebarOpen(true)}
+                  onClick={() =>
+                    setMobileSidebarOpen(true)
+                  }
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 lg:hidden"
                 >
                   <Menu size={18} />
@@ -323,7 +403,10 @@ function BusinessDashboard() {
 
                 <div>
                   <p className="text-xs font-medium text-slate-500">
-                    BUSINESS PRO
+                    {config.package ===
+                    "operations-ai"
+                      ? "OPERATIONS + AI"
+                      : "BUSINESS PRO"}
                   </p>
 
                   <h1 className="mt-1 text-lg font-semibold">
@@ -353,9 +436,9 @@ function BusinessDashboard() {
 
           {/* Main Content */}
           <div className="mx-auto max-w-7xl p-5 sm:p-8">
+            {/* OVERVIEW */}
             {activeTab === "Overview" && (
               <>
-                {/* Heading */}
                 <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
                   <div>
                     <p className="text-sm text-slate-500">
@@ -367,8 +450,8 @@ function BusinessDashboard() {
                     </h2>
 
                     <p className="mt-2 text-sm text-slate-500">
-                      Here&apos;s what&apos;s happening across your
-                      business.
+                      Here&apos;s what&apos;s happening
+                      across your business.
                     </p>
                   </div>
 
@@ -381,11 +464,19 @@ function BusinessDashboard() {
                 <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                   <StatCard
                     icon={CalendarDays}
-                    label="New booking"
-                    value={booking ? "1" : "—"}
+                    label="New bookings"
+                    value={
+                      bookings.length > 0
+                        ? String(bookings.length)
+                        : "—"
+                    }
                     helper={
-                      booking
-                        ? "Created from customer website"
+                      bookings.length > 0
+                        ? `${bookings.length} confirmed ${
+                            bookings.length === 1
+                              ? "appointment"
+                              : "appointments"
+                          }`
                         : "Create a booking first"
                     }
                   />
@@ -394,17 +485,29 @@ function BusinessDashboard() {
                     icon={BriefcaseBusiness}
                     label="Job status"
                     value={booking ? "Ready" : "—"}
-                    helper="Ready for assignment"
+                    helper={
+                      booking
+                        ? "Latest booking ready for assignment"
+                        : "Waiting for a booking"
+                    }
                   />
 
                   <StatCard
                     icon={UsersRound}
-                    label="Customer"
-                    value={booking ? "1" : "—"}
+                    label="Customers"
+                    value={
+                      customerCount > 0
+                        ? String(customerCount)
+                        : "—"
+                    }
                     helper={
-                      booking
-                        ? "Added through booking"
-                        : "No customer yet"
+                      customerCount > 0
+                        ? `${customerCount} unique ${
+                            customerCount === 1
+                              ? "customer"
+                              : "customers"
+                          }`
+                        : "No customers yet"
                     }
                   />
 
@@ -433,7 +536,9 @@ function BusinessDashboard() {
 
                       <button
                         type="button"
-                        onClick={() => setActiveTab("Bookings")}
+                        onClick={() =>
+                          setActiveTab("Bookings")
+                        }
                         className="flex items-center gap-1 text-xs font-semibold text-slate-600"
                       >
                         View all
@@ -441,61 +546,35 @@ function BusinessDashboard() {
                       </button>
                     </div>
 
-                    <div className="p-5">
-                      <div className="rounded-2xl border border-sky-100 bg-sky-50/60 p-5">
-                        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-                          <div className="flex gap-4">
-                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-sky-600 shadow-sm">
-                              <Wrench size={18} />
-                            </div>
+                    <div className="space-y-3 p-5">
+                      {bookings.length > 0 ? (
+                        bookings
+                          .slice(0, 4)
+                          .map((item) => {
+                            const itemIsAi =
+                              item.source ===
+                              "AI Customer Agent Demo";
 
-                            <div>
-                              <div className="flex flex-wrap items-center gap-2">
-                                <p className="font-semibold">
-                                  {displayBooking.customer.name}
-                                </p>
+                            return (
+                              <BookingCard
+                                key={item.id}
+                                booking={item}
+                                isAi={itemIsAi}
+                              />
+                            );
+                          })
+                      ) : (
+                        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                          <p className="text-sm font-semibold text-slate-700">
+                            No bookings yet
+                          </p>
 
-                                {booking && (
-                                  <span className="rounded-full bg-sky-600 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
-                                    New booking
-                                  </span>
-                                )}
-
-                                {!booking && (
-                                  <span className="rounded-full bg-slate-200 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-slate-600">
-                                    Sample data
-                                  </span>
-                                )}
-                              </div>
-
-                              <p className="mt-2 text-sm font-medium text-slate-700">
-                                {displayBooking.service}
-                              </p>
-
-                              <div className="mt-3 flex flex-wrap gap-3 text-xs text-slate-500">
-                                <span className="flex items-center gap-1.5">
-                                  <CalendarDays size={14} />
-                                  {booking
-                                    ? formatBookingDate(
-                                        displayBooking.date,
-                                      )
-                                    : "Demo appointment"}
-                                </span>
-
-                                <span className="flex items-center gap-1.5">
-                                  <Clock3 size={14} />
-                                  {displayBooking.time}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <span className="flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
-                            <CheckCircle2 size={14} />
-                            {displayBooking.status}
-                          </span>
+                          <p className="mt-1 text-xs text-slate-500">
+                            Create a booking from the
+                            customer experience.
+                          </p>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
 
@@ -512,10 +591,16 @@ function BusinessDashboard() {
                     <div className="mt-6 space-y-5">
                       <WorkflowItem
                         number="01"
-                        title="Booking received"
+                        title={
+                          isAiBooking
+                            ? "AI booking received"
+                            : "Booking received"
+                        }
                         description={
                           booking
-                            ? "Customer booking entered the workspace."
+                            ? isAiBooking
+                              ? "AI Customer Agent sent the latest booking into the workspace."
+                              : "Latest customer booking entered the workspace."
                             : "Waiting for a customer booking."
                         }
                         completed={Boolean(booking)}
@@ -524,7 +609,7 @@ function BusinessDashboard() {
                       <WorkflowItem
                         number="02"
                         title="Create job"
-                        description="Turn the booking into an operational job."
+                        description="Turn the latest booking into an operational job."
                       />
 
                       <WorkflowItem
@@ -535,14 +620,14 @@ function BusinessDashboard() {
 
                       <WorkflowItem
                         number="04"
-                        title="Complete & collect payment"
-                        description="Finish the job and continue the workflow."
+                        title="Automate operations"
+                        description="Trigger the connected operational workflow."
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Aha Moment */}
+                {/* Connected System */}
                 {booking && (
                   <div className="mt-6 rounded-2xl bg-slate-950 p-6 text-white sm:p-8">
                     <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
@@ -552,19 +637,26 @@ function BusinessDashboard() {
                         </p>
 
                         <h3 className="mt-3 text-xl font-semibold">
-                          The customer booking is already here.
+                          {bookings.length > 1
+                            ? `${bookings.length} customer bookings are now connected to the workspace.`
+                            : isAiBooking
+                              ? "The AI-created booking is already here."
+                              : "The customer booking is already here."}
                         </h3>
 
                         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-                          The appointment created on the customer
-                          website has moved directly into the business
-                          workspace — ready to become a job.
+                          The latest confirmed appointment
+                          is ready to move directly into
+                          job creation, staff scheduling
+                          and connected operations.
                         </p>
                       </div>
 
                       <button
                         type="button"
-                        onClick={() => setActiveTab("Jobs")}
+                        onClick={() =>
+                          setActiveTab("Jobs")
+                        }
                         className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-black"
                       >
                         Continue to Jobs
@@ -575,159 +667,411 @@ function BusinessDashboard() {
                 )}
               </>
             )}
-{/* Jobs Workflow */}
-{activeTab === "Jobs" && (
-  <div className="space-y-6">
-    <JobWorkflow booking={booking} />
 
-    {/* Operations + AI Upgrade */}
-    <div className="relative overflow-hidden rounded-3xl bg-slate-950 p-6 text-white sm:p-8">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-sky-400/10 blur-3xl" />
+            {/* JOBS + AUTOMATION */}
+            {activeTab === "Jobs" && (
+              <div className="space-y-8">
+                <JobWorkflow booking={booking} />
 
-      <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
-        <div className="max-w-2xl">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300">
-              Next Experience
-            </span>
+                <div className="flex items-center gap-4">
+                  <div className="h-px flex-1 bg-slate-200" />
 
-            <span className="text-xs text-slate-500">
-              Operations + AI
-            </span>
-          </div>
+                  <div className="flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-700">
+                    <Sparkles size={12} />
+                    Connected Automation
+                  </div>
 
-          <h3 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Ready to automate what happens next?
-          </h3>
+                  <div className="h-px flex-1 bg-slate-200" />
+                </div>
 
-          <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">
-            See how BuiltV can connect customer conversations,
-            bookings, jobs and operational workflows into one
-            intelligent system.
-          </p>
+                <AutomationWorkflow />
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {[
-              "AI Customer Agent",
-              "Workflow Automation",
-              "Connected Operations",
-              "Smart Follow-ups",
-            ].map((feature) => (
-              <span
-                key={feature}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300"
+                <div className="relative overflow-hidden rounded-3xl bg-slate-950 p-6 text-white sm:p-8">
+                  <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl" />
+                  <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-sky-400/10 blur-3xl" />
+
+                  <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+                    <div className="max-w-2xl">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300">
+                          Operations + AI
+                        </span>
+
+                        <span className="text-xs text-slate-500">
+                          Connected Experience
+                        </span>
+                      </div>
+
+                      <h3 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+                        One customer journey. One
+                        connected system.
+                      </h3>
+
+                      <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">
+                        From the first customer
+                        conversation to booking, staff
+                        assignment and operational
+                        automation, BuiltV connects the
+                        workflow around the way your
+                        service business operates.
+                      </p>
+
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {[
+                          "AI Customer Agent",
+                          "Booking",
+                          "Job Management",
+                          "Staff Scheduling",
+                          "Workflow Automation",
+                        ].map((feature) => (
+                          <span
+                            key={feature}
+                            className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <Link
+                      to="/contact"
+                      className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                    >
+                      Build My System
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+
+                  <div className="relative mt-8 border-t border-white/10 pt-5">
+                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                      {[
+                        isAiBooking
+                          ? "AI Conversation"
+                          : "Customer Request",
+                        "Booking",
+                        "Job",
+                        "Staff",
+                        "Automation",
+                      ].map(
+                        (step, index, array) => (
+                          <div
+                            key={step}
+                            className="flex items-center gap-2"
+                          >
+                            <span className="flex items-center gap-1.5 text-slate-300">
+                              <CheckCircle2
+                                size={14}
+                                className="text-emerald-400"
+                              />
+                              {step}
+                            </span>
+
+                            {index <
+                              array.length - 1 && (
+                              <ChevronRight
+                                size={14}
+                                className="text-slate-600"
+                              />
+                            )}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* BOOKINGS */}
+            {activeTab === "Bookings" && (
+              <WorkspaceSection
+                packageName={
+                  config.package === "operations-ai"
+                    ? "BuiltV Operations + AI"
+                    : "BuiltV Business Pro"
+                }
+                title="Bookings"
+                description="Every confirmed customer appointment appears here in the connected workspace."
               >
-                {feature}
-              </span>
-            ))}
-          </div>
-        </div>
+                {bookings.length > 0 ? (
+                  <div className="space-y-3">
+                    {bookings.map((item) => (
+                      <BookingCard
+                        key={item.id}
+                        booking={item}
+                        isAi={
+                          item.source ===
+                          "AI Customer Agent Demo"
+                        }
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState
+                    title="No bookings yet"
+                    description="Create an appointment from the customer experience first."
+                  />
+                )}
+              </WorkspaceSection>
+            )}
 
-        <Link
-          to="/demo/experience"
-          onClick={() => {
-            const currentConfig =
-              sessionStorage.getItem("builtv-demo-config");
+            {/* CUSTOMERS */}
+            {activeTab === "Customers" && (
+              <WorkspaceSection
+                packageName={
+                  config.package === "operations-ai"
+                    ? "BuiltV Operations + AI"
+                    : "BuiltV Business Pro"
+                }
+                title="Customers"
+                description="Customer details captured through the booking experience appear here automatically."
+              >
+                {uniqueCustomers.length > 0 ? (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {uniqueCustomers.map(
+                      (customer) => (
+                        <div
+                          key={`${customer.email}-${customer.phone}`}
+                          className="rounded-xl border border-slate-200 bg-slate-50 p-5"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-sm font-semibold text-white">
+                              {customer.name
+                                .charAt(0)
+                                .toUpperCase()}
+                            </div>
 
-            if (!currentConfig) return;
+                            <div className="min-w-0">
+                              <p className="truncate font-semibold">
+                                {customer.name}
+                              </p>
 
-            try {
-              const parsedConfig = JSON.parse(currentConfig);
+                              <p className="mt-1 truncate text-xs text-slate-500">
+                                {customer.email}
+                              </p>
+                            </div>
+                          </div>
 
-              sessionStorage.setItem(
-                "builtv-demo-config",
-                JSON.stringify({
-                  ...parsedConfig,
-                  package: "operations-ai",
-                }),
-              );
-            } catch {
-              // Keep the existing demo configuration unchanged
-              // if stored data cannot be parsed.
-            }
-          }}
-          className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
-        >
-          Continue to Operations + AI
-          <ArrowRight size={16} />
-        </Link>
-      </div>
+                          <p className="mt-4 text-xs text-slate-500">
+                            {customer.phone}
+                          </p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                ) : (
+                  <EmptyState
+                    title="No customers yet"
+                    description="Customer profiles will appear after a booking is confirmed."
+                  />
+                )}
+              </WorkspaceSection>
+            )}
 
-      {/* Progress */}
-      <div className="relative mt-8 border-t border-white/10 pt-5">
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="flex items-center gap-1.5 text-emerald-400">
-            <CheckCircle2 size={14} />
-            Booking
-          </span>
+            {/* STAFF */}
+            {activeTab === "Staff" && (
+              <WorkspaceSection
+                packageName={
+                  config.package === "operations-ai"
+                    ? "BuiltV Operations + AI"
+                    : "BuiltV Business Pro"
+                }
+                title="Staff"
+                description="Your operational team can be assigned to confirmed jobs."
+              >
+                <div className="grid gap-3 md:grid-cols-3">
+                  {[
+                    {
+                      name: "Alex Morgan",
+                      role: "Senior Technician",
+                    },
+                    {
+                      name: "Jamie Wilson",
+                      role: "Service Technician",
+                    },
+                    {
+                      name: "Taylor Smith",
+                      role: "Field Specialist",
+                    },
+                  ].map((staff) => (
+                    <div
+                      key={staff.name}
+                      className="rounded-xl border border-slate-200 bg-slate-50 p-5"
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white">
+                        {staff.name.charAt(0)}
+                      </div>
 
-          <ChevronRight
-            size={14}
-            className="text-slate-600"
-          />
+                      <p className="mt-4 font-semibold">
+                        {staff.name}
+                      </p>
 
-          <span className="flex items-center gap-1.5 text-emerald-400">
-            <CheckCircle2 size={14} />
-            Business Operations
-          </span>
+                      <p className="mt-1 text-xs text-slate-500">
+                        {staff.role}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </WorkspaceSection>
+            )}
 
-          <ChevronRight
-            size={14}
-            className="text-slate-600"
-          />
+            {/* PAYMENTS */}
+            {activeTab === "Payments" && (
+              <WorkspaceSection
+                packageName={
+                  config.package === "operations-ai"
+                    ? "BuiltV Operations + AI"
+                    : "BuiltV Business Pro"
+                }
+                title="Payments"
+                description="Payment status can stay connected to the customer, booking and job workflow."
+              >
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                    <div>
+                      <p className="font-semibold">
+                        Demo payment workflow
+                      </p>
 
-          <span className="font-semibold text-violet-300">
-            AI + Automation
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+                      <p className="mt-1 text-xs text-slate-500">
+                        {bookings.length > 0
+                          ? `${bookings.length} ${
+                              bookings.length === 1
+                                ? "booking"
+                                : "bookings"
+                            } awaiting payment processing.`
+                          : "No bookings awaiting payment."}
+                      </p>
+                    </div>
 
-{/* Other Business Pro Sections */}
-{activeTab !== "Overview" && activeTab !== "Jobs" && (
-  <div className="rounded-2xl border border-slate-200 bg-white p-8">
-    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
-      BuiltV Business Pro
-    </p>
-
-    <h2 className="mt-3 text-2xl font-semibold">
-      {activeTab}
-    </h2>
-
-    <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-      This workspace section is part of the interactive
-      Business Pro demo.
-    </p>
-
-    {activeTab === "Bookings" && (
-      <div className="mt-7 rounded-xl border border-slate-200 bg-slate-50 p-5">
-        <p className="font-semibold">
-          {displayBooking.customer.name}
-        </p>
-
-        <p className="mt-2 text-sm text-slate-600">
-          {displayBooking.service}
-        </p>
-
-        <p className="mt-2 text-xs text-slate-500">
-          {booking
-            ? `${formatBookingDate(
-                displayBooking.date,
-              )} · ${displayBooking.time}`
-            : "Sample booking"}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+                    <span className="w-fit rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-700">
+                      Pending
+                    </span>
+                  </div>
+                </div>
+              </WorkspaceSection>
+            )}
           </div>
         </section>
       </div>
     </main>
+  );
+}
+
+interface BookingCardProps {
+  booking: DemoBooking;
+  isAi: boolean;
+}
+
+function BookingCard({
+  booking,
+  isAi,
+}: BookingCardProps) {
+  return (
+    <div className="rounded-2xl border border-sky-100 bg-sky-50/60 p-5">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+        <div className="flex gap-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-sky-600 shadow-sm">
+            <Wrench size={18} />
+          </div>
+
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="font-semibold">
+                {booking.customer.name}
+              </p>
+
+              <span className="rounded-full bg-sky-600 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
+                Booking
+              </span>
+
+              {isAi && (
+                <span className="flex items-center gap-1 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-violet-700">
+                  <Sparkles size={11} />
+                  AI Agent
+                </span>
+              )}
+            </div>
+
+            <p className="mt-2 text-sm font-medium text-slate-700">
+              {booking.service}
+            </p>
+
+            <div className="mt-3 flex flex-wrap gap-3 text-xs text-slate-500">
+              <span className="flex items-center gap-1.5">
+                <CalendarDays size={14} />
+                {formatBookingDate(booking.date)}
+              </span>
+
+              <span className="flex items-center gap-1.5">
+                <Clock3 size={14} />
+                {booking.time}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <span className="flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
+          <CheckCircle2 size={14} />
+          {booking.status}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+interface WorkspaceSectionProps {
+  packageName: string;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}
+
+function WorkspaceSection({
+  packageName,
+  title,
+  description,
+  children,
+}: WorkspaceSectionProps) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
+        {packageName}
+      </p>
+
+      <h2 className="mt-3 text-2xl font-semibold">
+        {title}
+      </h2>
+
+      <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
+        {description}
+      </p>
+
+      <div className="mt-7">{children}</div>
+    </div>
+  );
+}
+
+interface EmptyStateProps {
+  title: string;
+  description: string;
+}
+
+function EmptyState({
+  title,
+  description,
+}: EmptyStateProps) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+      <p className="font-semibold text-slate-700">
+        {title}
+      </p>
+
+      <p className="mt-2 text-sm text-slate-500">
+        {description}
+      </p>
+    </div>
   );
 }
 
@@ -747,16 +1091,22 @@ function StatCard({
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-500">{label}</p>
+        <p className="text-sm text-slate-500">
+          {label}
+        </p>
 
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
           <Icon size={17} />
         </div>
       </div>
 
-      <p className="mt-5 text-2xl font-semibold">{value}</p>
+      <p className="mt-5 text-2xl font-semibold">
+        {value}
+      </p>
 
-      <p className="mt-1 text-xs text-slate-400">{helper}</p>
+      <p className="mt-1 text-xs text-slate-400">
+        {helper}
+      </p>
     </div>
   );
 }
@@ -783,11 +1133,17 @@ function WorkflowItem({
             : "bg-slate-100 text-slate-500"
         }`}
       >
-        {completed ? <CheckCircle2 size={15} /> : number}
+        {completed ? (
+          <CheckCircle2 size={15} />
+        ) : (
+          number
+        )}
       </div>
 
       <div>
-        <p className="text-sm font-semibold">{title}</p>
+        <p className="text-sm font-semibold">
+          {title}
+        </p>
 
         <p className="mt-1 text-xs leading-5 text-slate-500">
           {description}
